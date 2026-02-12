@@ -178,7 +178,7 @@ export const translations = {
           image: "/img/award/maribelajar-sib.png",
         },
         { title: "Kepesertaan Program MSIB Batch 6", issuer: "Kampus Merdeka Belajar", tags: ["MSIB", "Kampus Merdeka", "Course"], date: "JULI 2024", code: "9286539", image: "/img/award/msib-bersertifikat.png" },
-        { title: "Best Team Bangkit Company Track Capstone Project", issuer: "Bangkit Academy", tags: ["Achievement", "Mobile"], date: "JANUARI 2025", code: "05-039/PKKMB-SYS/IX/24", image: "/img/award/panitia-pkkmb.png" },
+        { title: "Sertifikat Apresiasi Sebagai Panitia PKKMB", issuer: "STIKOM Yos Sudarso Purwokerto", tags: ["Achievement", "Committee"], date: "JANUARI 2025", code: "05-039/PKKMB-SYS/IX/24", image: "/img/award/panitia-pkkmb.png" },
       ],
     },
     projects: {
@@ -425,7 +425,7 @@ export const translations = {
           image: "/img/award/maribelajar-sib.png",
         },
         { title: "MSIB Batch 6 Program Participation", issuer: "Kampus Merdeka Belajar", tags: ["MSIB", "Kampus Merdeka", "Course"], date: "JULY 2024", code: "9286539", image: "/img/award/msib-bersertifikat.png" },
-        { title: "Best Team Bangkit Company Track Capstone Project", issuer: "Bangkit Academy", tags: ["Achievement", "Mobile"], date: "JANUARY 2025", code: "05-039/PKKMB-SYS/IX/24", image: "/img/award/panitia-pkkmb.png" },
+        { title: "Certificate of Appreciation as PKKMB Committee", issuer: "STIKOM Yos Sudarso Purwokerto", tags: ["Achievement", "Committee"], date: "JANUARY 2025", code: "05-039/PKKMB-SYS/IX/24", image: "/img/award/panitia-pkkmb.png" },
       ],
     },
     projects: {
