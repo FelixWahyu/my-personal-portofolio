@@ -19,7 +19,7 @@ const AchievementsSection = () => {
         {t.achievements.items.map((achievement, index) => (
           <div
             key={index}
-            className="group relative rounded-lg bg-card border border-border overflow-hidden hover:border-primary/50 transition-all duration-300 animate-fade-in"
+            className="group relative rounded-lg bg-card border border-gray-300 overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 animate-fade-in"
             style={{ animationDelay: `${index * 100}ms` }}
             onMouseEnter={() => setHoverIndex(index)}
             onMouseLeave={() => setHoverIndex(null)}
@@ -27,7 +27,6 @@ const AchievementsSection = () => {
             <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <img src={achievement.image} className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" alt={achievement.title} />
-              {/* Hover overlay */}
               <div className={`absolute inset-0 flex items-center justify-center bg-black/60 transition-all duration-300 ${hoverIndex === index ? "opacity-100" : "opacity-0"}`}>
                 <a href="#" className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md hover:scale-105 transition">
                   {t.achievements.viewDetail} <ArrowRight className="w-4 h-4" />
@@ -38,7 +37,6 @@ const AchievementsSection = () => {
               {achievement.code && <p className="text-xs text-muted-foreground font-mono truncate">{achievement.code}</p>}
               <h3 className="font-semibold text-sm leading-tight line-clamp-2">{achievement.title}</h3>
               <p className="text-xs text-muted-foreground">{achievement.issuer}</p>
-              {/* Tags */}
               <div className="flex flex-wrap gap-1.5">
                 {achievement.tags.map((tag, tagIndex) => (
                   <span key={tagIndex} className="px-2.5 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20 font-medium">
