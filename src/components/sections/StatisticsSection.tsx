@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import { useLanguage } from "../LanguageProvider";
 import { FaGithub } from "react-icons/fa";
 import WakaTimeStats from "../WakatimeSection";
-import GitHubContributions from "../GitHubContribution";
+import { GitHubContributions, GithubActivityGraph } from "../GitHubContribution";
 
 const StatisticsSection = () => {
   const { t } = useLanguage();
@@ -38,8 +38,10 @@ const StatisticsSection = () => {
         </div>
       </div>
 
-      <div className="mt-6">
-        <img className="w-full mb-6" src={`https://github-readme-activity-graph.vercel.app/graph?username=FelixWahyu&theme=github-dark`} alt="GitHub Activity Graph" />
+      <div className="mt-6 space-y-6">
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <GithubActivityGraph />
+        </div>
         <GitHubContributions />
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
+import { useTheme } from "next-themes";
 
 interface Day {
   date: string;
@@ -12,7 +13,7 @@ interface StatProps {
   value: string | number;
 }
 
-const GitHubContributions = () => {
+export const GitHubContributions = () => {
   const [days, setDays] = useState<Day[]>([]);
   const [year, setYear] = useState(new Date().getFullYear());
   const { t } = useLanguage();
@@ -137,4 +138,9 @@ const Stat = ({ label, value }: StatProps) => (
   </div>
 );
 
-export default GitHubContributions;
+export const GithubActivityGraph = () => {
+  const { theme } = useTheme();
+  const graphTheme = theme === "dark" ? "github-dark" : "github-light";
+
+  return <img className="w-full rounded-md" src={`https://github-readme-activity-graph.vercel.app/graph?username=FelixWahyu&theme=${graphTheme}&hide_border=true`} alt="GitHub Activity Graph" loading="lazy" />;
+};
