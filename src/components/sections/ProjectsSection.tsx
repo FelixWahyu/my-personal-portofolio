@@ -21,7 +21,7 @@ const ProjectsSection = () => {
 
       <div className="grid gap-4 md:grid-cols-2">
         {t.projects.items.map((project, index) => (
-          <div key={index} className="group rounded-xl bg-card border border-gray-300 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+          <div key={index} className="group rounded-xl bg-card border border-border hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
             <div className="relative aspect-[16/9] overflow-hidden rounded-t-lg group">
               <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

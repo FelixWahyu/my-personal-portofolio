@@ -19,7 +19,7 @@ const AchievementsSection = () => {
         {t.achievements.items.map((achievement, index) => (
           <div
             key={index}
-            className="group relative rounded-lg bg-card border border-gray-300 overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 animate-fade-in"
+            className="group relative rounded-lg bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 animate-fade-in"
             style={{ animationDelay: `${index * 100}ms` }}
             onMouseEnter={() => setHoverIndex(index)}
             onMouseLeave={() => setHoverIndex(null)}

@@ -8,7 +8,7 @@ const StatisticsSection = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
 
-  const githubTheme = theme === "dark" ? "tokyonight" : "light";
+  const githubTheme = theme === "dark" ? "tokyonight" : "github-light";
   return (
     <section className="animate-fade-in">
       <div className="pb-4 border-b-2 border-dashed mb-6">

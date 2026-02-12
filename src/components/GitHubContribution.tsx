@@ -80,7 +80,7 @@ export const GitHubContributions = () => {
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-sm font-semibold text-gray-500">{t.statistik.githubcont}</h3>
 
-        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="dark:bg-[#161b22] border border-gray-800 text-sm text-gray-900 dark:text-white rounded px-2 py-1">
+        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="dark:bg-[#161b22] border border-border text-sm text-gray-900 dark:text-gray-400 rounded px-2 py-1">
           {years.map((y) => (
             <option key={y} value={y}>
               {y}
@@ -89,7 +89,7 @@ export const GitHubContributions = () => {
         </select>
       </div>
 
-      <div className="p-3 border border-gray-800 rounded-md bg-transparent dark:bg-[#0d1117]">
+      <div className="p-3 border border-border shadow-sm rounded-md bg-white dark:bg-[#0d1117]">
         {/* Bulan */}
         <div className="flex gap-[3px] text-xs text-gray-600 mb-2 pl-[2px]">
           {weeks.map((week, i) => {
@@ -132,7 +132,7 @@ export const GitHubContributions = () => {
 };
 
 const Stat = ({ label, value }: StatProps) => (
-  <div className="p-4 rounded-lg text-center border border-gray-800">
+  <div className="p-4 rounded-lg text-center bg-white dark:bg-[#0d1117] border border-border shadow-sm">
     <p className="text-gray-600 text-sm">{label}</p>
     <p className="text-yellow-400 text-2xl font-bold mt-1">{value}</p>
   </div>
