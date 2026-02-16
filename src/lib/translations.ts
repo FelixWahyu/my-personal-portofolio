@@ -14,7 +14,7 @@ export const translations = {
       greeting: "Halo, saya",
       location: "Berdomisili di Purwokerto, Jawa Tengah",
       status: "Terbuka untuk Bekerja",
-      bio1: "Seorang Web Developer yang berfokus pada pengembangan solusi digital yang bernilai dan berdampak. Saya memiliki keahlian dalam membangun platform web yang skalabel dengan teknologi modern, khususnya JavaScript, PHP, React, TypeScript, Laravel, dan Next.js.",
+      bio1: "Seorang Web Developer yang berfokus pada pengembangan solusi digital yang bernilai dan berdampak. Saya memiliki keahlian dalam membangun platform web yang skalabel dengan teknologi modern, khususnya JavaScript, PHP, React, dan Framework Laravel.",
       bio2: "Fokus saya adalah merancang arsitektur perangkat lunak yang terstruktur dengan baik, mudah dipelihara, dan selaras dengan tujuan bisnis. Saya memadukan keahlian teknis dengan komunikasi proaktif dan kepemimpinan untuk memastikan setiap proyek memberikan kejelasan logis dan dampak nyata di dunia nyata.",
     },
     skills: {
@@ -25,7 +25,7 @@ export const translations = {
       title: "Tentang",
       subtitle: "Perkenalan singkat tentang siapa saya.",
       description:
-        "Saya Felix Wahyu Sejati, seorang Web Developer yang berbasis di Purwokerto, Jawa Tengah, dengan dedikasi untuk menghadirkan solusi digital yang bernilai dan berdampak. Saya berpengalaman dalam membangun platform website menggunakan teknologi modern seperti Next.js, TypeScript, JavaScript, React, PHP dan Laravel.",
+        "Saya Felix Wahyu Sejati lulusan S1 - Sistem Informasi di STIKOM Yos Sudarso Purwokerto, saya seorang Web Developer yang berbasis di Purwokerto, Jawa Tengah, dengan dedikasi untuk menghadirkan solusi digital yang bernilai dan berdampak. Saya berpengalaman dalam membangun platform website menggunakan teknologi modern seperti JavaScript, React, PHP dan Framework Laravel.",
       description2:
         "Fokus saya adalah merancang arsitektur perangkat lunak yang kokoh, tertata rapi, mudah dirawat, serta mampu berkembang seiring pertumbuhan kebutuhan bisnis. Saya meyakini bahwa kualitas kode yang baik harus selaras dengan efisiensi sistem dan alur logika yang jelas.",
       description3:
@@ -266,7 +266,7 @@ export const translations = {
       greeting: "Hello, I'm",
       location: "Based in Purwokerto, Central Java",
       status: "Open to Work",
-      bio1: "A Web Developer focused on developing valuable and impactful digital solutions. I specialize in developing scalable web platforms using modern technologies, particularly JavaScript, PHP, React, TypeScript, Laravel and Next.js.",
+      bio1: "A Web Developer focused on developing valuable and impactful digital solutions. I specialize in developing scalable web platforms using modern technologies, particularly JavaScript, PHP, React and Laravel  Framework.",
       bio2: "My focus is designing well-structured, maintainable software architecture aligned with business goals. I combine technical expertise with proactive communication and leadership to ensure every project delivers logical clarity and real-world impact.",
     },
     skills: {
@@ -277,7 +277,7 @@ export const translations = {
       title: "About",
       subtitle: "A brief introduction to who I am.",
       description:
-        "My name is Felix Wahyu Sejati, a Web Developer based in Purwokerto, Central Java, dedicated to delivering impactful and value-driven digital solutions. I have experience in developing web platforms using modern technologies such as Next.js, TypeScript, JavaScript, React, PHP and Laravel.",
+        "My name is Felix Wahyu Sejati Bachelor's degree graduate - Information Systems at STIKOM Yos Sudarso Purwokerto, I'm a Web Developer based in Purwokerto, Central Java, dedicated to delivering impactful and value-driven digital solutions. I have experience in developing web platforms using modern technologies such as JavaScript, React, PHP and Laravel Framework.",
       description2:
         "My primary focus is on designing software architectures that are robust, well-structured, maintainable, and scalable to support evolving business needs. I believe that high-quality code should go hand in hand with system efficiency and clear, logical design.",
       description3:

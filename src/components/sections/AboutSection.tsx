@@ -154,7 +154,7 @@ const AboutSection = () => {
       {/* Download Buttons */}
       <div className="flex flex-wrap gap-3 mt-6">
         <Button asChild variant="outline" className="gap-2">
-          <a href="/files/Curiculum_Vitae_Felix.pdf" download>
+          <a href="/files/CV_Felix_2026.pdf" download>
             <Download className="w-4 h-4" />
             {t.about.downloadResume}
           </a>
