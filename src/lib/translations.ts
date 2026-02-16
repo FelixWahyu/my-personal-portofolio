@@ -188,7 +188,7 @@ export const translations = {
         {
           title: "Web Based Sales Roti Mruyung Guest House & Coffe",
           description: "Membangun website penjualan roti dengan Dashboard analytics dan laporan penjualan cetak PDF real time.",
-          demolink: "#",
+          demolink: "https://rotimruyungcafe-guesthouse.com/",
           sourcelink: "https://github.com/",
           image: "/img/project-image/web-sales.webp",
           teck: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
@@ -196,7 +196,7 @@ export const translations = {
         {
           title: "Grocery Store Point of Sales System",
           description: "Membangun sistem kasir berbasis website dengan dashboard analytics dan terintegrasi dengan Ai Gemini.",
-          demolink: "#",
+          demolink: "https://kasir.sidudigitalprint.com/login",
           sourcelink: "https://github.com/",
           image: "/img/project-image/pos-laravel.webp",
           teck: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
@@ -220,7 +220,7 @@ export const translations = {
         {
           title: "Personal Portfolio Website",
           description: "Membangun website portfolio dengan react dan statistic dengan API Github dengan desain modern.",
-          demolink: "#",
+          demolink: "https://www.felixws.my.id/",
           sourcelink: "https://github.com/",
           image: "/img/project-image/personal-portofolio.webp",
           teck: ["React", "TypeScript", "GitHub", "Tailwind CSS", "WakaTime API", "Express"],
