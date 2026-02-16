@@ -1,4 +1,4 @@
-import { Home, User, Trophy, FolderOpen, Mail, ChevronRight, ChartLine, FileBadge } from "lucide-react";
+import { Home, User, FolderOpen, Mail, ChevronRight, ChartLine, FileBadge } from "lucide-react";
 import profilePhoto from "@/assets/foto-profile.jpg";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";

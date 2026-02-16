@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Home, User, FileText, Trophy, FolderOpen, Mail, Check } from "lucide-react";
+import { Menu, X, Home, User, FileText, Trophy, FolderOpen, Mail } from "lucide-react";
 import profilePhoto from "@/assets/foto-profile.jpg";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";

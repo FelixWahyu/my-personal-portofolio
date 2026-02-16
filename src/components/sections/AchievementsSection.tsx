@@ -2,8 +2,6 @@ import { Trophy, Award, Star, Medal, ArrowRight } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import { useState } from "react";
 
-const cardIcons = [<Trophy className="w-10 h-10 text-primary" />, <Award className="w-10 h-10 text-primary" />, <Star className="w-10 h-10 text-primary" />, <Medal className="w-10 h-10 text-primary" />];
-
 const AchievementsSection = () => {
   const { t } = useLanguage();
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
