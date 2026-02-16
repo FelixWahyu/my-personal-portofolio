@@ -191,6 +191,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/",
           image: "/img/project-image/web-sales.webp",
+          teck: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
         },
         {
           title: "Grocery Store Point of Sales System",
@@ -198,6 +199,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/",
           image: "/img/project-image/pos-laravel.webp",
+          teck: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
         },
         {
           title: "A Simple E-Commerce Platform",
@@ -205,6 +207,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/",
           image: "/img/project-image/simple-ecommerce.webp",
+          teck: ["React", "Midtrans API", "TypeScript", "Tailwind CSS"],
         },
         {
           title: "Coffe Shop with Midtrans",
@@ -212,6 +215,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/",
           image: "/img/project-image/coffe-shop.webp",
+          teck: ["JQuery", "HTML5", "CSS3", "JavaScript", "Midtrans API"],
         },
         {
           title: "Personal Portfolio Website",
@@ -219,6 +223,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/",
           image: "/img/project-image/personal-portofolio.webp",
+          teck: ["React", "TypeScript", "GitHub", "Tailwind CSS", "WakaTime API", "Express"],
         },
       ],
       demo: "Demo",
@@ -443,13 +448,15 @@ export const translations = {
           demolink: "https://rotimruyungcafe-guesthouse.com/",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/web-sales.webp",
+          teck: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
         },
         {
           title: "Grocery Store Point of Sales System",
           description: "Building a website-based cashier system with an analytics dashboard and integrated with Ai Gemini.",
-          demolink: "#",
+          demolink: "https://kasir.sidudigitalprint.com/login",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/pos-laravel.webp",
+          teck: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
         },
         {
           title: "A Simple E-Commerce Platform",
@@ -457,6 +464,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/simple-ecommerce.webp",
+          teck: ["React", "Midtrans API", "TypeScript", "Tailwind CSS"],
         },
         {
           title: "Coffe Shop with Midtrans",
@@ -464,6 +472,7 @@ export const translations = {
           demolink: "#",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/coffe-shop.webp",
+          teck: ["JQuery", "HTML5", "CSS3", "JavaScript", "Midtrans API"],
         },
         {
           title: "Personal Portfolio Website",
@@ -471,6 +480,7 @@ export const translations = {
           demolink: "https://www.felixws.my.id/",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/personal-portofolio.webp",
+          teck: ["React", "TypeScript", "GitHub", "Tailwind CSS", "WakaTime API", "Express"],
         },
       ],
       demo: "Demo",

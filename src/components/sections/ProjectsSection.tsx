@@ -1,14 +1,6 @@
 import { ExternalLink, Github } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 
-const techStacks = [
-  ["Laravel", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
-  ["Laravel", "Tailwind CSS", "Gemini API", "JavaScript"],
-  ["React", "Midtrans API", "TypeScript", "Tailwind CSS"],
-  ["JQuery", "HTML5", "CSS3", "JavaScript", "Midtrans API"],
-  ["React", "TypeScript", "GitHub API", "Tailwind CSS", "WakaTime API", "Express"],
-];
-
 const ProjectsSection = () => {
   const { t } = useLanguage();
 
@@ -41,7 +33,7 @@ const ProjectsSection = () => {
               <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
             </div>
             <div className="flex flex-wrap gap-2 mb-4 px-5">
-              {techStacks[index].map((tech) => (
+              {project.teck.map((tech) => (
                 <span key={tech} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
                   {tech}
                 </span>
