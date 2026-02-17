@@ -14,8 +14,8 @@ export const translations = {
       greeting: "Halo, saya",
       location: "Berdomisili di Purwokerto, Jawa Tengah",
       status: "Terbuka untuk Bekerja",
-      bio1: "Seorang Web Developer yang berfokus pada pengembangan solusi digital yang bernilai dan berdampak. Saya memiliki keahlian dalam membangun platform web yang skalabel dengan teknologi modern, khususnya JavaScript, PHP, React, dan Framework Laravel.",
-      bio2: "Fokus saya adalah merancang arsitektur perangkat lunak yang terstruktur dengan baik, mudah dipelihara, dan selaras dengan tujuan bisnis. Saya memadukan keahlian teknis dengan komunikasi proaktif dan kepemimpinan untuk memastikan setiap proyek memberikan kejelasan logis dan dampak nyata di dunia nyata.",
+      bio1: "Saya adalah seorang Web Developer yang memiliki ketertarikan besar dalam membangun solusi digital yang tidak hanya berfungsi dengan baik, tetapi juga memberikan nilai nyata bagi pengguna dan bisnis. Dengan pengalaman menggunakan teknologi modern seperti JavaScript, PHP, React, dan framework Laravel, saya terbiasa mengembangkan platform web yang skalabel, efisien, dan berorientasi pada kebutuhan pengguna.",
+      bio2: "Dalam setiap proyek, saya berfokus pada perancangan arsitektur perangkat lunak yang terstruktur, mudah dipelihara, serta mampu berkembang seiring perubahan kebutuhan bisnis. Saya percaya bahwa kualitas sebuah produk digital tidak hanya ditentukan oleh teknologi yang digunakan, tetapi juga oleh komunikasi yang efektif, kolaborasi tim yang baik, serta pemahaman yang jelas terhadap tujuan proyek. Oleh karena itu, saya selalu berupaya memadukan kemampuan teknis, pola pikir analitis, dan komunikasi proaktif untuk menghasilkan solusi yang berdampak nyata.",
     },
     skills: {
       title: "Keahlian",
@@ -25,11 +25,11 @@ export const translations = {
       title: "Tentang",
       subtitle: "Perkenalan singkat tentang siapa saya.",
       description:
-        "Saya Felix Wahyu Sejati lulusan S1 - Sistem Informasi di STIKOM Yos Sudarso Purwokerto, saya seorang Web Developer yang berbasis di Purwokerto, Jawa Tengah, dengan dedikasi untuk menghadirkan solusi digital yang bernilai dan berdampak. Saya berpengalaman dalam membangun platform website menggunakan teknologi modern seperti JavaScript, React, PHP dan Framework Laravel.",
+        "Saya Felix Wahyu Sejati, lulusan S1 Sistem Informasi dari STIKOM Yos Sudarso Purwokerto, sekaligus seorang Web Developer yang berbasis di Purwokerto, Jawa Tengah. Saya memiliki ketertarikan besar dalam membangun solusi digital yang tidak hanya berfungsi dengan baik, tetapi juga memberikan nilai nyata bagi pengguna dan bisnis. Dalam perjalanan saya, saya telah mengembangkan berbagai platform website menggunakan teknologi modern seperti JavaScript, React, PHP, dan framework Laravel.",
       description2:
-        "Fokus saya adalah merancang arsitektur perangkat lunak yang kokoh, tertata rapi, mudah dirawat, serta mampu berkembang seiring pertumbuhan kebutuhan bisnis. Saya meyakini bahwa kualitas kode yang baik harus selaras dengan efisiensi sistem dan alur logika yang jelas.",
+        "Bagi saya, pengembangan perangkat lunak bukan sekadar menulis kode, tetapi tentang merancang sistem yang memiliki struktur yang jelas, mudah dipelihara, dan mampu berkembang seiring kebutuhan bisnis. Oleh karena itu, saya berfokus pada pembangunan arsitektur yang kokoh, efisien, dan memiliki logika yang terorganisir dengan baik agar solusi yang dihasilkan dapat bertahan dalam jangka panjang.",
       description3:
-        "Selain kemampuan teknis, saya mengedepankan komunikasi yang aktif, pola pikir analitis, serta pengelolaan waktu yang disiplin. Saya nyaman bekerja dalam tim dan mengaplikasikan kemampuan kepemimpinan untuk memastikan setiap proyek berjalan optimal serta memberikan nilai dan dampak yang nyata.",
+        "Selain aspek teknis, saya juga percaya bahwa keberhasilan sebuah proyek sangat dipengaruhi oleh komunikasi yang baik, pola pikir analitis, serta manajemen waktu yang disiplin. Saya nyaman bekerja secara kolaboratif dalam tim maupun secara mandiri, serta mampu mengambil peran kepemimpinan ketika dibutuhkan untuk memastikan setiap proyek berjalan optimal dan memberikan dampak yang bermakna.",
       interests: "Minat",
       interestsDesc: "Frontend Developer, Fullstack Developer, dan Content Creator",
       careerTitle: "Pengalaman",
@@ -271,8 +271,8 @@ export const translations = {
       greeting: "Hello, I'm",
       location: "Based in Purwokerto, Central Java",
       status: "Open to Work",
-      bio1: "A Web Developer focused on developing valuable and impactful digital solutions. I specialize in developing scalable web platforms using modern technologies, particularly JavaScript, PHP, React and Laravel  Framework.",
-      bio2: "My focus is designing well-structured, maintainable software architecture aligned with business goals. I combine technical expertise with proactive communication and leadership to ensure every project delivers logical clarity and real-world impact.",
+      bio1: "I'm a web developer passionate about building digital solutions that not only function well but also provide real value to users and businesses. With experience using modern technologies like JavaScript, PHP, React, and the Laravel framework, I'm accustomed to developing scalable, efficient, and user-centric web platforms.",
+      bio2: "In every project, I focus on designing a structured, maintainable software architecture that can evolve with changing business needs. I believe that the quality of a digital product is determined not only by the technology used, but also by effective communication, strong team collaboration, and a clear understanding of the project's objectives. Therefore, I always strive to combine technical skills, an analytical mindset, and proactive communication to produce solutions that have a real impact.",
     },
     skills: {
       title: "Skills",
@@ -282,11 +282,11 @@ export const translations = {
       title: "About",
       subtitle: "A brief introduction to who I am.",
       description:
-        "My name is Felix Wahyu Sejati Bachelor's degree graduate - Information Systems at STIKOM Yos Sudarso Purwokerto, I'm a Web Developer based in Purwokerto, Central Java, dedicated to delivering impactful and value-driven digital solutions. I have experience in developing web platforms using modern technologies such as JavaScript, React, PHP and Laravel Framework.",
+        "My name is Felix Wahyu Sejati, a Bachelor of Information Systems graduate from STIKOM Yos Sudarso Purwokerto and a web developer based in Purwokerto, Central Java. I am passionate about building digital solutions that not only function well but also provide real value to users and businesses. Throughout my career, I have developed various website platforms using modern technologies such as JavaScript, React, PHP, and the Laravel framework.",
       description2:
-        "My primary focus is on designing software architectures that are robust, well-structured, maintainable, and scalable to support evolving business needs. I believe that high-quality code should go hand in hand with system efficiency and clear, logical design.",
+        "For me, software development isn't just about writing code; it's about designing systems that are well-structured, easy to maintain, and capable of evolving with business needs. Therefore, I focus on building robust, efficient, and logically organized architectures to ensure the long-term sustainability of the resulting solutions.",
       description3:
-        "In addition to technical expertise, I bring proactive communication, critical thinking, and effective time management to every project. I thrive in collaborative environments and leverage leadership skills to ensure projects deliver optimal results and meaningful impact.",
+        "Beyond technical aspects, I also believe that project success is heavily influenced by strong communication skills, an analytical mindset, and disciplined time management. I'm comfortable working collaboratively in teams and independently, and I'm capable of taking on leadership roles when needed to ensure each project runs optimally and delivers meaningful impact.",
       interests: "Interests",
       interestsDesc: "Frontend Developer, Fullstack Developer and Content Creator",
       careerTitle: "Experiences",
