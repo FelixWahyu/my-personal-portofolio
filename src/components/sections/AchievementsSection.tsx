@@ -1,4 +1,4 @@
-import { Trophy, Award, Star, Medal, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import { useState } from "react";
 

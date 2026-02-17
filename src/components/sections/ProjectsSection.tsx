@@ -1,8 +1,19 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
+import ProjectDetailModal from "../ProjectDetailModal";
+import { useState, useEffect } from "react";
 
 const ProjectsSection = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedProject]);
 
   return (
     <section className="animate-fade-in">
@@ -32,16 +43,26 @@ const ProjectsSection = () => {
               <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
               <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
             </div>
-            <div className="flex flex-wrap gap-2 mb-4 px-5">
-              {project.teck.map((tech) => (
-                <span key={tech} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
-                  {tech}
-                </span>
-              ))}
+
+            <div className="mb-4 px-5">
+              <div className="mb-1.5">
+                <h3>Tech stack</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {project.teck.map((tech) => (
+                  <span key={tech} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
+            <button onClick={() => setSelectedProject(project)} className="px-5 mb-4 text-primary text-sm flex gap-1 items-center">
+              More Detail <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         ))}
       </div>
+      <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 };
