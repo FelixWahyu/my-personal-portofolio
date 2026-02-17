@@ -46,11 +46,11 @@ const ExperienceCard = ({ item }: { item: ExperienceItem }) => {
         </div>
       </div>
 
-      <button onClick={() => setIsOpen(!isOpen)} className="flex items-center gap-1 mt-3 text-sm text-primary hover:text-primary/80 transition-colors">
+      <button onClick={() => setIsOpen(!isOpen)} className="flex items-center gap-1 my-3 text-sm text-primary hover:text-primary/80 transition-colors">
         {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
         {isOpen ? t.about.hideResponsibilities : t.about.showResponsibilities}
       </button>
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-4 p-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-4 px-3">
         {item.responsibilities.length > 0 && (
           <>
             {isOpen && (
