@@ -1,18 +1,31 @@
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
+import { ChevronRight, ExternalLink, Github } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import ProjectDetailModal from "../ProjectDetailModal";
 import { useState, useEffect } from "react";
 
+export interface Project {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+  demolink?: string;
+  sourcelink?: string;
+  tech: string[];
+  role: string;
+  impact: string;
+  problem: string;
+  features: string[];
+}
+
 const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { t } = useLanguage();
 
   useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = selectedProject ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [selectedProject]);
 
   return (
@@ -24,19 +37,23 @@ const ProjectsSection = () => {
 
       <div className="grid gap-4 md:grid-cols-2">
         {t.projects.items.map((project, index) => (
-          <div key={index} className="group rounded-xl bg-card border border-border hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+          <div key={project.id} className="group rounded-xl bg-card border border-border hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-lg animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
             <div className="relative aspect-[16/9] overflow-hidden rounded-t-lg group">
               <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-4 left-4 right-4 flex gap-3 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                <a href={project.demolink} target="_blank" className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-primary/80 hover:bg-primary text-primary-foreground">
-                  <ExternalLink className="w-4 h-4" />
-                  {t.projects.demo}
-                </a>
-                <a href={project.sourcelink} target="_blank" className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-background/80 text-foreground hover:bg-background">
-                  <Github className="w-4 h-4" />
-                  {t.projects.source}
-                </a>
+                {project.demolink && (
+                  <a href={project.demolink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-primary/80 hover:bg-primary text-primary-foreground">
+                    <ExternalLink className="w-4 h-4" />
+                    {t.projects.demo}
+                  </a>
+                )}
+                {project.sourcelink && (
+                  <a href={project.sourcelink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-background/80 text-foreground hover:bg-background">
+                    <Github className="w-4 h-4" />
+                    {t.projects.source}
+                  </a>
+                )}
               </div>
             </div>
             <div className="px-5 pt-5">
@@ -44,12 +61,12 @@ const ProjectsSection = () => {
               <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
             </div>
 
-            <div className="mb-4 px-5">
-              <div className="mb-1.5">
-                <h3>Tech stack</h3>
+            <div className="mb-6 px-5">
+              <div className="mb-2">
+                <h3 className="font-semibold text-lg">{t.projects.techstack}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {project.teck.map((tech) => (
+                {project.tech.map((tech) => (
                   <span key={tech} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
                     {tech}
                   </span>
@@ -57,7 +74,7 @@ const ProjectsSection = () => {
               </div>
             </div>
             <button onClick={() => setSelectedProject(project)} className="px-5 mb-4 text-primary text-sm flex gap-1 items-center">
-              More Detail <ChevronRight className="w-4 h-4" />
+              {t.projects.showDetail} <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         ))}

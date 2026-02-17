@@ -209,87 +209,81 @@ export const translations = {
     projects: {
       title: "Proyek",
       subtitle: "Sebuah pameran proyek pribadi dan proyek sumber terbuka yang telah saya buat atau sumbangkan.",
+      techstack: "Tumpukan Teknologi",
+      problemtitle: "Permasalahan",
+      roletitle: "Peran",
+      featurestitle: "Fitur",
+      impacttitle: "Dampak",
       items: [
         {
+          id: 1,
           title: "Web Based Sales at Roti Mruyung",
           description: "Membangun website penjualan roti dengan Dashboard analytics dan laporan penjualan cetak PDF real time.",
           demolink: "https://rotimruyungcafe-guesthouse.com/",
           sourcelink: "https://github.com/",
           image: "/img/project-image/web-sales.webp",
-          teck: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
+          tech: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 2,
           title: "Grocery Store Point of Sales System",
           description: "Membangun sistem kasir berbasis website dengan dashboard analytics dan terintegrasi dengan Ai Gemini.",
           demolink: "https://kasir.sidudigitalprint.com/login",
           sourcelink: "https://github.com/",
           image: "/img/project-image/pos-laravel.webp",
-          teck: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
+          tech: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 3,
           title: "A Simple E-Commerce Platform",
           description: "Platform e-commerce full-stack dengan fitur pembayaran, keranjang belanja, dan manajemen produk.",
-          demolink: "#",
+          demolink: "",
           sourcelink: "https://github.com/",
           image: "/img/project-image/simple-ecommerce.webp",
-          teck: ["React", "Midtrans API", "Tailwind CSS"],
+          tech: ["React", "Midtrans API", "Tailwind CSS"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 4,
           title: "Coffe Shop with Midtrans",
           description: "Membangun webiste toko kopi simple dengan html,css dan javascript murni dan fitur payment gateway.",
-          demolink: "#",
+          demolink: "",
           sourcelink: "https://github.com/",
           image: "/img/project-image/coffe-shop.webp",
-          teck: ["HTML5", "CSS3", "JavaScript", "Midtrans API"],
+          tech: ["HTML5", "CSS3", "JavaScript", "Midtrans API"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 5,
           title: "Personal Portfolio Website",
           description: "Membangun website portfolio dengan react dan statistic dengan API Github dengan desain modern.",
           demolink: "https://www.felixws.my.id/",
           sourcelink: "https://github.com/",
           image: "/img/project-image/personal-portofolio.webp",
-          teck: ["React", "Tailwind CSS", "WakaTime API", "Express"],
+          tech: ["React", "Tailwind CSS", "WakaTime API", "Express"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
       ],
       demo: "Demo",
       source: "Source",
-      showDetail: "Tampilkan lebih detail",
-      hiddeDetail: "Sembunyikan detail",
+      showDetail: "Lebih detail",
     },
     contact: {
       title: "Kontak",
@@ -528,87 +522,81 @@ export const translations = {
     projects: {
       title: "Projects",
       subtitle: "A showcase of personal and open-source projects I have built or contributed to.",
+      techstack: "Tech Stack",
+      problemtitle: "Problem",
+      roletitle: "Role",
+      featurestitle: "Features",
+      impacttitle: "Impact",
       items: [
         {
+          id: 1,
           title: "Web Bases Sale at Roti Mruyung",
           description: "Build a bakery sales website with analytics dashboard and real-time PDF print sales reports.",
           demolink: "https://rotimruyungcafe-guesthouse.com/",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/web-sales.webp",
-          teck: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
+          tech: ["Laravel 12", "Tailwind CSS", "Whatsapp API", "Alpine.Js"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 2,
           title: "Grocery Store Point of Sales System",
           description: "Building a website-based cashier system with an analytics dashboard and integrated with Ai Gemini.",
           demolink: "https://kasir.sidudigitalprint.com/login",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/pos-laravel.webp",
-          teck: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
+          tech: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 3,
           title: "A Simple E-Commerce Platform",
           description: "Full-stack e-commerce platform with payment features, shopping cart, and product management.",
-          demolink: "#",
+          demolink: "",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/simple-ecommerce.webp",
-          teck: ["React", "Midtrans API", "Tailwind CSS"],
+          tech: ["React", "Midtrans API", "Tailwind CSS"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 4,
           title: "Coffe Shop with Midtrans",
           description: "Build a simple coffee shop website with pure html, css and javascript and payment gateway features.",
-          demolink: "#",
+          demolink: "",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/coffe-shop.webp",
-          teck: ["HTML5", "CSS3", "JavaScript", "Midtrans API"],
+          tech: ["HTML5", "CSS3", "JavaScript", "Midtrans API"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
         {
+          id: 5,
           title: "Personal Portfolio Website",
           description: "Build a portfolio website with react and statistics with Github API with modern design.",
           demolink: "https://www.felixws.my.id/",
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/personal-portofolio.webp",
-          teck: ["React", "Tailwind CSS", "WakaTime API", "Express"],
+          tech: ["React", "Tailwind CSS", "WakaTime API", "Express"],
           problem: "Toko masih menggunakan pencatatan manual sehingga sering terjadi kesalahan stok dan laporan tidak akurat.",
-
           role: "Fullstack Developer — merancang database, backend API, dan frontend UI.",
-
           features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard laporan keuangan", "Manajemen pengguna"],
-
           impact: "Meningkatkan efisiensi operasional hingga 70% dan mengurangi kesalahan pencatatan stok.",
         },
       ],
       demo: "Demo",
       source: "Source",
-      showDetail: "Show more details",
-      hiddeDetail: "Hidde details",
+      showDetail: "More details",
     },
     contact: {
       title: "Contact",
