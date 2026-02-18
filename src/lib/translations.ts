@@ -167,6 +167,10 @@ export const translations = {
       subtitle: "Koleksi sertifikat dan lencana yang telah saya raih.",
       issuedOn: "DITERBITKAN PADA",
       viewDetail: "Lihat detail",
+      categorytitle: "KATEGORI",
+      descriptiontitle: "DESKRIPSI",
+      typetitle: "TIPE",
+      codetitle: "ID KREDENSIAL",
       items: [
         {
           id: 1,
@@ -176,6 +180,8 @@ export const translations = {
           date: "DESEMBER 2023",
           code: "CMP/12-23/HCLGA/6256556",
           image: "/img/award/revou-sib.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
         {
           id: 2,
@@ -185,6 +191,8 @@ export const translations = {
           date: "JUNI 2024",
           code: "AY24/MSIB/Q2/01204",
           image: "/img/award/maribelajar-sib.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
         {
           id: 3,
@@ -194,6 +202,8 @@ export const translations = {
           date: "JULI 2024",
           code: "9286539",
           image: "/img/award/msib-bersertifikat.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
         {
           id: 4,
@@ -203,6 +213,8 @@ export const translations = {
           date: "JANUARI 2025",
           code: "05-039/PKKMB-SYS/IX/24",
           image: "/img/award/panitia-pkkmb.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
       ],
     },
@@ -480,6 +492,10 @@ export const translations = {
       subtitle: "Collection of certificates and badges that I have achieved.",
       issuedOn: "ISSUED ON",
       viewDetail: "View detail",
+      categorytitle: "CATEGORY",
+      descriptiontitle: "DESCRIPTION",
+      typetitle: "TYPE",
+      codetitle: "CREDENTIAL ID",
       items: [
         {
           id: 1,
@@ -489,6 +505,8 @@ export const translations = {
           date: "DECEMBER 2023",
           code: "CMP/12-23/HCLGA/6256556",
           image: "/img/award/revou-sib.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
         {
           id: 2,
@@ -498,6 +516,8 @@ export const translations = {
           date: "JUNE 2024",
           code: "AY24/MSIB/Q2/01204",
           image: "/img/award/maribelajar-sib.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
         {
           id: 3,
@@ -507,6 +527,8 @@ export const translations = {
           date: "JULY 2024",
           code: "9286539",
           image: "/img/award/msib-bersertifikat.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
         {
           id: 4,
@@ -516,6 +538,8 @@ export const translations = {
           date: "JANUARY 2025",
           code: "05-039/PKKMB-SYS/IX/24",
           image: "/img/award/panitia-pkkmb.webp",
+          type: "Professional",
+          description: "Mengembangkan API Service Absensi dengan Clean Architecture menggunakan Golang.",
         },
       ],
     },

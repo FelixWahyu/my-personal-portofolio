@@ -1,10 +1,8 @@
 import { createPortal } from "react-dom";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, X, Check } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
-import { X } from "lucide-react";
 import { Project } from "./sections/ProjectsSection";
 import { useEffect } from "react";
-import { Check } from "lucide-react";
 
 interface Props {
   project: Project | null;
