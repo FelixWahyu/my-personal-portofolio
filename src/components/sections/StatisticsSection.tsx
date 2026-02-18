@@ -3,10 +3,14 @@ import { useLanguage } from "../LanguageProvider";
 import { FaGithub } from "react-icons/fa";
 import WakaTimeStats from "../WakatimeSection";
 import { GitHubContributions, GithubActivityGraph } from "../GitHubContribution";
+import { useState } from "react";
 
 const StatisticsSection = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
+  const GITHUB_USERNAME = "FelixWahyu";
+  const [streakLoaded, setStreakLoaded] = useState(false);
+  const [statLoaded, setStatLoaded] = useState(false);
 
   const githubTheme = theme === "dark" ? "tokyonight" : "github-light";
   return (
@@ -16,29 +20,47 @@ const StatisticsSection = () => {
         <p className="text-muted-foreground mt-1">{t.statistik.subtitle}</p>
       </div>
 
-      <div className="mb-8">
+      <div className="mb-10">
         <WakaTimeStats />
       </div>
 
-      <h2 className="section-title">
+      <h3 className="text-2xl font-bold text-foreground flex items-center gap-2 mt-8 mb-2">
         <FaGithub className="w-5 h-5 text-primary" />
         {t.statistik.gitstats}
-      </h2>
+      </h3>
       <p className="text-muted-foreground">{t.statistik.gitsubstats}</p>
 
       <div className="mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <div className="rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300">
-            <img className="w-full h-auto" src={`https://streak-stats.demolab.com?user=FelixWahyu&theme=${githubTheme}&hide_border=true`} alt="GitHub Streak Stats" />
+            {!streakLoaded && <div className="w-full h-48 bg-muted animate-pulse" />}
+            <img
+              onLoad={() => setStreakLoaded(true)}
+              onError={(e) => {
+                e.currentTarget.src = "/placeholder-stats.png";
+              }}
+              className="w-full h-auto"
+              src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&theme=${githubTheme}&hide_border=true`}
+              alt="GitHub Streak Stats"
+            />
           </div>
 
           <div className="rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300">
-            <img className="w-full h-auto" src={`https://readme-stats.warengonzaga.com/api?username=FelixWahyu&theme=${githubTheme}&hide_border=true&cache_seconds=7200`} alt="GitHub Stats" />
+            {!statLoaded && <div className="w-full h-48 bg-muted animate-pulse" />}
+            <img
+              onLoad={() => setStatLoaded(true)}
+              onError={(e) => {
+                e.currentTarget.src = "/placeholder-stats.png";
+              }}
+              className="w-full h-auto"
+              src={`https://readme-stats.warengonzaga.com/api?username=${GITHUB_USERNAME}&theme=${githubTheme}&hide_border=true`}
+              alt="GitHub Stats"
+            />
           </div>
         </div>
       </div>
 
-      <div className="mt-6 space-y-6">
+      <div className="mt-10 space-y-6">
         <div className="bg-card border border-border rounded-xl overflow-hidden">
           <GithubActivityGraph />
         </div>

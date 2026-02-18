@@ -31,8 +31,8 @@ const ProjectDetailModal = ({ project, onClose }: Props) => {
         </button>
 
         <div className="grid md:grid-cols-2 md:h-[90vh] md:overflow-hidden">
-          <div className="md:h-full">
-            <img src={project.image} alt={project.title} className="w-full h-64 md:h-full object-cover" />
+          <div className="relative flex items-center justify-center">
+            <img src={project.image} alt={project.title} className="w-full h-auto max-h-full object-contain" />
           </div>
 
           <div className="p-6 space-y-5 md:overflow-y-auto">
