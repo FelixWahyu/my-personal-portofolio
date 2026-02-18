@@ -184,13 +184,11 @@ const ContactSection = () => {
 
   return (
     <section className="animate-fade-in space-y-10">
-      {/* Header */}
       <div className="pb-4 border-b-2 border-dashed">
         <h2 className="text-3xl font-bold text-foreground">{t.contact.title}</h2>
         <p className="text-muted-foreground mt-1">{t.contact.subtitle}</p>
       </div>
 
-      {/* Social Cards Grid */}
       <div className="grid gap-4 sm:grid-cols-2">
         {socials.map((social, index) => (
           <a
@@ -216,7 +214,6 @@ const ContactSection = () => {
         ))}
       </div>
 
-      {/* Contact Form */}
       <ContactForm />
     </section>
   );

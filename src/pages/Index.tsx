@@ -39,16 +39,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Mobile Navigation */}
       <MobileNav activeSection={activeSection} onNavigate={setActiveSection} />
 
       <div className="flex">
-        {/* Desktop Sidebar */}
         <div className="hidden lg:block">
           <Sidebar activeSection={activeSection} onNavigate={setActiveSection} />
         </div>
 
-        {/* Main Content */}
         <main className="flex-1 p-6 lg:p-10 pt-20 lg:pt-10 max-w-4xl">{renderSection()}</main>
       </div>
       <WhatsappButton />

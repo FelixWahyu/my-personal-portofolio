@@ -23,7 +23,6 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
 
   return (
     <aside className="w-72 bg-sidebar border-r border-sidebar-border flex flex-col h-screen sticky top-0">
-      {/* Profile Section */}
       <div className="profile-card border-b border-sidebar-border">
         <div className="relative mb-4">
           <img src={profilePhoto} alt="Profile" className="w-24 h-24 rounded-full object-cover border-2 border-border" />
@@ -33,14 +32,12 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
         </div>
         <p className="text-muted-foreground text-sm mb-4">@felixwahyusejati</p>
 
-        {/* Language & Theme Toggles */}
         <div className="flex items-center gap-2">
           <LanguageToggle />
           <ThemeToggle />
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         {navItems.map((item, index) => (
           <button key={item.id} onClick={() => onNavigate(item.id)} className={`nav-item w-full animate-slide-in ${activeSection === item.id ? "nav-item-active" : ""}`} style={{ animationDelay: `${index * 50}ms` }}>
@@ -51,7 +48,6 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
         ))}
       </nav>
 
-      {/* Footer */}
       <div className="p-4 border-t border-sidebar-border">
         <p className="text-xs text-muted-foreground text-center">{t.footer.copyright}</p>
       </div>

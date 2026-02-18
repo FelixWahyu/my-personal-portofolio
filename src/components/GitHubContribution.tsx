@@ -70,7 +70,6 @@ export const GitHubContributions = () => {
 
   return (
     <div className="p-6 rounded-md text-white">
-      {/* Statistik */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <Stat label={t.statistik.githubcard.total} value={total} />
         <Stat label={t.statistik.githubcard.minggu} value={weekTotal} />
@@ -90,7 +89,6 @@ export const GitHubContributions = () => {
       </div>
 
       <div className="p-3 border border-border shadow-sm rounded-md bg-white dark:bg-[#0d1117]">
-        {/* Bulan */}
         <div className="flex gap-[3px] text-xs text-gray-600 mb-2 pl-[2px]">
           {weeks.map((week, i) => {
             const firstDay = week[0];
@@ -106,7 +104,7 @@ export const GitHubContributions = () => {
             );
           })}
         </div>
-        {/* Heatmap */}
+
         <div className="overflow-x-auto">
           <div className="inline-flex gap-[3px]">
             {weeks.map((week, i) => (
@@ -118,7 +116,7 @@ export const GitHubContributions = () => {
             ))}
           </div>
         </div>
-        {/* Legend */}
+
         <div className="flex items-center gap-2 text-xs text-gray-600 mt-4 px-2">
           <span>{t.statistik.gitcontribution.sedikit}</span>
           {[0, 1, 2, 3, 4].map((lvl) => (

@@ -138,20 +138,17 @@ const AboutSection = () => {
 
   return (
     <section className="animate-fade-in space-y-10">
-      {/* Header */}
       <div className="pb-4 border-b-2 border-dashed">
         <h2 className="text-3xl font-bold text-foreground">{t.about.title}</h2>
         <p className="text-muted-foreground mt-1">{t.about.subtitle}</p>
       </div>
 
-      {/* Bio */}
       <div className="space-y-4">
         <p className="text-muted-foreground leading-relaxed">{t.about.description}</p>
         <p className="text-muted-foreground leading-relaxed">{t.about.description2}</p>
         <p className="text-muted-foreground leading-relaxed">{t.about.description3}</p>
       </div>
 
-      {/* Download Buttons */}
       <div className="flex flex-wrap gap-3 mt-6">
         <Button asChild variant="outline" className="gap-2">
           <a href="/files/CV_Felix_2026.pdf" download>
@@ -161,7 +158,6 @@ const AboutSection = () => {
         </Button>
       </div>
 
-      {/* Career / Experience */}
       <div>
         <h3 className="text-xl font-semibold flex items-center gap-2 mb-2">
           <Briefcase className="w-5 h-5 text-primary" />
@@ -177,7 +173,6 @@ const AboutSection = () => {
         </div>
       </div>
 
-      {/* Education */}
       <div>
         <h3 className="text-xl font-semibold flex items-center gap-2 mb-4">
           <GraduationCap className="w-5 h-5 text-primary" />

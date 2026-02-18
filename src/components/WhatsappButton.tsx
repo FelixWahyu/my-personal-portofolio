@@ -17,7 +17,6 @@ const WhatsappButton = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Tooltip */}
       <div
         role="tooltip"
         aria-hidden={!isOpen}
@@ -34,7 +33,6 @@ const WhatsappButton = () => {
         </button>
       </div>
 
-      {/* FAB */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`group relative w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl ${
@@ -42,7 +40,6 @@ const WhatsappButton = () => {
         }`}
         aria-label="WhatsApp"
       >
-        {/* Ping animation */}
         {!isOpen && <span className="absolute inset-0 rounded-full bg-primary motion-safe:animate-ping opacity-20" />}
         <span className="relative transition-transform duration-300">{isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}</span>
       </button>

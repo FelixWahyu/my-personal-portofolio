@@ -59,7 +59,6 @@ const WakaTimeStats = () => {
         <StatCard title={t.statistik.wakatimecard.project} value={stats.projects?.length || 0} />
       </div>
 
-      {/* Language Breakdown */}
       {stats.languages && stats.languages.length > 0 && (
         <div className="bg-card border border-border rounded-xl p-5">
           <h3 className="font-semibold mb-4">{t.statistik.top}</h3>
