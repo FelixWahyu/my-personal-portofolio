@@ -2,16 +2,16 @@ import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
-import { Achievements } from "./sections/AchievementsSection";
+import { Achievement } from "./sections/AchievementsSection";
 
 interface PropsAchievement {
-  achievement: Achievements | null;
+  achievement: Achievement | null;
   onClose: () => void;
 }
 
 interface PropsInfo {
   label: string;
-  value: string;
+  value?: string;
 }
 
 const AchievementDetailModal = ({ achievement, onClose }: PropsAchievement) => {
@@ -38,10 +38,10 @@ const AchievementDetailModal = ({ achievement, onClose }: PropsAchievement) => {
 
         <div className="grid md:grid-cols-2 md:h-[90vh] md:overflow-hidden">
           <div className="relative flex items-center justify-center">
-            <img src={achievement.image} alt={achievement.title} className="w-full h-full object-contain" />
+            <img src={achievement.image} alt={achievement.title} className="w-full h-auto max-h-full object-contain" />
           </div>
 
-          <div className="p-6 my-auto space-y-5 md:overflow-y-auto">
+          <div className="p-6 md:my-auto space-y-5 md:overflow-y-auto">
             <div>
               <h2 className="text-2xl font-semibold leading-tight">{achievement.title}</h2>
               <p className="text-muted-foreground mt-1">{achievement.issuer}</p>
@@ -78,11 +78,14 @@ const AchievementDetailModal = ({ achievement, onClose }: PropsAchievement) => {
   );
 };
 
-const InfoItem = ({ label, value }: PropsInfo) => (
-  <div>
-    <p className="text-sm font-semibold">{label}</p>
-    <p className="text-sm text-muted-foreground">{value}</p>
-  </div>
-);
+const InfoItem = ({ label, value }: PropsInfo) => {
+  if (!value) return null;
+  return (
+    <div>
+      <p className="text-sm font-semibold">{label}</p>
+      <p className="text-sm text-muted-foreground">{value}</p>
+    </div>
+  );
+};
 
 export default AchievementDetailModal;

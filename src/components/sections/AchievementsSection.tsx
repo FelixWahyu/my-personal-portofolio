@@ -3,7 +3,7 @@ import { useLanguage } from "../LanguageProvider";
 import { useEffect, useState } from "react";
 import AchievementDetailModal from "../AchievementDetailModal";
 
-export interface Achievements {
+export interface Achievement {
   id: number;
   title: string;
   issuer: string;
@@ -11,20 +11,21 @@ export interface Achievements {
   date: string;
   code?: string;
   image: string;
-  type: string;
-  description: string;
+  type?: string;
+  description?: string;
 }
 
 const AchievementsSection = () => {
   const { t } = useLanguage();
-  const [selectedAchivement, setSelectedAchivement] = useState<Achievements | null>(null);
+  const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
 
   useEffect(() => {
-    document.body.style.overflow = selectedAchivement ? "hidden" : "";
+    if (!selectedAchievement) return;
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [selectedAchivement]);
+  }, [selectedAchievement]);
 
   return (
     <section className="animate-fade-in">
@@ -44,7 +45,7 @@ const AchievementsSection = () => {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <img src={achievement.image} className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" alt={achievement.title} />
               <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <button onClick={() => setSelectedAchivement(achievement)} className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md hover:scale-105 transition">
+                <button onClick={() => setSelectedAchievement(achievement)} className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md hover:scale-105 transition">
                   {t.achievements.viewDetail} <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -60,7 +61,7 @@ const AchievementsSection = () => {
           </div>
         ))}
       </div>
-      <AchievementDetailModal achievement={selectedAchivement} onClose={() => setSelectedAchivement(null)} />
+      <AchievementDetailModal achievement={selectedAchievement} onClose={() => setSelectedAchievement(null)} />
     </section>
   );
 };
