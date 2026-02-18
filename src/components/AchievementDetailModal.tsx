@@ -41,7 +41,7 @@ const AchievementDetailModal = ({ achievement, onClose }: PropsAchievement) => {
             <img src={achievement.image} alt={achievement.title} className="w-full h-full object-contain" />
           </div>
 
-          <div className="px-6 my-auto space-y-5 md:overflow-y-auto">
+          <div className="p-6 my-auto space-y-5 md:overflow-y-auto">
             <div>
               <h2 className="text-2xl font-semibold leading-tight">{achievement.title}</h2>
               <p className="text-muted-foreground mt-1">{achievement.issuer}</p>
