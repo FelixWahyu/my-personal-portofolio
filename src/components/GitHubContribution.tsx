@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import { useTheme } from "next-themes";
+import config from "@/config/GitHubUsername";
 
 interface Day {
   date: string;
@@ -17,13 +18,31 @@ export const GitHubContributions = () => {
   const [days, setDays] = useState<Day[]>([]);
   const [year, setYear] = useState(new Date().getFullYear());
   const { t } = useLanguage();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
-    fetch("https://github-contributions-api.jogruber.de/v4/FelixWahyu")
-      .then((res) => res.json())
-      .then((json) => setDays(json.contributions || []))
-      .catch(console.error);
+    setLoading(true);
+    fetch(`https://github-contributions-api.jogruber.de/v4/${config.github.username}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
+      .then((json) => {
+        setDays(json.contributions || []);
+        setError(null);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to load GitHub contributions");
+      })
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <div className="p-6 text-center">Loading contributions...</div>;
+  if (error) return <div className="p-6 text-center text-red-500">{error}</div>;
+  if (!days.length) return null;
 
   const years = Array.from(new Set(days.map((d) => new Date(d.date).getFullYear()))).sort((a, b) => b - a);
 
@@ -31,15 +50,14 @@ export const GitHubContributions = () => {
 
   const sortedDays = [...filteredDays].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  if (!days.length) return null;
-
   const total = filteredDays.reduce((s, d) => s + d.count, 0);
   const best = Math.max(0, ...filteredDays.map((d) => d.count));
   const avg = Math.round(total / filteredDays.length || 0);
 
-  const weekAgo = new Date();
-  weekAgo.setDate(weekAgo.getDate() - 7);
-  const weekTotal = filteredDays.slice(-7).reduce((s, d) => s + d.count, 0);
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  const weekTotal = filteredDays.filter((d) => new Date(d.date) >= sevenDaysAgo).reduce((s, d) => s + d.count, 0);
 
   const groupByWeeks = (days: Day[]) => {
     const weeks: Day[][] = [];
@@ -60,7 +78,10 @@ export const GitHubContributions = () => {
   const weeks = groupByWeeks(sortedDays);
 
   const getColor = (level: number) => {
-    return ["bg-[#161b22]", "bg-[#0e4429]", "bg-[#006d32]", "bg-[#26a641]", "bg-[#39d353]"][level] || "bg-[#161b22]";
+    const lightColors = ["bg-gray-100", "bg-green-200", "bg-green-400", "bg-green-600", "bg-green-700"];
+    const darkColors = ["bg-[#161b22]", "bg-[#0e4429]", "bg-[#006d32]", "bg-[#26a641]", "bg-[#39d353]"];
+
+    return theme === "dark" ? darkColors[level] : lightColors[level];
   };
 
   const getMonthLabel = (day: Day) => {
@@ -69,7 +90,7 @@ export const GitHubContributions = () => {
   };
 
   return (
-    <div className="p-6 rounded-md text-white">
+    <div className="p-6 rounded-md text-foreground">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <Stat label={t.statistik.githubcard.total} value={total} />
         <Stat label={t.statistik.githubcard.minggu} value={weekTotal} />
@@ -77,9 +98,9 @@ export const GitHubContributions = () => {
         <Stat label={t.statistik.githubcard.average} value={`${avg} /${t.statistik.githubcard.hari}`} />
       </div>
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-sm font-semibold text-gray-500">{t.statistik.githubcont}</h3>
+        <h3 className="text-sm font-semibold text-muted-foreground">{t.statistik.githubcont}</h3>
 
-        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="dark:bg-[#161b22] border border-border text-sm text-gray-900 dark:text-gray-400 rounded px-2 py-1">
+        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="bg-card border border-border text-foreground text-sm rounded px-2 py-1">
           {years.map((y) => (
             <option key={y} value={y}>
               {y}
@@ -88,8 +109,8 @@ export const GitHubContributions = () => {
         </select>
       </div>
 
-      <div className="p-3 border border-border shadow-sm rounded-md bg-white dark:bg-[#0d1117]">
-        <div className="flex gap-[3px] text-xs text-gray-600 mb-2 pl-[2px]">
+      <div className="p-3 border border-border shadow-sm rounded-md bg-card">
+        <div className="flex gap-[3px] text-xs text-muted-foreground mb-2 pl-[2px]">
           {weeks.map((week, i) => {
             const firstDay = week[0];
             if (!firstDay) return <div key={i} className="w-[11px]" />;
@@ -117,7 +138,7 @@ export const GitHubContributions = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-gray-600 mt-4 px-2">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground mt-4 px-2">
           <span>{t.statistik.gitcontribution.sedikit}</span>
           {[0, 1, 2, 3, 4].map((lvl) => (
             <div key={lvl} className={`w-3 h-3 rounded-sm ${getColor(lvl)}`} />
@@ -130,8 +151,8 @@ export const GitHubContributions = () => {
 };
 
 const Stat = ({ label, value }: StatProps) => (
-  <div className="p-4 rounded-lg text-center bg-white dark:bg-[#0d1117] border border-border shadow-sm">
-    <p className="text-gray-600 text-sm">{label}</p>
+  <div className="p-4 rounded-lg text-center bg-card border border-border shadow-sm">
+    <p className="text-muted-foreground text-sm">{label}</p>
     <p className="text-yellow-400 text-2xl font-bold mt-1">{value}</p>
   </div>
 );
@@ -140,5 +161,15 @@ export const GithubActivityGraph = () => {
   const { theme } = useTheme();
   const graphTheme = theme === "dark" ? "github-dark" : "github-light";
 
-  return <img className="w-full rounded-md" src={`https://github-readme-activity-graph.vercel.app/graph?username=FelixWahyu&theme=${graphTheme}&hide_border=true`} alt="GitHub Activity Graph" loading="lazy" />;
+  return (
+    <img
+      onError={(e) => {
+        e.currentTarget.style.display = "none";
+      }}
+      className="w-full rounded-md"
+      src={`https://github-readme-activity-graph.vercel.app/graph?username=${config.github.username}&theme=${graphTheme}&hide_border=true`}
+      alt="GitHub Activity Graph"
+      loading="lazy"
+    />
+  );
 };

@@ -4,11 +4,11 @@ import { FaGithub } from "react-icons/fa";
 import WakaTimeStats from "../WakatimeSection";
 import { GitHubContributions, GithubActivityGraph } from "../GitHubContribution";
 import { useState } from "react";
+import config from "@/config/GitHubUsername";
 
 const StatisticsSection = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
-  const GITHUB_USERNAME = "FelixWahyu";
   const [streakLoaded, setStreakLoaded] = useState(false);
   const [statLoaded, setStatLoaded] = useState(false);
 
@@ -40,7 +40,7 @@ const StatisticsSection = () => {
                 e.currentTarget.src = "/placeholder-stats.png";
               }}
               className="w-full h-auto"
-              src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&theme=${githubTheme}&hide_border=true`}
+              src={`https://streak-stats.demolab.com?user=${config.github.username}&theme=${githubTheme}&hide_border=true`}
               alt="GitHub Streak Stats"
             />
           </div>
@@ -53,7 +53,7 @@ const StatisticsSection = () => {
                 e.currentTarget.src = "/placeholder-stats.png";
               }}
               className="w-full h-auto"
-              src={`https://readme-stats.warengonzaga.com/api?username=${GITHUB_USERNAME}&theme=${githubTheme}&hide_border=true`}
+              src={`https://readme-stats.warengonzaga.com/api?username=${config.github.username}&theme=${githubTheme}&hide_border=true`}
               alt="GitHub Stats"
             />
           </div>
