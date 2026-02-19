@@ -4,6 +4,7 @@ import profilePhoto from "@/assets/foto-profile.webp";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "./LanguageProvider";
+import config from "@/config/GitHubUsername";
 
 interface MobileNavProps {
   activeSection: string;
@@ -37,9 +38,9 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
             <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
             <div>
               <div className="flex items-center gap-1">
-                <span className="font-semibold text-sm">Felix Wahyu Sejati</span>
+                <span className="font-semibold text-sm">{config.bio.name}</span>
               </div>
-              <span className="text-xs text-muted-foreground">@felixwahyusejati</span>
+              <span className="text-xs text-muted-foreground">{config.bio.username}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">

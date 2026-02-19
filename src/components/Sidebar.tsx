@@ -3,6 +3,7 @@ import profilePhoto from "@/assets/foto-profile.webp";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "./LanguageProvider";
+import config from "@/config/GitHubUsername";
 
 interface SidebarProps {
   activeSection: string;
@@ -28,9 +29,9 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
           <img src={profilePhoto} alt="Profile" className="w-24 h-24 rounded-full object-cover border-2 border-border" />
         </div>
         <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold text-foreground">Felix Wahyu Sejati</h2>
+          <h2 className="text-lg font-semibold text-foreground">{config.bio.name}</h2>
         </div>
-        <p className="text-muted-foreground text-sm mb-4">@felixwahyusejati</p>
+        <p className="text-muted-foreground text-sm mb-4">{config.bio.username}</p>
 
         <div className="flex items-center gap-2">
           <LanguageToggle />
