@@ -29,7 +29,7 @@ const WakaTimeStats = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/wakatime")
+    fetch("https://backend-portofolio-gamma.vercel.app/api/wakatime")
       .then((res) => res.json())
       .then((data) => {
         setStats(data);
