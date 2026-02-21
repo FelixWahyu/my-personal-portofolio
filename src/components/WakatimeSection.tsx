@@ -29,7 +29,7 @@ const WakaTimeStats = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    fetch("https://backend-portofolio-gamma.vercel.app/api/wakatime")
+    fetch("https://sudden-ptarmigan-surabya20-26c51e5b.koyeb.app/api/wakatime")
       .then((res) => res.json())
       .then((data) => {
         setStats(data);
