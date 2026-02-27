@@ -37,34 +37,21 @@ const StatisticsSection = () => {
             <img
               onLoad={() => setStreakLoaded(true)}
               onError={(e) => {
-                e.currentTarget.src = "/placeholder-stats.png";
+                e.currentTarget.src = "";
               }}
               className="w-full h-auto"
               src={`https://streak-stats.demolab.com?user=${config.github.username}&theme=${githubTheme}&hide_border=true`}
               alt="GitHub Streak Stats"
             />
           </div>
-
-          <div className="rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300">
-            {!statLoaded && <div className="w-full h-48 bg-muted animate-pulse" />}
-            <img
-              onLoad={() => setStatLoaded(true)}
-              onError={(e) => {
-                e.currentTarget.src = "/placeholder-stats.png";
-              }}
-              className="w-full h-auto"
-              src={`https://readme-stats.warengonzaga.com/api?username=${config.github.username}&theme=${githubTheme}&hide_border=true`}
-              alt="GitHub Stats"
-            />
-          </div>
         </div>
       </div>
 
       <div className="mt-10 space-y-6">
+        <GitHubContributions />
         <div className="bg-card border border-border rounded-xl overflow-hidden">
           <GithubActivityGraph />
         </div>
-        <GitHubContributions />
       </div>
     </section>
   );
