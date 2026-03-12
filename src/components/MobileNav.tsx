@@ -40,7 +40,7 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
               <div className="flex items-center gap-1">
                 <span className="font-semibold text-sm">{config.bio.name}</span>
               </div>
-              <span className="text-xs text-muted-foreground">{config.bio.username}</span>
+              <span className="text-xs hidden lg:block text-muted-foreground">{config.bio.username}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
