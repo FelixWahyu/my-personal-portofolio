@@ -558,7 +558,7 @@ export const translations = {
         },
         {
           id: 4,
-          title: "Laravel: Pemula Sampai Mahir",
+          title: "Laravel: Beginner to Advanced",
           issuer: "Udemy",
           tags: ["Udemy", "Web Development", "Course"],
           date: "APRIL 2026",
