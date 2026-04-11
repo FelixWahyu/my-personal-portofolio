@@ -340,10 +340,10 @@ export const translations = {
       },
       socials: {
         gmail: { title: "Tetap Terhubung", description: "Hubungi melalui email untuk pertanyaan atau kolaborasi.", action: "Buka Email" },
-        instagram: { title: "Ikuti Perjalanan Saya", description: "Ikuti perjalanan kreatif saya.", action: "Buka Instagram" },
+        instagram: { title: "Ikuti saya di Instagram", description: "Ikuti perjalanan kreatif saya.", action: "Buka Instagram" },
         linkedin: { title: "Ayo Terhubung", description: "Terhubung dengan saya secara profesional.", action: "Buka LinkedIn" },
-        tiktok: { title: "Bergabung dalam Keseruan", description: "Tonton konten yang menarik dan menyenangkan.", action: "Buka TikTok" },
-        github: { title: "Jelajahi Kode", description: "Jelajahi karya open-source saya.", action: "Buka GitHub" },
+        tiktok: { title: "Ikuti saya di TikTok", description: "Tonton konten yang menarik dan menyenangkan.", action: "Buka TikTok" },
+        github: { title: "Jelajahi Kode saya", description: "Jelajahi karya open-source saya.", action: "Buka GitHub" },
       },
     },
     footer: {
@@ -691,10 +691,10 @@ export const translations = {
       },
       socials: {
         gmail: { title: "Stay in Touch", description: "Reach out via email for inquiries or collaborations.", action: "Open Email" },
-        instagram: { title: "Follow My Journey", description: "Follow my creative journey.", action: "Open Instagram" },
+        instagram: { title: "Follow me on Instagram", description: "Follow my creative journey.", action: "Open Instagram" },
         linkedin: { title: "Let's Connect", description: "Connect with me professionally.", action: "Open LinkedIn" },
-        tiktok: { title: "Join the Fun", description: "Watch engaging and fun content.", action: "Open TikTok" },
-        github: { title: "Explore the Code", description: "Explore my open-source work.", action: "Open GitHub" },
+        tiktok: { title: "Follow me on TikTok", description: "Watch engaging and fun content.", action: "Open TikTok" },
+        github: { title: "Explore my Code", description: "Explore my open-source work.", action: "Open GitHub" },
       },
     },
     footer: {

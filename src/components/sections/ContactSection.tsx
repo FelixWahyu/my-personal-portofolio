@@ -153,7 +153,7 @@ const ContactSection = () => {
       title: t.contact.socials.instagram.title,
       description: t.contact.socials.instagram.description,
       label: t.contact.socials.instagram.action,
-      link: "https://instagram.com/felixwebdev?igsh=NnBtenBuNWQxanA1",
+      link: "https://instagram.com/felixdev.id",
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
@@ -171,7 +171,7 @@ const ContactSection = () => {
       title: t.contact.socials.tiktok.title,
       description: t.contact.socials.tiktok.description,
       label: t.contact.socials.tiktok.action,
-      link: "https://tiktok.com/@codify.io",
+      link: "https://tiktok.com/@felixdev.id",
     },
     {
       icon: <Github className="w-6 h-6" />,
