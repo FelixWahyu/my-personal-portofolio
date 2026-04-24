@@ -45,9 +45,7 @@ export const GitHubContributions = () => {
   if (!days.length) return null;
 
   const years = Array.from(new Set(days.map((d) => new Date(d.date).getFullYear()))).sort((a, b) => b - a);
-
   const filteredDays = days.filter((d) => new Date(d.date).getFullYear() === year);
-
   const sortedDays = [...filteredDays].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const total = filteredDays.reduce((s, d) => s + d.count, 0);
@@ -56,13 +54,11 @@ export const GitHubContributions = () => {
 
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
   const weekTotal = filteredDays.filter((d) => new Date(d.date) >= sevenDaysAgo).reduce((s, d) => s + d.count, 0);
 
   const groupByWeeks = (days: Day[]) => {
     const weeks: Day[][] = [];
     let week: Day[] = [];
-
     days.forEach((day) => {
       if (week.length === 7) {
         weeks.push(week);
@@ -70,7 +66,6 @@ export const GitHubContributions = () => {
       }
       week.push(day);
     });
-
     if (week.length) weeks.push(week);
     return weeks;
   };
@@ -80,7 +75,6 @@ export const GitHubContributions = () => {
   const getColor = (level: number) => {
     const lightColors = ["bg-gray-100", "bg-green-200", "bg-green-400", "bg-green-600", "bg-green-700"];
     const darkColors = ["bg-[#161b22]", "bg-[#0e4429]", "bg-[#006d32]", "bg-[#26a641]", "bg-[#39d353]"];
-
     return theme === "dark" ? darkColors[level] : lightColors[level];
   };
 
@@ -90,58 +84,71 @@ export const GitHubContributions = () => {
   };
 
   return (
-    <div className="p-6 rounded-md text-foreground">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div className="p-4 sm:p-6 rounded-md text-foreground">
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         <Stat label={t.statistik.githubcard.total} value={total} />
         <Stat label={t.statistik.githubcard.minggu} value={weekTotal} />
         <Stat label={t.statistik.githubcard.best} value={best} />
         <Stat label={t.statistik.githubcard.average} value={`${avg} /${t.statistik.githubcard.hari}`} />
       </div>
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-sm font-semibold text-muted-foreground">{t.statistik.githubcont}</h3>
 
-        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="bg-card border border-border text-foreground text-sm rounded px-2 py-1">
+      {/* Header + Year Selector */}
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-sm font-semibold text-muted-foreground">{t.statistik.githubcont}</h3>
+        <select
+          value={year}
+          onChange={(e) => setYear(Number(e.target.value))}
+          className="bg-card border border-border text-foreground text-sm rounded px-2 py-1"
+          aria-label="Pilih tahun kontribusi"
+        >
           {years.map((y) => (
-            <option key={y} value={y}>
-              {y}
-            </option>
+            <option key={y} value={y}>{y}</option>
           ))}
         </select>
       </div>
 
-      <div className="p-3 border border-border shadow-sm rounded-md bg-card">
-        <div className="flex gap-[3px] text-xs text-muted-foreground mb-2 pl-[2px]">
-          {weeks.map((week, i) => {
-            const firstDay = week[0];
-            if (!firstDay) return <div key={i} className="w-[11px]" />;
+      {/* Contribution Grid — scrollable container */}
+      <div className="p-3 border border-border shadow-sm rounded-md bg-card overflow-hidden">
+        <div className="overflow-x-auto w-full">
+          <div className="min-w-max">
+            {/* Month labels */}
+            <div className="flex gap-[3px] text-[10px] text-muted-foreground mb-1 pl-[2px]">
+              {weeks.map((week, i) => {
+                const firstDay = week[0];
+                if (!firstDay) return <div key={i} className="w-[11px]" />;
+                const date = new Date(firstDay.date);
+                const isNewMonth = date.getDate() <= 7;
+                return (
+                  <div key={i} className="w-[11px] text-left shrink-0">
+                    {isNewMonth ? getMonthLabel(firstDay) : ""}
+                  </div>
+                );
+              })}
+            </div>
 
-            const date = new Date(firstDay.date);
-            const isNewMonth = date.getDate() <= 7;
-
-            return (
-              <div key={i} className="w-[11px] text-left">
-                {isNewMonth ? getMonthLabel(firstDay) : ""}
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="overflow-x-auto">
-          <div className="inline-flex gap-[3px]">
-            {weeks.map((week, i) => (
-              <div key={i} className="flex flex-col gap-[3px]">
-                {week.map((day, j) => (
-                  <div key={j} title={`${day.date} • ${day.count} contributions`} className={`w-[11px] h-[11px] rounded-sm ${getColor(day.level)}`} />
-                ))}
-              </div>
-            ))}
+            {/* Grid squares */}
+            <div className="flex gap-[3px]">
+              {weeks.map((week, i) => (
+                <div key={i} className="flex flex-col gap-[3px] shrink-0">
+                  {week.map((day, j) => (
+                    <div
+                      key={j}
+                      title={`${day.date} • ${day.count} contributions`}
+                      className={`w-[11px] h-[11px] rounded-sm ${getColor(day.level)}`}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-muted-foreground mt-4 px-2">
+        {/* Legend */}
+        <div className="flex items-center gap-2 text-xs text-muted-foreground mt-3 px-1">
           <span>{t.statistik.gitcontribution.sedikit}</span>
           {[0, 1, 2, 3, 4].map((lvl) => (
-            <div key={lvl} className={`w-3 h-3 rounded-sm ${getColor(lvl)}`} />
+            <div key={lvl} className={`w-3 h-3 rounded-sm shrink-0 ${getColor(lvl)}`} />
           ))}
           <span>{t.statistik.gitcontribution.banyak}</span>
         </div>
@@ -151,9 +158,9 @@ export const GitHubContributions = () => {
 };
 
 const Stat = ({ label, value }: StatProps) => (
-  <div className="p-4 rounded-lg text-center bg-card border border-border shadow-sm">
-    <p className="text-muted-foreground text-sm">{label}</p>
-    <p className="text-yellow-400 text-2xl font-bold mt-1">{value}</p>
+  <div className="p-3 sm:p-4 rounded-lg text-center bg-card border border-border shadow-sm">
+    <p className="text-muted-foreground text-xs sm:text-sm leading-tight">{label}</p>
+    <p className="text-yellow-400 text-xl sm:text-2xl font-bold mt-1 break-words">{value}</p>
   </div>
 );
 
@@ -162,14 +169,16 @@ export const GithubActivityGraph = () => {
   const graphTheme = theme === "dark" ? "github-dark" : "github-light";
 
   return (
-    <img
-      onError={(e) => {
-        e.currentTarget.style.display = "none";
-      }}
-      className="w-full rounded-md"
-      src={`https://github-readme-activity-graph.vercel.app/graph?username=${config.github.username}&theme=${graphTheme}&hide_border=true`}
-      alt="GitHub Activity Graph"
-      loading="lazy"
-    />
+    <div className="w-full overflow-x-auto">
+      <img
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+        className="w-full min-w-[320px] rounded-md"
+        src={`https://github-readme-activity-graph.vercel.app/graph?username=${config.github.username}&theme=${graphTheme}&hide_border=true`}
+        alt="GitHub Activity Graph"
+        loading="lazy"
+      />
+    </div>
   );
 };

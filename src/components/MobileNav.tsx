@@ -46,7 +46,13 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
           <div className="flex items-center gap-2">
             <LanguageToggle compact />
             <ThemeToggle compact />
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-lg hover:bg-accent transition-colors">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-menu"
+              className="p-2 rounded-lg hover:bg-accent transition-colors"
+            >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -56,9 +62,15 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
       {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="lg:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
-          <nav className="absolute top-16 left-0 right-0 bg-sidebar border-b border-sidebar-border p-4" onClick={(e) => e.stopPropagation()}>
+          <nav id="mobile-nav-menu" className="absolute top-16 left-0 right-0 bg-sidebar border-b border-sidebar-border p-4" onClick={(e) => e.stopPropagation()}>
             {navItems.map((item) => (
-              <button key={item.id} onClick={() => handleNavigate(item.id)} className={`nav-item w-full ${activeSection === item.id ? "nav-item-active" : ""}`}>
+              <button
+                key={item.id}
+                onClick={() => handleNavigate(item.id)}
+                aria-label={`Navigasi ke ${item.label}`}
+                aria-current={activeSection === item.id ? "page" : undefined}
+                className={`nav-item w-full ${activeSection === item.id ? "nav-item-active" : ""}`}
+              >
                 {item.icon}
                 <span>{item.label}</span>
               </button>
