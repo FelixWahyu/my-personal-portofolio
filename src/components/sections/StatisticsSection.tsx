@@ -10,36 +10,38 @@ const StatisticsSection = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
   const [streakLoaded, setStreakLoaded] = useState(false);
-  const [statLoaded, setStatLoaded] = useState(false);
 
   const githubTheme = theme === "dark" ? "tokyonight" : "github-light";
+
   return (
     <section className="animate-fade-in">
+      {/* Heading */}
       <div className="pb-4 border-b-2 border-dashed mb-6">
         <h2 className="text-3xl font-bold text-foreground">{t.statistik.title}</h2>
         <p className="text-muted-foreground mt-1">{t.statistik.subtitle}</p>
       </div>
 
+      {/* WakaTime */}
       <div className="mb-10">
         <WakaTimeStats />
       </div>
 
-      <h3 className="text-2xl font-bold text-foreground flex items-center gap-2 mt-8 mb-2">
-        <FaGithub className="w-5 h-5 text-primary" />
-        {t.statistik.gitstats}
+      {/* GitHub Section Heading */}
+      <h3 className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2 mt-8 mb-2">
+        <FaGithub className="w-5 h-5 text-primary shrink-0" />
+        <span className="break-words">{t.statistik.gitstats}</span>
       </h3>
-      <p className="text-muted-foreground">{t.statistik.gitsubstats}</p>
+      <p className="text-muted-foreground text-sm sm:text-base">{t.statistik.gitsubstats}</p>
 
-      <div className="mt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300">
-            {!streakLoaded && <div className="w-full h-48 bg-muted animate-pulse" />}
+      {/* Streak Stats — scrollable on mobile */}
+      <div className="mt-8">
+        <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+          {!streakLoaded && <div className="w-full h-36 bg-muted animate-pulse rounded-xl" />}
+          <div className="overflow-x-auto w-full">
             <img
               onLoad={() => setStreakLoaded(true)}
-              onError={(e) => {
-                e.currentTarget.src = "";
-              }}
-              className="w-full h-auto"
+              onError={(e) => { e.currentTarget.style.display = "none"; }}
+              className="w-full min-w-[320px] h-auto block"
               src={`https://streak-stats.demolab.com?user=${config.github.username}&theme=${githubTheme}&hide_border=true`}
               alt="GitHub Streak Stats"
             />
@@ -47,8 +49,11 @@ const StatisticsSection = () => {
         </div>
       </div>
 
-      <div className="mt-10 space-y-6">
-        <GitHubContributions />
+      {/* Contribution Heatmap + Activity Graph */}
+      <div className="mt-8 space-y-6">
+        <div className="rounded-xl border border-border bg-card overflow-hidden">
+          <GitHubContributions />
+        </div>
         <div className="bg-card border border-border rounded-xl overflow-hidden">
           <GithubActivityGraph />
         </div>

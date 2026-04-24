@@ -41,7 +41,14 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
 
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         {navItems.map((item, index) => (
-          <button key={item.id} onClick={() => onNavigate(item.id)} className={`nav-item w-full animate-slide-in ${activeSection === item.id ? "nav-item-active" : ""}`} style={{ animationDelay: `${index * 50}ms` }}>
+          <button
+            key={item.id}
+            onClick={() => onNavigate(item.id)}
+            aria-label={`Navigasi ke ${item.label}`}
+            aria-current={activeSection === item.id ? "page" : undefined}
+            className={`nav-item w-full animate-slide-in ${activeSection === item.id ? "nav-item-active" : ""}`}
+            style={{ animationDelay: `${index * 50}ms` }}
+          >
             {item.icon}
             <span className="flex-1 text-left">{item.label}</span>
             {activeSection === item.id && <ChevronRight className="w-4 h-4 text-primary" />}
