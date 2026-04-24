@@ -12,7 +12,7 @@ const NAME_MAX = 100;
 const EMAIL_MAX = 255;
 const MESSAGE_MAX = 1000;
 
-const WEB3FORMS_ACCESS_KEY = "74f2defa-dc28-4809-8124-f06072869d90";
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
 
 const ContactForm = () => {
   const { t, language } = useLanguage();
