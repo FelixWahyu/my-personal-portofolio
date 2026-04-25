@@ -65,14 +65,14 @@ const ProjectsSection = () => {
       </div>
 
       {/* Category Filter */}
-      <div className="flex gap-2 bg-card border border-border mb-10 p-1 rounded-lg w-full md:w-auto overflow-x-auto">
+      <div className="flex gap-2 mb-10 p-1 rounded-lg w-full md:w-auto overflow-x-auto">
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${selectedCategory === category
               ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              : "text-muted-foreground border border-border hover:bg-muted hover:text-foreground"
               }`}
           >
             {category === "All" ? (language === "id" ? "Semua" : "All") : category}

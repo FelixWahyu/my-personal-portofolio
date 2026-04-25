@@ -86,7 +86,7 @@ const Index = () => {
           <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
         </div>
 
-        <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-10 pt-20 lg:pt-10 max-w-4xl overflow-x-hidden">
+        <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-10 pt-20 lg:pt-10 max-w-6xl overflow-x-hidden md:overflow-x-visible">
           <PageTransition sectionKey={activeSection}>
             {renderSection()}
           </PageTransition>
