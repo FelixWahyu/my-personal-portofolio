@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { Analytics } from "@vercel/analytics/react"
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
         </TooltipProvider>
       </QueryClientProvider>
     </LanguageProvider>
+    <Analytics />
   </ThemeProvider>
 );
 
