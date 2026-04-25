@@ -29,19 +29,27 @@ const SkillsSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="animate-fade-in">
+    <section className="animate-fade-in mb-10 mt-8">
       <h2 className="section-title">
         <Code2 className="w-5 h-5 text-primary" />
         {t.skills.title}
       </h2>
-      <p className="text-muted-foreground mb-6">{t.skills.subtitle}</p>
+      <p className="text-muted-foreground mb-8">{t.skills.subtitle}</p>
 
-      <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-4">
-        {skills.map((skill, index) => (
-          <div key={skill.name} className="animate-fade-in pb-5" style={{ animationDelay: `${index * 50}ms` }}>
-            <SkillIcon {...skill} />
-          </div>
-        ))}
+      <div 
+        className="relative flex overflow-hidden w-full py-8"
+        style={{ 
+          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)", 
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" 
+        }}
+      >
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          {[...skills, ...skills].map((skill, index) => (
+            <div key={`${skill.name}-${index}`} className="flex-shrink-0 mx-4 sm:mx-6">
+              <SkillIcon {...skill} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
