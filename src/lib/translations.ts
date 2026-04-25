@@ -174,6 +174,7 @@ export const translations = {
       items: [
         {
           id: 1,
+          category: "Web",
           title: "Data Analyst & Software Engineering",
           issuer: "PT. Revolusi Citra Edukasi",
           tags: ["MSIB", "Frontend", "Backend"],
@@ -185,6 +186,7 @@ export const translations = {
         },
         {
           id: 2,
+          category: "Web",
           title: "Microsoft Web and Mobile Developer",
           issuer: "PT. Maribelajar Indonesia Cerdas",
           tags: ["MSIB", "Microsoft Power App", ".Net Web Application"],
@@ -196,6 +198,7 @@ export const translations = {
         },
         {
           id: 3,
+          category: "Web",
           title: "Kepesertaan Program MSIB Batch 6",
           issuer: "Kampus Merdeka Belajar",
           tags: ["MSIB", "Kampus Merdeka", "Course"],
@@ -207,6 +210,7 @@ export const translations = {
         },
         {
           id: 4,
+          category: "Web",
           title: "Laravel: Pemula Sampai Mahir",
           issuer: "Udemy",
           tags: ["Udemy", "Web Development", "Course"],
@@ -218,6 +222,7 @@ export const translations = {
         },
         {
           id: 5,
+          category: "Web",
           title: "Sertifikat Apresiasi Sebagai Panitia PKKMB",
           issuer: "STIKOM Yos Sudarso Purwokerto",
           tags: ["Pencapaian", "Panitia"],
@@ -240,6 +245,7 @@ export const translations = {
       items: [
         {
           id: 1,
+          category: "Web",
           title: "Web Based Sales at Roti Mruyung",
           description: "Membangun website penjualan toko roti dengan Dashboard analytics dan laporan penjualan cetak PDF real time.",
           demolink: "https://rotimruyungcafe-guesthouse.com/",
@@ -253,6 +259,7 @@ export const translations = {
         },
         {
           id: 2,
+          category: "Web",
           title: "Grocery Store Point of Sales System",
           description: "Membangun sistem kasir berbasis website dengan dashboard analytics dan terintegrasi dengan Open Ai Gemini.",
           demolink: "https://kasir.sidudigitalprint.com/login",
@@ -266,6 +273,7 @@ export const translations = {
         },
         {
           id: 3,
+          category: "Web",
           title: "A Simple E-Commerce Platform",
           description: "Platform e-commerce dengan fitur pembayaran midtrans, produk katalog, detail produk dan keranjang belanja.",
           demolink: "",
@@ -279,6 +287,7 @@ export const translations = {
         },
         {
           id: 4,
+          category: "Web",
           title: "Coffe Shop with Midtrans",
           description: "Membangun webiste toko kopi simple dengan html,css dan javascript murni dan fitur payment gateway midtrans.",
           demolink: "https://felixwahyu.github.io/kedai-kopi-kenangan-alam/",
@@ -292,6 +301,7 @@ export const translations = {
         },
         {
           id: 5,
+          category: "Web",
           title: "Personal Portfolio Website",
           description: "Membangun website portfolio terbaru yang next level dengan react dan statistic dengan API Github dengan desain modern.",
           demolink: "https://www.felixws.my.id/",
@@ -305,6 +315,7 @@ export const translations = {
         },
         {
           id: 6,
+          category: "Web",
           title: "Portfolio Website",
           description: "Membangun website portfolio dengan react js dengan desain modern.",
           demolink: "https://felixwahyu.github.io/my-portofolio-website/",
@@ -318,6 +329,7 @@ export const translations = {
         },
         {
           id: 7,
+          category: "Web",
           title: "Website E-Commerce Book Store",
           description: "Membangun website toko buku dengan react typescript dan desain yang modern.",
           demolink: "",
@@ -538,6 +550,7 @@ export const translations = {
       items: [
         {
           id: 1,
+          category: "Web",
           title: "Data Analyst & Software Engineering",
           issuer: "PT. Revolusi Citra Edukasi",
           tags: ["MSIB", "Frontend", "Backend"],
@@ -549,6 +562,7 @@ export const translations = {
         },
         {
           id: 2,
+          category: "Web",
           title: "Microsoft Web and Mobile Developer",
           issuer: "PT. Maribelajar Indonesia Cerdas",
           tags: ["MSIB", "Microsoft Power App", ".Net Web Application"],
@@ -560,6 +574,7 @@ export const translations = {
         },
         {
           id: 3,
+          category: "Web",
           title: "MSIB Batch 6 Program Participation",
           issuer: "Kampus Merdeka Belajar",
           tags: ["MSIB", "Kampus Merdeka", "Course"],
@@ -571,6 +586,7 @@ export const translations = {
         },
         {
           id: 4,
+          category: "Web",
           title: "Laravel: Beginner to Advanced",
           issuer: "Udemy",
           tags: ["Udemy", "Web Development", "Course"],
@@ -582,6 +598,7 @@ export const translations = {
         },
         {
           id: 5,
+          category: "Web",
           title: "Certificate of Appreciation as PKKMB Committee",
           issuer: "STIKOM Yos Sudarso Purwokerto",
           tags: ["Achievement", "Committee"],
@@ -604,6 +621,7 @@ export const translations = {
       items: [
         {
           id: 1,
+          category: "Web",
           title: "Web Bases Sale at Roti Mruyung",
           description: "Build a bakery sales website with analytics dashboard and real-time PDF print sales reports.",
           demolink: "https://rotimruyungcafe-guesthouse.com/",
@@ -617,6 +635,7 @@ export const translations = {
         },
         {
           id: 2,
+          category: "Web",
           title: "Grocery Store Point of Sales System",
           description: "Building a website-based cashier system with an analytics dashboard and integrated with Ai Gemini.",
           demolink: "https://kasir.sidudigitalprint.com/login",
@@ -630,6 +649,7 @@ export const translations = {
         },
         {
           id: 3,
+          category: "Web",
           title: "A Simple E-Commerce Platform",
           description: "E-commerce platform with midtrans payment features, product catalog, product details and shopping cart.",
           demolink: "",
@@ -643,6 +663,7 @@ export const translations = {
         },
         {
           id: 4,
+          category: "Web",
           title: "Coffe Shop with Midtrans",
           description: "Build a simple coffee shop website with pure html, css and javascript and midtrans payment gateway features.",
           demolink: "",
@@ -656,6 +677,7 @@ export const translations = {
         },
         {
           id: 5,
+          category: "Web",
           title: "Personal Portfolio Website",
           description: "Building a next-level portfolio website with React and statistics using the Github API with a modern design.",
           demolink: "https://www.felixws.my.id/",
@@ -669,6 +691,7 @@ export const translations = {
         },
         {
           id: 6,
+          category: "Web",
           title: "Portfolio Website",
           description: "Build a portfolio website with react js with a modern design.",
           demolink: "https://felixwahyu.github.io/my-portofolio-website/",
@@ -682,6 +705,7 @@ export const translations = {
         },
         {
           id: 7,
+          category: "Web",
           title: "Book Store E-Commerce Website",
           description: "Building a bookstore website with React Typescript and a modern design.",
           demolink: "",
