@@ -18,8 +18,8 @@ export const translations = {
       ],
     },
     skills: {
-      title: "Keahlian",
-      subtitle: "Keahlian profesional saya.",
+      title: "Tumpukan Teknologi",
+      subtitle: "Tumpukan teknologi yang saya gunakan.",
     },
     about: {
       title: "Tentang",
@@ -394,8 +394,8 @@ export const translations = {
       ],
     },
     skills: {
-      title: "Skills",
-      subtitle: "My professional skills.",
+      title: "Tech Stack",
+      subtitle: "My tech stack that I use.",
     },
     about: {
       title: "About",
