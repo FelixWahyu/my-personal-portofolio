@@ -47,7 +47,7 @@ const HomeSection = () => {
             </div>
             <div className="block w-px bg-gray-100/50 my-2"></div>
             <div className="flex items-center gap-4 group">
-              <span className="text-3xl lg:text-4xl font-black text-primary drop-shadow-md group-hover:scale-110 transition-transform">10+</span>
+              <span className="text-3xl lg:text-4xl font-black text-primary drop-shadow-md group-hover:scale-110 transition-transform">7+</span>
               <span className="text-sm font-medium text-muted-foreground leading-tight text-left uppercase tracking-wider">
                 Projects
                 <br />

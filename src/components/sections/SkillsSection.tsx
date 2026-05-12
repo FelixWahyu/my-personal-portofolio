@@ -29,7 +29,7 @@ const SkillsSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="animate-fade-in mb-6 mt-10">
+    <section className="animate-fade-in mb-16 md:mb-6 mt-10">
       <h2 className="section-title">
         <Code2 className="w-5 h-5 text-primary" />
         {t.skills.title}
