@@ -48,7 +48,7 @@ const AchievementsSection = () => {
   }, [t.achievements.items, searchQuery, selectedType]);
 
   return (
-    <section className="animate-fade-in">
+    <section className="animate-fade-in mb-16 md:mb-0">
       <div className="pb-4 border-b-2 border-dashed mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h2 className="text-3xl font-bold text-foreground">{t.achievements.title}</h2>

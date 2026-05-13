@@ -138,7 +138,7 @@ const ProjectsSection = () => {
 
           {/* Pagination Controls */}
           {totalPages > 1 && (
-            <div className="flex justify-left md:justify-center items-center gap-2 mt-8">
+            <div className="flex justify-left md:justify-center items-center gap-2 mt-8 mb-16 md:mb-0">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}

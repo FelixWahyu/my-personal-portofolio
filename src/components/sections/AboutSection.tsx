@@ -137,7 +137,7 @@ const AboutSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="animate-fade-in space-y-10">
+    <section className="animate-fade-in space-y-10 mb-16 md:mb-0">
       <div className="pb-4 border-b-2 border-dashed">
         <h2 className="text-3xl font-bold text-foreground">{t.about.title}</h2>
         <p className="text-muted-foreground mt-1">{t.about.subtitle}</p>

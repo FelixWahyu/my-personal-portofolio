@@ -226,7 +226,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section className="animate-fade-in space-y-10" aria-labelledby="contact-heading">
+    <section className="animate-fade-in space-y-10 mb-16 md:mb-0" aria-labelledby="contact-heading">
       <div className="pb-4 border-b-2 border-dashed">
         <h2 id="contact-heading" className="text-3xl font-bold text-foreground">{t.contact.title}</h2>
         <p className="text-muted-foreground mt-1">{t.contact.subtitle}</p>
