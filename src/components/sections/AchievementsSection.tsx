@@ -1,7 +1,10 @@
-import { ArrowRight, Search, Filter } from "lucide-react";
+import { ArrowRight, Search, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import { useEffect, useState, useMemo } from "react";
 import AchievementDetailModal from "../AchievementDetailModal";
+import { cn } from "@/lib/utils";
+
+const ITEMS_PER_PAGE = 4;
 
 export interface Achievement {
   id: number;
@@ -20,6 +23,7 @@ const AchievementsSection = () => {
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (!selectedAchievement) return;
@@ -46,6 +50,17 @@ const AchievementsSection = () => {
       return matchesSearch && matchesType;
     });
   }, [t.achievements.items, searchQuery, selectedType]);
+
+  const totalPages = Math.ceil(filteredAchievements.length / ITEMS_PER_PAGE);
+
+  const paginatedAchievements = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredAchievements.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredAchievements, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedType]);
 
   return (
     <section className="animate-fade-in mb-16 md:mb-0">
@@ -96,40 +111,82 @@ const AchievementsSection = () => {
         </div>
       </div>
 
-      {filteredAchievements.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredAchievements.map((achievement, index) => (
-            <div
-              key={achievement.id}
-              className="group relative rounded-lg bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                <img src={achievement.image} className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" alt={achievement.title} />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <button onClick={() => setSelectedAchievement(achievement)} className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md hover:scale-105 transition">
-                    {t.achievements.viewDetail} <ArrowRight className="w-4 h-4" />
-                  </button>
+      {paginatedAchievements.length > 0 ? (
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+            {paginatedAchievements.map((achievement, index) => (
+              <div
+                key={achievement.id}
+                className="group relative rounded-lg bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <div className="relative aspect-[16/9] overflow-hidden bg-neutral-900">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <img src={achievement.image} className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" alt={achievement.title} />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <button onClick={() => setSelectedAchievement(achievement)} className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md hover:scale-105 transition">
+                      {t.achievements.viewDetail} <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+                <div className="p-4 space-y-3">
+                  {achievement.code && <p className="text-xs text-muted-foreground font-mono truncate">{achievement.code}</p>}
+                  <h3 className="font-semibold text-sm leading-tight line-clamp-2">{achievement.title}</h3>
+                  <p className="text-xs text-muted-foreground">{achievement.issuer}</p>
+                  <div className="flex justify-between items-center pt-1 border-t border-border">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                      {t.achievements.issuedOn} {achievement.date}
+                    </p>
+                    {achievement.type && (
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                        {achievement.type}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-              <div className="p-4 space-y-3">
-                {achievement.code && <p className="text-xs text-muted-foreground font-mono truncate">{achievement.code}</p>}
-                <h3 className="font-semibold text-sm leading-tight line-clamp-2">{achievement.title}</h3>
-                <p className="text-xs text-muted-foreground">{achievement.issuer}</p>
-                <div className="flex justify-between items-center pt-1 border-t border-border">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                    {t.achievements.issuedOn} {achievement.date}
-                  </p>
-                  {achievement.type && (
-                    <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                      {achievement.type}
-                    </span>
-                  )}
-                </div>
+            ))}
+          </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex justify-left md:justify-center items-center gap-2 mt-8 mb-16 md:mb-0">
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="p-2 rounded-full border border-border bg-card text-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }).map((_, idx) => {
+                  const pageNumber = idx + 1;
+                  return (
+                    <button
+                      key={pageNumber}
+                      onClick={() => setCurrentPage(pageNumber)}
+                      className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors ${
+                        currentPage === pageNumber
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "border-border bg-card text-foreground hover:bg-primary/10 hover:text-primary"
+                      }`}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                })}
               </div>
+
+              <button
+                onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className="p-2 rounded-full border border-border bg-card text-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
-          ))}
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
