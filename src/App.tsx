@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/components/LanguageProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./guards/ProtectedRoute";
 import LoginPage from "./features/admin/pages/LoginPage";
@@ -63,6 +64,7 @@ const App = () => (
       </AuthProvider>
     </LanguageProvider>
     <Analytics />
+    <SpeedInsights />
   </ThemeProvider>
 );
 
