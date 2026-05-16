@@ -11,7 +11,11 @@ import { useAuth } from "../../../contexts/AuthContext";
 import ThemeToggle from "@/components/ThemeToggle";
 import profilePhoto from "@/assets/foto-profile.webp";
 
-const AdminSidebar = () => {
+interface AdminSidebarProps {
+  onNavItemClick?: () => void;
+}
+
+const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
   const { user } = useAuth();
 
   const navItems = [
@@ -55,6 +59,7 @@ const AdminSidebar = () => {
             <NavLink
               key={item.id}
               to={item.path}
+              onClick={onNavItemClick}
               className={({ isActive }) => 
                 `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-accent hover:text-foreground ${
                   isActive ? "bg-accent text-foreground font-medium" : "text-muted-foreground"

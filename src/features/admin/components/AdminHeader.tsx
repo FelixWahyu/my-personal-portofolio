@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { User, Bell, LogOut, Settings } from "lucide-react";
+import { User, Bell, LogOut, Settings, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "../../../contexts/AuthContext";
 import {
@@ -22,7 +22,11 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const AdminHeader = () => {
+interface AdminHeaderProps {
+  onMenuClick?: () => void;
+}
+
+const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,11 +37,23 @@ const AdminHeader = () => {
 
   return (
     <>
-      <header className="h-16 border-b border-border bg-card flex items-center justify-between px-6 sticky top-0 z-10 animate-fade-in">
-        <div className="flex items-center gap-2">
-          <span className="text-muted-foreground text-sm">Admin</span>
-          <span className="text-muted-foreground text-sm">/</span>
-          <span className="font-medium capitalize">{currentPage}</span>
+      <header className="h-16 border-b border-border bg-card flex items-center justify-between px-4 md:px-6 sticky top-0 z-10 animate-fade-in">
+        <div className="flex items-center gap-2 md:gap-4">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="lg:hidden" 
+            onClick={onMenuClick}
+            aria-label="Toggle Menu"
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+          
+          <div className="flex items-center gap-2">
+            <span className="text-muted-foreground text-sm hidden xs:inline">Admin</span>
+            <span className="text-muted-foreground text-sm hidden xs:inline">/</span>
+            <span className="font-medium capitalize">{currentPage}</span>
+          </div>
         </div>
 
         <div className="flex items-center gap-4">
