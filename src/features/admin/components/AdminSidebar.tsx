@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { 
-  LayoutDashboard, 
-  FolderOpen, 
-  FileBadge, 
+import {
+  LayoutDashboard,
+  FolderOpen,
+  FileBadge,
   ChevronRight,
   User
 } from "lucide-react";
@@ -28,18 +28,15 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
     <aside className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col h-screen sticky top-0 animate-fade-in">
       <div className="profile-card border-b border-sidebar-border py-8">
         <div className="relative mb-4 flex justify-center">
-          <img 
-            src={profilePhoto} 
-            alt="Admin Profile" 
-            className="w-20 h-20 rounded-full object-cover border-2 border-primary/50 shadow-lg" 
+          <img
+            src={profilePhoto}
+            alt="Admin Profile"
+            className="w-20 h-20 rounded-full object-cover border-2 border-primary/50 shadow-lg"
           />
         </div>
         <div className="text-center px-4">
           <h2 className="text-md font-semibold text-foreground truncate">{user?.name}</h2>
-          <p className="text-xs text-muted-foreground mb-4">Administrator</p>
-          <div className="flex justify-center">
-            <ThemeToggle />
-          </div>
+          <p className="text-xs text-muted-foreground">Administrator</p>
         </div>
       </div>
 
@@ -60,9 +57,8 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
               key={item.id}
               to={item.path}
               onClick={onNavItemClick}
-              className={({ isActive }) => 
-                `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-accent hover:text-foreground ${
-                  isActive ? "bg-accent text-foreground font-medium" : "text-muted-foreground"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 hover:bg-accent hover:text-foreground ${isActive ? "bg-accent text-foreground font-medium" : "text-muted-foreground"
                 }`
               }
             >
@@ -73,6 +69,13 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
           )
         ))}
       </nav>
+
+      <div className="p-4 border-t border-sidebar-border">
+        <div className="flex items-center justify-between px-4 py-2 bg-accent/30 rounded-lg">
+          <span className="text-xs font-medium text-muted-foreground">Theme</span>
+          <ThemeToggle />
+        </div>
+      </div>
     </aside>
   );
 };
