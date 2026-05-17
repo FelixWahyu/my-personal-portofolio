@@ -66,40 +66,42 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
             <Bell className="h-5 w-5" />
             <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-primary ring-2 ring-card"></span>
           </Button>
-          <div className="h-8 w-[1px] bg-border mx-1"></div>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0 overflow-hidden border border-primary/20 bg-primary/10 hover:bg-primary/20">
-                <User className="h-4 w-4 text-primary" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{user?.name}</p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {user?.email}
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/fw-admin/profile" className="cursor-pointer flex w-full items-center">
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Edit Profile</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="text-destructive focus:text-destructive cursor-pointer"
-                onSelect={() => setShowLogoutDialog(true)}
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Logout</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="hidden lg:block h-8 w-[1px] bg-border mx-1"></div>
+          
+          <div className="hidden lg:block">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0 overflow-hidden border border-primary/20 bg-primary/10 hover:bg-primary/20">
+                  <User className="h-4 w-4 text-primary" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{user?.name}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user?.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/fw-admin/profile" className="cursor-pointer flex w-full items-center">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Edit Profile</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem 
+                  className="text-destructive focus:text-destructive cursor-pointer"
+                  onSelect={() => setShowLogoutDialog(true)}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </header>
 

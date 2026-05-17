@@ -62,17 +62,17 @@ const ProfilePage = () => {
         name: values.name,
         email: values.email,
       };
-      
+
       if (values.password) {
         updateData.password = values.password;
       }
 
       await api.put("/api/auth/profile", updateData);
-      
+
       toast.success("Profil berhasil diperbarui!");
     } catch (error) {
-      const errorMessage = axios.isAxiosError(error) 
-        ? error.response?.data?.message 
+      const errorMessage = axios.isAxiosError(error)
+        ? error.response?.data?.message
         : "Gagal memperbarui profil.";
       toast.error(errorMessage || "Gagal memperbarui profil.");
     } finally {
@@ -105,11 +105,11 @@ const ProfilePage = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nama Lengkap</FormLabel>
+                      <FormLabel htmlFor="name">Nama Lengkap</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                          <Input className="pl-10" {...field} />
+                          <Input id="name" className="pl-10" {...field} />
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -121,11 +121,11 @@ const ProfilePage = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel htmlFor="email">Email</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                          <Input className="pl-10" {...field} />
+                          <Input id="email" className="pl-10" {...field} />
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -138,18 +138,18 @@ const ProfilePage = () => {
                   <p className="text-sm text-muted-foreground mb-4">
                     Biarkan kosong jika tidak ingin mengubah password.
                   </p>
-                  
+
                   <div className="space-y-4">
                     <FormField
                       control={form.control}
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password Baru</FormLabel>
+                          <FormLabel htmlFor="password">Password Baru</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                              <Input type="password" placeholder="••••••••" className="pl-10" {...field} />
+                              <Input id="password" type="password" placeholder="••••••••" className="pl-10" {...field} />
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -161,11 +161,11 @@ const ProfilePage = () => {
                       name="confirmPassword"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Konfirmasi Password Baru</FormLabel>
+                          <FormLabel htmlFor="confirmPassword">Konfirmasi Password Baru</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                              <Input type="password" placeholder="••••••••" className="pl-10" {...field} />
+                              <Input id="confirmPassword" type="password" placeholder="••••••••" className="pl-10" {...field} />
                             </div>
                           </FormControl>
                           <FormMessage />

@@ -6,7 +6,7 @@ import * as z from "zod";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl,FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Lock, Mail, Loader2 } from "lucide-react";
@@ -79,11 +79,12 @@ const LoginPage = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                         <Input
+                          id="email"
                           placeholder="admin@felixws.my.id"
                           className="pl-10"
                           {...field}
@@ -99,12 +100,13 @@ const LoginPage = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel htmlFor="password">Password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                         <Input
                           type="password"
+                          id="password"
                           placeholder="••••••••"
                           className="pl-10"
                           {...field}
