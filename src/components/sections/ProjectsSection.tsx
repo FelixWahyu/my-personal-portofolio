@@ -2,9 +2,10 @@ import { ChevronRight, ExternalLink, Github, ChevronLeft } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import ProjectDetailModal from "../ProjectDetailModal";
 import { useState, useEffect } from "react";
+import { getProjects, Project as DBProject } from "../../services/projectService";
 
 export interface Project {
-  id: number;
+  id: string | number;
   title: string;
   image: string;
   description: string;
@@ -23,7 +24,22 @@ const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const { t, language } = useLanguage();
+  const [dynamicProjects, setDynamicProjects] = useState<DBProject[]>([]);
   const itemsPerPage = 4;
+
+  useEffect(() => {
+    const fetchDynamicProjects = async () => {
+      try {
+        const response = await getProjects({ limit: 100 });
+        if (response.success && response.data?.projects) {
+          setDynamicProjects(response.data.projects);
+        }
+      } catch (error) {
+        console.error("Failed to load dynamic projects, using static fallback:", error);
+      }
+    };
+    fetchDynamicProjects();
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = selectedProject ? "hidden" : "";
@@ -38,7 +54,29 @@ const ProjectsSection = () => {
 
   const categories = ["All", "Web", "Mobile"];
 
-  const filteredProjects = t.projects.items.filter((project) => {
+  const mapProject = (dbProj: DBProject, lang: "id" | "en"): Project => {
+    const isEn = lang === "en";
+    return {
+      id: dbProj.id,
+      title: isEn ? dbProj.titleEn : dbProj.titleId,
+      description: isEn ? dbProj.descriptionEn : dbProj.descriptionId,
+      role: isEn ? dbProj.roleEn : dbProj.roleId,
+      problem: isEn ? dbProj.problemEn : dbProj.problemId,
+      impact: isEn ? dbProj.impactEn : dbProj.impactId,
+      features: isEn ? (dbProj.featuresEn || []) : (dbProj.featuresId || []),
+      image: dbProj.image,
+      category: dbProj.category,
+      tech: dbProj.tech || [],
+      demolink: dbProj.demolink || undefined,
+      sourcelink: dbProj.sourcelink || undefined,
+    };
+  };
+
+  const projectsListSource = dynamicProjects.length > 0
+    ? dynamicProjects.map((p) => mapProject(p, language))
+    : t.projects.items;
+
+  const filteredProjects = projectsListSource.filter((project) => {
     if (selectedCategory === "All") return true;
     return project.category?.toLowerCase() === selectedCategory.toLowerCase();
   });
