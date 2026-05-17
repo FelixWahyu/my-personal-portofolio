@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { User, Bell, LogOut, Settings, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "../../../contexts/AuthContext";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -39,16 +40,16 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
     <>
       <header className="h-16 border-b border-border bg-card flex items-center justify-between px-4 md:px-6 sticky top-0 z-10 animate-fade-in">
         <div className="flex items-center gap-2 md:gap-4">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="lg:hidden" 
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden"
             onClick={onMenuClick}
             aria-label="Toggle Menu"
           >
             <Menu className="h-5 w-5" />
           </Button>
-          
+
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground text-sm hidden xs:inline">Admin</span>
             <span className="text-muted-foreground text-sm hidden xs:inline">/</span>
@@ -57,12 +58,16 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
         </div>
 
         <div className="flex items-center gap-4">
+          <div className="lg:hidden flex items-center">
+            <ThemeToggle compact />
+          </div>
+
           <Button variant="ghost" size="icon" className="text-muted-foreground relative">
             <Bell className="h-5 w-5" />
             <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-primary ring-2 ring-card"></span>
           </Button>
           <div className="h-8 w-[1px] bg-border mx-1"></div>
-          
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0 overflow-hidden border border-primary/20 bg-primary/10 hover:bg-primary/20">
@@ -86,7 +91,7 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem 
+              <DropdownMenuItem
                 className="text-destructive focus:text-destructive cursor-pointer"
                 onSelect={() => setShowLogoutDialog(true)}
               >
@@ -108,7 +113,7 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Batal</AlertDialogCancel>
-            <AlertDialogAction 
+            <AlertDialogAction
               onClick={logout}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >

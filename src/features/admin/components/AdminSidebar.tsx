@@ -71,7 +71,7 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border">
-        <div className="flex items-center justify-between px-4 py-2 bg-accent/30 rounded-lg">
+        <div className="hidden lg:flex items-center justify-between px-4 py-2 bg-accent/30 rounded-lg">
           <span className="text-xs font-medium text-muted-foreground">Theme</span>
           <ThemeToggle />
         </div>

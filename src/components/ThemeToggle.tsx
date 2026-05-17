@@ -8,7 +8,7 @@ const ThemeToggle = ({ compact = false }: { compact?: boolean }) => {
 
   if (compact) {
     return (
-      <button onClick={toggleTheme} aria-label="Toggle theme" className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center transition-all hover:scale-105">
+      <button onClick={toggleTheme} aria-label="Toggle theme" className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center transition-all hover:scale-105">
         {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
       </button>
     );
