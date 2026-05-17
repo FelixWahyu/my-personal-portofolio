@@ -7,7 +7,7 @@ const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
 
   if (compact) {
     return (
-      <button onClick={toggleLang} className="bg-primary w-9 h-9 rounded-full text-primary-foreground flex items-center justify-center text-xs font-bold transition-all hover:scale-105" aria-label="Toggle language">
+      <button onClick={toggleLang} className="bg-primary w-7 h-7 rounded-full text-primary-foreground flex items-center justify-center text-xs font-bold transition-all hover:scale-105" aria-label="Toggle language">
         {language === "id" ? "ID" : "EN"}
       </button>
     );

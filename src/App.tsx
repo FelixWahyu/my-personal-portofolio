@@ -15,6 +15,8 @@ import LoginPage from "./features/admin/pages/LoginPage";
 import AdminLayout from "./features/admin/layouts/AdminLayout";
 import DashboardPage from "./features/admin/pages/DashboardPage";
 import ProfilePage from "./features/admin/pages/ProfilePage";
+import ProjectsPage from "./features/admin/pages/ProjectsPage";
+import ProjectFormPage from "./features/admin/pages/ProjectFormPage";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +55,9 @@ const App = () => (
                   <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="profile" element={<ProfilePage />} />
+                  <Route path="projects" element={<ProjectsPage />} />
+                  <Route path="projects/new" element={<ProjectFormPage />} />
+                  <Route path="projects/:id/edit" element={<ProjectFormPage />} />
                 </Route>
 
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LayoutDashboard, FolderOpen, FileBadge, User } from "lucide-react";
+import { LayoutDashboard, FolderOpen, FileBadge, User, CheckCircle } from "lucide-react";
+import { getDashboardStats } from "../../../services/projectService";
 
 const DashboardPage = () => {
   const { user } = useAuth();
+  const [totalProjects, setTotalProjects] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await getDashboardStats();
+        if (response.success && response.data) {
+          setTotalProjects(response.data.totalProjects);
+        }
+      } catch (error) {
+        console.error("Failed to load dashboard stats:", error);
+      }
+    };
+    fetchStats();
+  }, []);
 
   const stats = [
     {
       title: "Total Projects",
-      value: "0",
+      value: totalProjects.toString(),
       icon: <FolderOpen className="h-4 w-4 text-primary" />,
       description: "Proyek yang ditampilkan",
     },
@@ -38,7 +54,7 @@ const DashboardPage = () => {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => (
-          <Card key={stat.title} className="bg-card border-border">
+          <Card key={stat.title} className="bg-card border-border shadow-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
               {stat.icon}
@@ -51,7 +67,7 @@ const DashboardPage = () => {
         ))}
       </div>
 
-      <Card className="bg-card border-border">
+      <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <LayoutDashboard className="h-5 w-5 text-primary" />
@@ -60,15 +76,18 @@ const DashboardPage = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            Ini adalah panel admin untuk mengelola data website portfolio Anda. Di Phase 1 ini, 
-            kita baru saja menyelesaikan sistem autentikasi dan layout dasar.
+            Ini adalah panel admin untuk mengelola data website portfolio Anda. Semua fitur manajemen konten dirancang dengan performa optimal dan keamanan tinggi.
           </p>
           <div className="rounded-md bg-muted p-4">
-            <h4 className="mb-2 font-medium">Langkah selanjutnya (Phase Berikutnya):</h4>
-            <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
-              <li>Manajemen data Proyek (CRUD)</li>
-              <li>Manajemen data Pencapaian (CRUD)</li>
-              <li>Integrasi upload gambar ke Cloudinary/Vercel Blob</li>
+            <h4 className="mb-2 font-medium flex items-center gap-1.5 text-sm">
+              <CheckCircle className="w-4 h-4 text-emerald-500" />
+              Fitur yang Telah Selesai:
+            </h4>
+            <ul className="list-inside list-disc space-y-1 text-xs text-muted-foreground ml-1">
+              <li>Sistem Autentikasi Admin & Guard Route aman</li>
+              <li>Manajemen data Proyek / Projects (Tambah, Edit, Hapus, Cari, Filter & Pagination)</li>
+              <li>Integrasi upload dan hapus media secara otomatis di Cloudinary Cloud</li>
+              <li>Dukungan konten Bilingual penuh (Bahasa Indonesia & English)</li>
             </ul>
           </div>
         </CardContent>
@@ -78,3 +97,4 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
+
