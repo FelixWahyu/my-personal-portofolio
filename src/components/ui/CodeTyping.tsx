@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 const CodeTyping = () => {
   const [text, setText] = useState("");
   const code = `const developer = {
-  name: 'Felix Wahyu',
+  name: 'Felix Wahyu Sejati',
   role: 'Web Developer',
-  skills: ['React', 'TypeScript', 'TailwindCSS'],
+  skills: ['React', 'Laravel', 'TypeScript', 'TailwindCSS'],
   passion: 'Building awesome web apps'
 };
 
@@ -44,10 +44,10 @@ developer.startCoding();`;
         <div className="w-3.5 h-3.5 rounded-full bg-[#27c93f] shadow-[0_0_10px_rgba(39,201,63,0.5)]"></div>
         <div className="mx-auto text-[#858585] text-xs font-semibold mr-10">developer.ts</div>
       </div>
-      
+
       {/* Code Editor Body */}
       <div className="p-4 sm:p-6 text-xs sm:text-sm md:text-base text-left bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] relative">
-        
+
         {/* INVISIBLE OVERLAY: Forces container to take exact final size from the start */}
         <div className="flex opacity-0 pointer-events-none select-none" aria-hidden="true">
           <div className="flex flex-col pr-4 text-right border-r border-transparent mr-4">

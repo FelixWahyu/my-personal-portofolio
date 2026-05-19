@@ -276,7 +276,7 @@ const AchievementFormPage = () => {
             </TabsList>
 
             {/* INDONESIAN TAB */}
-            <TabsContent value="indonesia">
+            <TabsContent value="indonesia" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-md font-semibold">Konten Bilingual (ID)</CardTitle>
@@ -343,7 +343,7 @@ const AchievementFormPage = () => {
                         className="border-border"
                       />
                       <Button type="button" onClick={addTagId} size="sm">
-                        Tambah
+                        <Plus className="w-4 h-4" />
                       </Button>
                     </div>
                     <div className="flex flex-wrap gap-1.5 pt-2">
@@ -364,7 +364,7 @@ const AchievementFormPage = () => {
             </TabsContent>
 
             {/* ENGLISH TAB */}
-            <TabsContent value="english">
+            <TabsContent value="english" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-md font-semibold">Bilingual Content (EN)</CardTitle>
@@ -431,7 +431,7 @@ const AchievementFormPage = () => {
                         className="border-border"
                       />
                       <Button type="button" onClick={addTagEn} size="sm">
-                        Add
+                        <Plus className="w-4 h-4" />
                       </Button>
                     </div>
                     <div className="flex flex-wrap gap-1.5 pt-2">
@@ -591,7 +591,7 @@ const AchievementFormPage = () => {
           </Card>
 
           {/* Form Actions */}
-          <div className="flex gap-3">
+          <div className="flex flex-row items-center gap-3">
             <Button
               asChild
               type="button"

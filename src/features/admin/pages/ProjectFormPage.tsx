@@ -265,29 +265,30 @@ const ProjectFormPage = () => {
 
         {/* Left Side: Rich Text/Bilingual Forms (Span 2) */}
         <div className="lg:col-span-2 space-y-6">
-          <Card className="bg-card border-border shadow-md">
-            <CardHeader className="border-b border-border pb-4">
-              <CardTitle className="text-lg font-medium flex items-center gap-2">
-                <Globe className="w-5 h-5 text-primary" />
-                Informasi Bilingual
-              </CardTitle>
-              <CardDescription>
-                Isi detail informasi proyek dalam Bahasa Indonesia dan Bahasa Inggris menggunakan tab di bawah ini.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <Tabs defaultValue="id" className="w-full">
-                <TabsList className="bg-muted border border-border mb-6">
-                  <TabsTrigger value="id" className="data-[state=active]:bg-background font-semibold text-xs">
-                    🇮🇩 Bahasa Indonesia
-                  </TabsTrigger>
-                  <TabsTrigger value="en" className="data-[state=active]:bg-background font-semibold text-xs">
-                    🇬🇧 English
-                  </TabsTrigger>
-                </TabsList>
+          <Tabs defaultValue="id" className="w-full">
+            <TabsList className="grid grid-cols-2 w-full bg-muted border border-border">
+              <TabsTrigger value="id" className="flex items-center gap-1.5 data-[state=active]:bg-background font-semibold">
+                <Globe className="w-4 h-4 text-primary" />
+                Indonesia
+              </TabsTrigger>
+              <TabsTrigger value="en" className="flex items-center gap-1.5 data-[state=active]:bg-background font-semibold">
+                <Globe className="w-4 h-4 text-primary" />
+                English
+              </TabsTrigger>
+            </TabsList>
 
-                {/* Indonesian Translation Fields */}
-                <TabsContent value="id" className="space-y-5 animate-fade-in focus-visible:outline-none">
+            {/* Indonesian Translation Fields */}
+            <TabsContent value="id" className="space-y-5 animate-fade-in focus-visible:outline-none">
+              <Card className="bg-card border-border shadow-sm">
+                <CardHeader className="border-b border-border pb-4">
+                  <CardTitle className="text-lg font-medium flex items-center gap-2">
+                    Konten Bilingual (ID)
+                  </CardTitle>
+                  <CardDescription>
+                    Isi detail informasi proyek dalam Bahasa Indonesia menggunakan tab di bawah ini.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="titleId" className="text-sm font-semibold text-foreground">Judul Proyek (ID)</Label>
                     <Input
@@ -391,10 +392,22 @@ const ProjectFormPage = () => {
                       )}
                     </div>
                   </div>
-                </TabsContent>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-                {/* English Translation Fields */}
-                <TabsContent value="en" className="space-y-5 animate-fade-in focus-visible:outline-none">
+            {/* English Translation Fields */}
+            <TabsContent value="en" className="space-y-5 animate-fade-in focus-visible:outline-none">
+              <Card className="bg-card border-border shadow-sm">
+                <CardHeader className="border-b border-border pb-4">
+                  <CardTitle className="text-lg font-medium flex items-center gap-2">
+                    Bilingual Content (EN)
+                  </CardTitle>
+                  <CardDescription>
+                    Fill details project information in English language using the tab below.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="titleEn" className="text-sm font-semibold text-foreground">Project Title (EN)</Label>
                     <Input
@@ -498,15 +511,14 @@ const ProjectFormPage = () => {
                       )}
                     </div>
                   </div>
-                </TabsContent>
-              </Tabs>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
 
         {/* Right Side: Media, Categorization, Settings (Span 1) */}
         <div className="space-y-6">
-
           {/* Card: Thumbnail Upload */}
           <Card className="bg-card border-border shadow-md">
             <CardHeader className="pb-3">
@@ -608,7 +620,7 @@ const ProjectFormPage = () => {
                     className="border-border focus-visible:ring-primary/40 h-9"
                   />
                   <Button type="button" onClick={addTechTag} size="sm" className="h-9">
-                    Add
+                    <Plus className="w-4 h-4" />
                   </Button>
                 </div>
 
@@ -698,7 +710,7 @@ const ProjectFormPage = () => {
           </Card>
 
           {/* Action buttons (Save/Cancel) */}
-          <div className="flex flex-col gap-2 pt-2">
+          <div className="flex flex-row items-center gap-3 pt-2">
             <Button
               type="submit"
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2 shadow-md h-10 font-semibold"
@@ -707,12 +719,12 @@ const ProjectFormPage = () => {
               {saving ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  Menyimpan Proyek...
+                  Menyimpan...
                 </>
               ) : (
                 <>
                   <Save className="w-4 h-4" />
-                  Simpan Project
+                  Simpan
                 </>
               )}
             </Button>
