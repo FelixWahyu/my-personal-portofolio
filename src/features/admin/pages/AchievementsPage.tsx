@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, Edit2, Trash2, Award, Calendar, ShieldAlert, Loader2 } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, Award, Calendar, ShieldAlert, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import axios from "axios";
@@ -151,7 +151,7 @@ const AchievementsPage = () => {
                 className="pl-10 focus-visible:ring-primary/40 border-border"
               />
             </div>
-            
+
             {/* Dynamic Type Filter Tabs */}
             <div className="flex flex-wrap gap-1.5 p-1 bg-muted rounded-lg border border-border">
               {["All", ...types].map((type) => (
@@ -161,11 +161,10 @@ const AchievementsPage = () => {
                     setSelectedType(type);
                     setPage(1);
                   }}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${
-                    selectedType === type
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${selectedType === type
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                    }`}
                 >
                   {type}
                 </button>
@@ -258,11 +257,13 @@ const AchievementsPage = () => {
                       </TableCell>
                       <TableCell>
                         {item.isPublished ? (
-                          <Badge className="bg-green-500/10 text-green-500 hover:bg-green-500/20 border-green-500/20">
-                            Aktif
+                          <Badge className="bg-emerald-500/10 text-emerald-500 border hover:bg-emerald-500/20 font-semibold border-emerald-500/20 flex items-center gap-1 w-fit">
+                            <CheckCircle2 className="w-3 h-3" />
+                            Published
                           </Badge>
                         ) : (
-                          <Badge className="bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 border-yellow-500/20">
+                          <Badge className="bg-amber-500/10 text-amber-500 border hover:bg-amber-500/20 font-semibold border-amber-500/20 flex items-center gap-1 w-fit">
+                            <AlertCircle className="w-3 h-3" />
                             Draft
                           </Badge>
                         )}
@@ -292,35 +293,53 @@ const AchievementsPage = () => {
           </div>
 
           {/* Pagination Controls */}
-          {totalPages > 1 && (
+          {!loading && totalPages > 1 && (
             <div className="flex justify-between items-center pt-2">
               <span className="text-xs text-muted-foreground">
-                Menampilkan {achievements.length} dari {total} data
+                Menampilkan <strong>{achievements.length}</strong> dari <strong>{total}</strong> data
               </span>
-              <Pagination className="justify-end w-auto mx-0">
+              <Pagination className="w-auto mx-0">
                 <PaginationContent>
                   <PaginationItem>
-                    <PaginationPrevious
-                      onClick={() => setPage((p) => Math.max(1, p - 1))}
-                      className={`cursor-pointer ${page === 1 ? "pointer-events-none opacity-50" : ""}`}
-                    />
+                    <button
+                      onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                      disabled={page === 1}
+                      className="px-3 py-1.5 text-xs font-semibold rounded-md border border-border hover:bg-muted text-foreground disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-all"
+                    >
+                      <PaginationPrevious className="hidden" />
+                      Previous
+                    </button>
                   </PaginationItem>
-                  {Array.from({ length: totalPages }).map((_, i) => (
-                    <PaginationItem key={i}>
-                      <PaginationLink
+                  {Array.from({ length: totalPages }).map((_, idx) => (
+                    <PaginationItem key={idx}>
+                      {/* <PaginationLink
                         onClick={() => setPage(i + 1)}
                         isActive={page === i + 1}
                         className="cursor-pointer"
                       >
                         {i + 1}
-                      </PaginationLink>
+                      </PaginationLink> */}
+
+                      <button
+                        onClick={() => setPage(idx + 1)}
+                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "border-border hover:bg-muted text-foreground"
+                          }`}
+                      >
+                        {idx + 1}
+                      </button>
                     </PaginationItem>
                   ))}
                   <PaginationItem>
-                    <PaginationNext
+                    <button
                       onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                      className={`cursor-pointer ${page === totalPages ? "pointer-events-none opacity-50" : ""}`}
-                    />
+                      disabled={page === totalPages}
+                      className="px-3 py-1.5 text-xs font-semibold rounded-md border border-border hover:bg-muted text-foreground disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 transition-all"
+                    >
+                      <PaginationNext className="hidden" />
+                      Next
+                    </button>
                   </PaginationItem>
                 </PaginationContent>
               </Pagination>

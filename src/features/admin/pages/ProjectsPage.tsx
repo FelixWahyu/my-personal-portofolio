@@ -134,7 +134,7 @@ const ProjectsPage = () => {
                 className="pl-10 focus-visible:ring-primary/40 border-border"
               />
             </div>
-            
+
             {/* Category Filter Tabs */}
             <div className="flex bg-muted p-1 rounded-lg border border-border self-start md:self-auto">
               {["All", "Web", "Mobile"].map((cat) => (
@@ -144,11 +144,10 @@ const ProjectsPage = () => {
                     setCategory(cat);
                     setPage(1);
                   }}
-                  className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${
-                    category === cat
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${category === cat
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                    }`}
                 >
                   {cat}
                 </button>
@@ -235,11 +234,10 @@ const ProjectsPage = () => {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className={`font-semibold ${
-                          project.category.toLowerCase() === "web"
-                            ? "bg-blue-500/10 text-blue-500 border-blue-500/25"
-                            : "bg-purple-500/10 text-purple-500 border-purple-500/25"
-                        }`}>
+                        <Badge variant="outline" className={`font-semibold ${project.category.toLowerCase() === "web"
+                          ? "bg-blue-500/10 text-blue-500 border-blue-500/25"
+                          : "bg-purple-500/10 text-purple-500 border-purple-500/25"
+                          }`}>
                           {project.category}
                         </Badge>
                       </TableCell>
@@ -283,7 +281,7 @@ const ProjectsPage = () => {
                           >
                             <Edit2 className="w-4 h-4" />
                           </Button>
-                          
+
                           <AlertDialog>
                             <AlertDialogTrigger asChild>
                               <Button
@@ -315,7 +313,7 @@ const ProjectsPage = () => {
                                       Menghapus...
                                     </>
                                   ) : (
-                                    "Ya, Hapus Project"
+                                    "Hapus"
                                   )}
                                 </AlertDialogAction>
                               </AlertDialogFooter>
@@ -332,7 +330,7 @@ const ProjectsPage = () => {
 
           {/* Pagination Controls */}
           {!loading && totalPages > 1 && (
-            <div className="flex items-center justify-between border-t border-border pt-4">
+            <div className="flex items-center justify-between pt-2">
               <div className="text-xs text-muted-foreground">
                 Menampilkan <strong>{projects.length}</strong> dari <strong>{total}</strong> project
               </div>
@@ -348,16 +346,15 @@ const ProjectsPage = () => {
                       Previous
                     </button>
                   </PaginationItem>
-                  
+
                   {Array.from({ length: totalPages }).map((_, idx) => (
                     <PaginationItem key={idx}>
                       <button
                         onClick={() => setPage(idx + 1)}
-                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${
-                          page === idx + 1
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "border-border hover:bg-muted text-foreground"
-                        }`}
+                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "border-border hover:bg-muted text-foreground"
+                          }`}
                       >
                         {idx + 1}
                       </button>
