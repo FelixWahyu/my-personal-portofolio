@@ -17,6 +17,8 @@ import DashboardPage from "./features/admin/pages/DashboardPage";
 import ProfilePage from "./features/admin/pages/ProfilePage";
 import ProjectsPage from "./features/admin/pages/ProjectsPage";
 import ProjectFormPage from "./features/admin/pages/ProjectFormPage";
+import AchievementsPage from "./features/admin/pages/AchievementsPage";
+import AchievementFormPage from "./features/admin/pages/AchievementFormPage";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +60,9 @@ const App = () => (
                   <Route path="projects" element={<ProjectsPage />} />
                   <Route path="projects/new" element={<ProjectFormPage />} />
                   <Route path="projects/:id/edit" element={<ProjectFormPage />} />
+                  <Route path="achievements" element={<AchievementsPage />} />
+                  <Route path="achievements/new" element={<AchievementFormPage />} />
+                  <Route path="achievements/:id/edit" element={<AchievementFormPage />} />
                 </Route>
 
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

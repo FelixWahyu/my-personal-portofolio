@@ -3,20 +3,30 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LayoutDashboard, FolderOpen, FileBadge, User, CheckCircle } from "lucide-react";
 import { getDashboardStats } from "../../../services/projectService";
+import { getAchievementStats } from "../../../services/achievementService";
 
 const DashboardPage = () => {
   const { user } = useAuth();
   const [totalProjects, setTotalProjects] = useState<number>(0);
+  const [totalAchievements, setTotalAchievements] = useState<number>(0);
 
   useEffect(() => {
     const fetchStats = async () => {
-      try {
-        const response = await getDashboardStats();
-        if (response.success && response.data) {
-          setTotalProjects(response.data.totalProjects);
-        }
-      } catch (error) {
-        console.error("Failed to load dashboard stats:", error);
+      const [projRes, achRes] = await Promise.allSettled([
+        getDashboardStats(),
+        getAchievementStats(),
+      ]);
+
+      if (projRes.status === "fulfilled" && projRes.value?.success && projRes.value?.data) {
+        setTotalProjects(projRes.value.data.totalProjects);
+      } else if (projRes.status === "rejected") {
+        console.error("Failed to load project stats:", projRes.reason);
+      }
+
+      if (achRes.status === "fulfilled" && achRes.value?.success && achRes.value?.data) {
+        setTotalAchievements(achRes.value.data.totalAchievements);
+      } else if (achRes.status === "rejected") {
+        console.error("Failed to load achievement stats:", achRes.reason);
       }
     };
     fetchStats();
@@ -31,7 +41,7 @@ const DashboardPage = () => {
     },
     {
       title: "Total Achievements",
-      value: "0",
+      value: totalAchievements.toString(),
       icon: <FileBadge className="h-4 w-4 text-primary" />,
       description: "Sertifikat & pencapaian",
     },
@@ -86,6 +96,7 @@ const DashboardPage = () => {
             <ul className="list-inside list-disc space-y-1 text-xs text-muted-foreground ml-1">
               <li>Sistem Autentikasi Admin & Guard Route aman</li>
               <li>Manajemen data Proyek / Projects (Tambah, Edit, Hapus, Cari, Filter & Pagination)</li>
+              <li>Manajemen data Pencapaian / Achievements (Tambah, Edit, Hapus, Cari, Filter Dinamis & Pagination)</li>
               <li>Integrasi upload dan hapus media secara otomatis di Cloudinary Cloud</li>
               <li>Dukungan konten Bilingual penuh (Bahasa Indonesia & English)</li>
             </ul>
