@@ -1,13 +1,14 @@
-import { ArrowRight, Search, Filter, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Search, Filter, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import { useEffect, useState, useMemo } from "react";
 import AchievementDetailModal from "../AchievementDetailModal";
 import { cn } from "@/lib/utils";
+import { getAchievements } from "@/services/achievementService";
 
 const ITEMS_PER_PAGE = 4;
 
 export interface Achievement {
-  id: number;
+  id: number | string;
   title: string;
   issuer: string;
   tags: string[];
@@ -20,6 +21,8 @@ export interface Achievement {
 
 const AchievementsSection = () => {
   const { t, language } = useLanguage();
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [loading, setLoading] = useState(false);
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("All");
@@ -33,13 +36,45 @@ const AchievementsSection = () => {
     };
   }, [selectedAchievement]);
 
+  useEffect(() => {
+    const loadAchievements = async () => {
+      setLoading(true);
+      try {
+        const res = await getAchievements({ limit: 100 });
+        if (res.success && res.data && res.data.achievements) {
+          const mapped = res.data.achievements.map((item) => ({
+            id: item.id,
+            title: language === "id" ? item.titleId : item.titleEn,
+            issuer: language === "id" ? item.issuerTextId : item.issuerTextEn,
+            tags: language === "id" ? (item.tagsId || []) : (item.tagsEn || []),
+            date: language === "id" ? item.dateId : item.dateEn,
+            code: item.credentialCode || undefined,
+            image: item.image,
+            type: item.type,
+            description: language === "id" ? (item.descriptionId || undefined) : (item.descriptionEn || undefined),
+          }));
+          setAchievements(mapped);
+        } else {
+          setAchievements(t.achievements.items);
+        }
+      } catch (error) {
+        console.error("Failed to load achievements from API, using fallback static data:", error);
+        setAchievements(t.achievements.items);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAchievements();
+  }, [language, t.achievements.items]);
+
   const uniqueTypes = useMemo(() => {
-    const types = new Set(t.achievements.items.map((item) => item.type).filter(Boolean) as string[]);
+    const types = new Set(achievements.map((item) => item.type).filter(Boolean) as string[]);
     return ["All", ...Array.from(types)];
-  }, [t.achievements.items]);
+  }, [achievements]);
 
   const filteredAchievements = useMemo(() => {
-    return t.achievements.items.filter((achievement) => {
+    return achievements.filter((achievement) => {
       const matchesSearch =
         achievement.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         achievement.issuer.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -49,7 +84,7 @@ const AchievementsSection = () => {
 
       return matchesSearch && matchesType;
     });
-  }, [t.achievements.items, searchQuery, selectedType]);
+  }, [achievements, searchQuery, selectedType]);
 
   const totalPages = Math.ceil(filteredAchievements.length / ITEMS_PER_PAGE);
 
@@ -111,7 +146,14 @@ const AchievementsSection = () => {
         </div>
       </div>
 
-      {paginatedAchievements.length > 0 ? (
+      {loading ? (
+        <div className="h-64 flex flex-col items-center justify-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <span className="text-muted-foreground text-sm">
+            {language === "id" ? "Memuat pencapaian..." : "Loading achievements..."}
+          </span>
+        </div>
+      ) : paginatedAchievements.length > 0 ? (
         <div className="space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {paginatedAchievements.map((achievement, index) => (

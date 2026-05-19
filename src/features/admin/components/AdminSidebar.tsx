@@ -27,14 +27,22 @@ interface AdminSidebarProps {
   onNavItemClick?: () => void;
 }
 
+interface NavItem {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  path: string;
+  disabled?: boolean;
+}
+
 const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
   const { user, logout } = useAuth();
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { id: "dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" />, path: "/fw-admin/dashboard" },
     { id: "projects", label: "Projects", icon: <FolderOpen className="w-5 h-5" />, path: "/fw-admin/projects" },
-    { id: "achievements", label: "Achievements", icon: <FileBadge className="w-5 h-5" />, path: "/fw-admin/achievements", disabled: true },
+    { id: "achievements", label: "Achievements", icon: <FileBadge className="w-5 h-5" />, path: "/fw-admin/achievements" },
   ];
 
   return (

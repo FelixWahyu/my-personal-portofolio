@@ -3,17 +3,25 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LayoutDashboard, FolderOpen, FileBadge, User, CheckCircle } from "lucide-react";
 import { getDashboardStats } from "../../../services/projectService";
+import { getAchievementStats } from "../../../services/achievementService";
 
 const DashboardPage = () => {
   const { user } = useAuth();
   const [totalProjects, setTotalProjects] = useState<number>(0);
+  const [totalAchievements, setTotalAchievements] = useState<number>(0);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await getDashboardStats();
-        if (response.success && response.data) {
-          setTotalProjects(response.data.totalProjects);
+        const [projRes, achRes] = await Promise.all([
+          getDashboardStats(),
+          getAchievementStats(),
+        ]);
+        if (projRes.success && projRes.data) {
+          setTotalProjects(projRes.data.totalProjects);
+        }
+        if (achRes.success && achRes.data) {
+          setTotalAchievements(achRes.data.totalAchievements);
         }
       } catch (error) {
         console.error("Failed to load dashboard stats:", error);
@@ -31,7 +39,7 @@ const DashboardPage = () => {
     },
     {
       title: "Total Achievements",
-      value: "0",
+      value: totalAchievements.toString(),
       icon: <FileBadge className="h-4 w-4 text-primary" />,
       description: "Sertifikat & pencapaian",
     },
@@ -86,6 +94,7 @@ const DashboardPage = () => {
             <ul className="list-inside list-disc space-y-1 text-xs text-muted-foreground ml-1">
               <li>Sistem Autentikasi Admin & Guard Route aman</li>
               <li>Manajemen data Proyek / Projects (Tambah, Edit, Hapus, Cari, Filter & Pagination)</li>
+              <li>Manajemen data Pencapaian / Achievements (Tambah, Edit, Hapus, Cari, Filter Dinamis & Pagination)</li>
               <li>Integrasi upload dan hapus media secara otomatis di Cloudinary Cloud</li>
               <li>Dukungan konten Bilingual penuh (Bahasa Indonesia & English)</li>
             </ul>
