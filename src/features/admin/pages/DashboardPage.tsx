@@ -12,19 +12,21 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
-      try {
-        const [projRes, achRes] = await Promise.all([
-          getDashboardStats(),
-          getAchievementStats(),
-        ]);
-        if (projRes.success && projRes.data) {
-          setTotalProjects(projRes.data.totalProjects);
-        }
-        if (achRes.success && achRes.data) {
-          setTotalAchievements(achRes.data.totalAchievements);
-        }
-      } catch (error) {
-        console.error("Failed to load dashboard stats:", error);
+      const [projRes, achRes] = await Promise.allSettled([
+        getDashboardStats(),
+        getAchievementStats(),
+      ]);
+
+      if (projRes.status === "fulfilled" && projRes.value?.success && projRes.value?.data) {
+        setTotalProjects(projRes.value.data.totalProjects);
+      } else if (projRes.status === "rejected") {
+        console.error("Failed to load project stats:", projRes.reason);
+      }
+
+      if (achRes.status === "fulfilled" && achRes.value?.success && achRes.value?.data) {
+        setTotalAchievements(achRes.value.data.totalAchievements);
+      } else if (achRes.status === "rejected") {
+        console.error("Failed to load achievement stats:", achRes.reason);
       }
     };
     fetchStats();
