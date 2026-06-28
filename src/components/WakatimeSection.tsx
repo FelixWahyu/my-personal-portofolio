@@ -38,7 +38,8 @@ const WakaTimeStats = () => {
     const maxRetries = 3;
 
     const attemptFetch = (attempt: number) => {
-      fetch("https://sudden-ptarmigan-surabya20-26c51e5b.koyeb.app/api/wakatime")
+      const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+      fetch(`${baseUrl}/api/wakatime`)
         .then((res) => {
           if (!res.ok) throw new Error("Server error");
           return res.json();

@@ -12,10 +12,6 @@ export const translations = {
       greeting: "Halo, saya",
       location: "Berdomisili di Purwokerto, Jawa Tengah",
       status: "Terbuka untuk Bekerja",
-      bio: [
-        "Saya adalah seorang Web Developer yang memiliki ketertarikan besar dalam membangun solusi digital yang tidak hanya berfungsi dengan baik, tetapi juga memberikan nilai nyata bagi pengguna dan bisnis. Dengan pengalaman menggunakan teknologi modern seperti JavaScript, PHP, React, dan framework Laravel, saya terbiasa mengembangkan platform web yang skalabel, efisien, dan berorientasi pada kebutuhan pengguna.",
-        "Dalam setiap proyek, saya berfokus pada perancangan arsitektur perangkat lunak yang terstruktur, mudah dipelihara, serta mampu berkembang seiring perubahan kebutuhan bisnis. Saya percaya bahwa kualitas sebuah produk digital tidak hanya ditentukan oleh teknologi yang digunakan, tetapi juga oleh komunikasi yang efektif, kolaborasi tim yang baik, serta pemahaman yang jelas terhadap tujuan proyek. Oleh karena itu, saya selalu berupaya memadukan kemampuan teknis, pola pikir analitis, dan komunikasi proaktif untuk menghasilkan solusi yang berdampak nyata.",
-      ],
     },
     skills: {
       title: "Tumpukan Teknologi",
@@ -31,15 +27,12 @@ export const translations = {
         "Saya berkomitmen untuk selalu mengikuti perkembangan teknologi terkini. Saat ini saya sedang mempelajari React, TypeScript, Arsitektur Microservices, dan memanfaatkan Kecerdasan Buatan (AI) untuk meningkatkan produktivitas dan efisiensi dalam pengembangan perangkat lunak.",
       funfact:
         "Fakta menarik: Saya menyukai game strategi dan teka-teki karena game-game tersebut mendorong pemikiran logis, pemecahan masalah, dan pengambilan keputusan. Saya juga menerapkan pola pikir ini pada pengembangan perangkat lunak, mulai dari menganalisis masalah hingga merancang solusi yang tepat.",
-      interests: "Minat",
-      interestsDesc: "Frontend Developer, Fullstack Developer, dan Content Creator",
       careerTitle: "Pengalaman",
       careerSubtitle: "Perjalanan Profesional Saya",
       educationTitle: "Pendidikan",
       showResponsibilities: "Tampilkan lebih detail",
       hideResponsibilities: "Sembunyikan detail",
       downloadResume: "Unduh CV",
-      downloadPortfolio: "Unduh Portfolio",
       job: "Tugas",
       learn: "Apa Yang Saya Pelajari",
       dampak: "Dampak",
@@ -404,10 +397,6 @@ export const translations = {
       greeting: "Hello, I'm",
       location: "Based in Purwokerto, Central Java",
       status: "Open to Work",
-      bio: [
-        "I'm a web developer passionate about building digital solutions that not only function well but also provide real value to users and businesses. With experience using modern technologies like JavaScript, PHP, React, and the Laravel framework, I'm accustomed to developing scalable, efficient, and user-centric web platforms.",
-        "In every project, I focus on designing a structured, maintainable software architecture that can evolve with changing business needs. I believe that the quality of a digital product is determined not only by the technology used, but also by effective communication, strong team collaboration, and a clear understanding of the project's objectives. Therefore, I always strive to combine technical skills, an analytical mindset, and proactive communication to produce solutions that have a real impact.",
-      ],
     },
     skills: {
       title: "Tech Stack",
@@ -423,15 +412,12 @@ export const translations = {
         "I'm committed to staying up-to-date on technological developments. I'm currently exploring React, TypeScript, Microservices Architecture, and utilizing Artificial Intelligence (AI) to improve productivity and efficiency in software development.",
       funfact:
         "Fun fact: I enjoy strategy and puzzle games because they encourage logical thinking, problem-solving, and decision-making. I also apply this mindset to software development, from analyzing problems to designing appropriate solutions.",
-      interests: "Interests",
-      interestsDesc: "Frontend Developer, Fullstack Developer and Content Creator",
       careerTitle: "Experiences",
       careerSubtitle: "My Professional Journey",
       educationTitle: "Education",
       showResponsibilities: "Show more details",
       hideResponsibilities: "Hide details",
       downloadResume: "Download CV",
-      downloadPortfolio: "Download Portfolio",
       job: "Responsibilities",
       learn: "What I Learned",
       dampak: "Impact",
