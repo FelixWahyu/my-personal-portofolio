@@ -64,9 +64,9 @@ const HomeSection = () => {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="gap-2 transition-all duration-300 rounded-full px-8 w-full sm:w-auto border-2 hover:bg-secondary text-base">
-              <Link to="/tentang">
+              <Link to="/kontak">
                 <User className="w-5 h-5" />
-                {t.nav.tentang}
+                {t.nav.kontak}
               </Link>
             </Button>
           </div>

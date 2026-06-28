@@ -147,6 +147,7 @@ const AboutSection = () => {
         <p className="text-muted-foreground leading-relaxed">{t.about.description}</p>
         <p className="text-muted-foreground leading-relaxed">{t.about.description2}</p>
         <p className="text-muted-foreground leading-relaxed">{t.about.description3}</p>
+        <p className="text-muted-foreground leading-relaxed">{t.about.funfact}</p>
       </div>
 
       <div className="flex flex-wrap gap-3 mt-6">

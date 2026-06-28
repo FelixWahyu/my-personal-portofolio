@@ -24,12 +24,13 @@ export const translations = {
     about: {
       title: "Tentang",
       subtitle: "Perkenalan singkat tentang siapa saya.",
-      description:
-        "Saya Felix Wahyu Sejati, lulusan S1 Sistem Informasi dari STIKOM Yos Sudarso Purwokerto, sekaligus seorang Web Developer yang berbasis di Purwokerto, Jawa Tengah. Saya memiliki ketertarikan besar dalam membangun solusi digital yang tidak hanya berfungsi dengan baik, tetapi juga memberikan nilai nyata bagi pengguna dan bisnis. Dalam perjalanan saya, saya telah mengembangkan berbagai platform website menggunakan teknologi modern seperti JavaScript, React, PHP, dan framework Laravel.",
+      description: "Saya Felix Wahyu Sejati, Saya lulusan Sarjana Sistem Informasi dari STIKOM Yos Sudarso Purwokerto, dengan spesialisasi pengembangan situs web.",
       description2:
-        "Bagi saya, pengembangan perangkat lunak bukan sekadar menulis kode, tetapi tentang merancang sistem yang memiliki struktur yang jelas, mudah dipelihara, dan mampu berkembang seiring kebutuhan bisnis. Oleh karena itu, saya berfokus pada pembangunan arsitektur yang kokoh, efisien, dan memiliki logika yang terorganisir dengan baik agar solusi yang dihasilkan dapat bertahan dalam jangka panjang.",
+        "Saya memiliki minat yang kuat untuk terus belajar hal-hal baru, khususnya di bidang pengembangan perangkat lunak. Saya tidak hanya membangun sistem yang berfungsi dengan baik dan memenuhi kebutuhan, tetapi juga berupaya memberikan solusi yang secara efektif memecahkan masalah pengguna dan bisnis, mudah dipelihara, dan siap berkembang sesuai dengan perubahan kebutuhan.",
       description3:
-        "Selain aspek teknis, saya juga percaya bahwa keberhasilan sebuah proyek sangat dipengaruhi oleh komunikasi yang baik, pola pikir analitis, serta manajemen waktu yang disiplin. Saya nyaman bekerja secara kolaboratif dalam tim maupun secara mandiri, serta mampu mengambil peran kepemimpinan ketika dibutuhkan untuk memastikan setiap proyek berjalan optimal dan memberikan dampak yang bermakna.",
+        "Saya berkomitmen untuk selalu mengikuti perkembangan teknologi terkini. Saat ini saya sedang mempelajari React, TypeScript, Arsitektur Microservices, dan memanfaatkan Kecerdasan Buatan (AI) untuk meningkatkan produktivitas dan efisiensi dalam pengembangan perangkat lunak.",
+      funfact:
+        "Fakta menarik: Saya menyukai game strategi dan teka-teki karena game-game tersebut mendorong pemikiran logis, pemecahan masalah, dan pengambilan keputusan. Saya juga menerapkan pola pikir ini pada pengembangan perangkat lunak, mulai dari menganalisis masalah hingga merancang solusi yang tepat.",
       interests: "Minat",
       interestsDesc: "Frontend Developer, Fullstack Developer, dan Content Creator",
       careerTitle: "Pengalaman",
@@ -252,17 +253,10 @@ export const translations = {
           sourcelink: "https://github.com/FelixWahyu",
           image: "/img/project-image/web-sales.webp",
           tech: ["Laravel 12", "Tailwind CSS", "WhatsApp API", "Alpine.js"],
-          problem: "Bisnis masih mengandalkan promosi melalui media sosial tanpa website resmi. Selain itu, pencatatan penjualan dan pesanan masih dilakukan secara manual sehingga berisiko menyebabkan data tercecer dan kehilangan informasi transaksi.",
+          problem:
+            "Bisnis masih mengandalkan promosi melalui media sosial tanpa website resmi. Selain itu, pencatatan penjualan dan pesanan masih dilakukan secara manual sehingga berisiko menyebabkan data tercecer dan kehilangan informasi transaksi.",
           role: "Fullstack Developer — melakukan observasi langsung terhadap kebutuhan bisnis, merancang company profile dan sistem penjualan berbasis website, mendesain struktur database, prototype sistem, hingga pengembangan aplikasi secara end-to-end.",
-          features: [
-            "Manajemen produk & stok",
-            "Sistem transaksi penjualan",
-            "Dashboard analytics",
-            "Laporan penjualan real-time",
-            "Manajemen pesanan",
-            "Manajemen pengguna",
-            "Pengaturan profil toko",
-          ],
+          features: ["Manajemen produk & stok", "Sistem transaksi penjualan", "Dashboard analytics", "Laporan penjualan real-time", "Manajemen pesanan", "Manajemen pengguna", "Pengaturan profil toko"],
           impact: "Membantu meningkatkan efisiensi operasional bisnis hingga 20% serta meminimalkan kesalahan pencatatan stok dan transaksi.",
         },
         {
@@ -276,15 +270,7 @@ export const translations = {
           tech: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
           problem: "Toko masih menggunakan pencatatan transaksi manual tanpa sistem kasir digital, sehingga laporan stok dan transaksi sering tidak akurat serta berisiko kehilangan data.",
           role: "Fullstack Developer — menganalisis kebutuhan bisnis, merancang prototype sistem, mendesain database, dan mengembangkan sistem POS berbasis website.",
-          features: [
-            "Manajemen produk & stok",
-            "Multi authentication untuk admin & kasir",
-            "Sistem POS untuk kasir",
-            "Dashboard analytics",
-            "Laporan penjualan & stok",
-            "Manajemen pengguna",
-            "Integrasi AI Gemini",
-          ],
+          features: ["Manajemen produk & stok", "Multi authentication untuk admin & kasir", "Sistem POS untuk kasir", "Dashboard analytics", "Laporan penjualan & stok", "Manajemen pengguna", "Integrasi AI Gemini"],
           impact: "Meningkatkan efisiensi proses transaksi hingga 30% dan membantu pengelolaan stok menjadi lebih akurat.",
         },
         {
@@ -298,14 +284,7 @@ export const translations = {
           tech: ["React", "Midtrans API", "Tailwind CSS"],
           problem: "Membangun platform e-commerce sederhana untuk mendukung penjualan produk secara online dengan sistem pembayaran otomatis dan pengalaman pengguna yang modern.",
           role: "Frontend Developer — merancang prototype UI, mengintegrasikan backend API, dan membangun antarmuka website yang responsif dan modern.",
-          features: [
-            "Sistem transaksi online",
-            "Integrasi Midtrans Payment Gateway",
-            "Review produk",
-            "Detail produk & galeri",
-            "Keranjang belanja",
-            "Wishlist produk",
-          ],
+          features: ["Sistem transaksi online", "Integrasi Midtrans Payment Gateway", "Review produk", "Detail produk & galeri", "Keranjang belanja", "Wishlist produk"],
           impact: "Membangun sistem e-commerce modern dengan proses pembayaran otomatis dan pengalaman pengguna yang lebih efisien.",
         },
         {
@@ -319,13 +298,7 @@ export const translations = {
           tech: ["HTML5", "CSS3", "JavaScript", "Midtrans API"],
           problem: "Membangun website penjualan kopi untuk membantu bisnis coffee shop menyediakan layanan pemesanan online dan pembayaran digital.",
           role: "Frontend Developer — merancang UI website, mengintegrasikan payment gateway Midtrans, serta membangun tampilan responsif untuk berbagai perangkat.",
-          features: [
-            "Katalog produk",
-            "Keranjang belanja",
-            "Checkout pesanan",
-            "Integrasi pembayaran otomatis",
-            "Responsive design",
-          ],
+          features: ["Katalog produk", "Keranjang belanja", "Checkout pesanan", "Integrasi pembayaran otomatis", "Responsive design"],
           impact: "Membantu digitalisasi bisnis coffee shop melalui website modern dengan sistem transaksi online yang lebih praktis.",
         },
         {
@@ -339,13 +312,7 @@ export const translations = {
           tech: ["React", "Tailwind CSS", "WakaTime API", "Express"],
           problem: "Membangun website portfolio profesional untuk meningkatkan personal branding, menampilkan proyek, pengalaman, serta statistik aktivitas coding.",
           role: "Fullstack Developer — mendesain UI/UX modern, membangun backend API, dan mengembangkan frontend website portfolio secara responsif.",
-          features: [
-            "Multi-language support",
-            "Dark & light mode",
-            "Dashboard statistik coding",
-            "Informasi kontak",
-            "Project showcase",
-          ],
+          features: ["Multi-language support", "Dark & light mode", "Dashboard statistik coding", "Informasi kontak", "Project showcase"],
           impact: "Meningkatkan personal branding profesional dan mempermudah recruiter melihat pengalaman serta proyek yang telah dikembangkan.",
         },
         {
@@ -359,12 +326,7 @@ export const translations = {
           tech: ["React", "Tailwind CSS", "JavaScript"],
           problem: "Membangun website portfolio pertama sebagai media personal branding dan showcase project development.",
           role: "Fullstack Developer — merancang desain antarmuka dan mengembangkan frontend website yang modern dan responsif.",
-          features: [
-            "Multi-language support",
-            "Informasi kontak",
-            "GitHub statistics",
-            "Responsive design",
-          ],
+          features: ["Multi-language support", "Informasi kontak", "GitHub statistics", "Responsive design"],
           impact: "Menjadi media personal branding awal untuk menampilkan kemampuan dan pengalaman pengembangan website.",
         },
         {
@@ -378,14 +340,7 @@ export const translations = {
           tech: ["React", "Tailwind CSS", "TypeScript", "WhatsApp", "Midtrans"],
           problem: "Membangun platform penjualan buku online untuk membantu meningkatkan branding toko serta mempermudah proses pemesanan pelanggan.",
           role: "Fullstack Developer — merancang dan mengembangkan sistem e-commerce, frontend modern, serta integrasi backend API.",
-          features: [
-            "Katalog produk",
-            "Keranjang belanja",
-            "Pemesanan otomatis via WhatsApp",
-            "Pencarian produk",
-            "Detail produk",
-            "Wishlist produk",
-          ],
+          features: ["Katalog produk", "Keranjang belanja", "Pemesanan otomatis via WhatsApp", "Pencarian produk", "Detail produk", "Wishlist produk"],
           impact: "Membantu digitalisasi penjualan buku dengan integrasi pemesanan otomatis dan payment gateway modern.",
         },
         {
@@ -399,13 +354,7 @@ export const translations = {
           tech: ["PHP", "Tailwind CSS", "CodeIgniter 4", "MySQL", "WhatsApp"],
           problem: "Bisnis rental mobil membutuhkan platform digital untuk meningkatkan layanan pelanggan dan mempermudah proses reservasi kendaraan.",
           role: "Fullstack Developer — merancang dan mengembangkan sistem rental mobil berbasis web dengan UI modern dan backend management system.",
-          features: [
-            "Daftar mobil",
-            "Detail kendaraan",
-            "Reservasi via WhatsApp",
-            "Review & rating",
-            "Status reservasi",
-          ],
+          features: ["Daftar mobil", "Detail kendaraan", "Reservasi via WhatsApp", "Review & rating", "Status reservasi"],
           impact: "Meningkatkan kepercayaan pelanggan dan membantu proses reservasi kendaraan menjadi lebih cepat dan efisien.",
         },
       ],
@@ -467,12 +416,13 @@ export const translations = {
     about: {
       title: "About",
       subtitle: "A brief introduction to who I am.",
-      description:
-        "My name is Felix Wahyu Sejati, a Bachelor of Information Systems graduate from STIKOM Yos Sudarso Purwokerto and a web developer based in Purwokerto, Central Java. I am passionate about building digital solutions that not only function well but also provide real value to users and businesses. Throughout my career, I have developed various website platforms using modern technologies such as JavaScript, React, PHP, and the Laravel framework.",
+      description: "My name is Felix Wahyu Sejati, A Bachelor's degree in Information Systems from STIKOM Yos Sudarso Purwokerto, specializing in website development.",
       description2:
-        "For me, software development isn't just about writing code; it's about designing systems that are well-structured, easy to maintain, and capable of evolving with business needs. Therefore, I focus on building robust, efficient, and logically organized architectures to ensure the long-term sustainability of the resulting solutions.",
+        "I have a strong passion for continuously learning new things, particularly in the field of software development. I not only build systems that function well and meet needs, but also strive to provide solutions that effectively solve user and business problems, are easy to maintain, and are ready to evolve with changing needs.",
       description3:
-        "Beyond technical aspects, I also believe that project success is heavily influenced by strong communication skills, an analytical mindset, and disciplined time management. I'm comfortable working collaboratively in teams and independently, and I'm capable of taking on leadership roles when needed to ensure each project runs optimally and delivers meaningful impact.",
+        "I'm committed to staying up-to-date on technological developments. I'm currently exploring React, TypeScript, Microservices Architecture, and utilizing Artificial Intelligence (AI) to improve productivity and efficiency in software development.",
+      funfact:
+        "Fun fact: I enjoy strategy and puzzle games because they encourage logical thinking, problem-solving, and decision-making. I also apply this mindset to software development, from analyzing problems to designing appropriate solutions.",
       interests: "Interests",
       interestsDesc: "Frontend Developer, Fullstack Developer and Content Creator",
       careerTitle: "Experiences",
@@ -697,15 +647,7 @@ export const translations = {
           tech: ["Laravel 12", "Tailwind CSS", "WhatsApp API", "Alpine.js"],
           problem: "Businesses still rely on social media promotions without an official website. Furthermore, recording sales and orders is still done manually, which risks data loss and loss of transaction information.",
           role: "Fullstack Developer — conducts direct observation of business needs, designs company profiles and website-based sales systems, designs database structures, system prototypes, and develops end-to-end applications.",
-          features: [
-            "Product & Stock Management",
-            "Sales Transaction System",
-            "Analytics Dashboard",
-            "Real-Time Sales Reports",
-            "Order Management",
-            "User Management",
-            "Store Profile Settings",
-          ],
+          features: ["Product & Stock Management", "Sales Transaction System", "Analytics Dashboard", "Real-Time Sales Reports", "Order Management", "User Management", "Store Profile Settings"],
           impact: "Helps improve business operational efficiency by up to 20% and minimize stock and transaction recording errors.",
         },
         {
@@ -719,16 +661,8 @@ export const translations = {
           tech: ["Laravel 12", "Tailwind CSS", "Gemini API", "JavaScript"],
           problem: "The store still uses manual transaction recording without digital cashier system, resulting in inaccurate stock and transaction reports and the risk of data loss.",
           role: "Fullstack Developer — analyzes business needs, designs a system prototype, designs a database, and develops a website-based POS system.",
-          features: [
-            "Product & Stock Management",
-            "Multi-Authentication for Admins & Cashiers",
-            "POS System for Cashiers",
-            "Dashboard Analytics",
-            "Sales & Stock Reports",
-            "User Management",
-            "Gemini AI Integration",
-          ],
-          impact: "Increases transaction process efficiency by up to 30% and helps with more accurate stock management."
+          features: ["Product & Stock Management", "Multi-Authentication for Admins & Cashiers", "POS System for Cashiers", "Dashboard Analytics", "Sales & Stock Reports", "User Management", "Gemini AI Integration"],
+          impact: "Increases transaction process efficiency by up to 30% and helps with more accurate stock management.",
         },
         {
           id: 3,
@@ -741,14 +675,7 @@ export const translations = {
           tech: ["React", "Midtrans API", "Tailwind CSS"],
           problem: "Building a simple e-commerce platform to support online product sales with an automated payment system and a modern user experience.",
           role: "Frontend Developer — designing UI prototypes, integrating backend APIs, and building a responsive and modern website interface.",
-          features: [
-            "Online transaction system",
-            "Midtrans Payment Gateway integration",
-            "Product reviews",
-            "Product details & gallery",
-            "Shopping cart",
-            "Product wishlist",
-          ],
+          features: ["Online transaction system", "Midtrans Payment Gateway integration", "Product reviews", "Product details & gallery", "Shopping cart", "Product wishlist"],
           impact: "Building a modern e-commerce system with an automated payment process and a more efficient user experience.",
         },
         {
@@ -762,13 +689,7 @@ export const translations = {
           tech: ["HTML5", "CSS3", "JavaScript", "Midtrans API"],
           problem: "Building a coffee sales website to help coffee shop businesses provide online ordering and digital payment services.",
           role: "Frontend Developer — designing the website UI, integrating the Midtrans payment gateway, and building a responsive display for various devices.",
-          features: [
-            "Product catalog",
-            "Shopping cart",
-            "Order checkout",
-            "Automatic payment integration",
-            "Responsive design",
-          ],
+          features: ["Product catalog", "Shopping cart", "Order checkout", "Automatic payment integration", "Responsive design"],
           impact: "Helping the digitalization of coffee shop businesses through a modern website with a more practical online transaction system.",
         },
         {
@@ -782,13 +703,7 @@ export const translations = {
           tech: ["React", "Tailwind CSS", "WakaTime API", "Express"],
           problem: "Building a professional portfolio website to enhance your personal branding, showcase your projects, experience, and coding activity statistics.",
           role: "Fullstack Developer — designing a modern UI/UX, building a backend API, and developing a responsive frontend portfolio website.",
-          features: [
-            "Multi-language support",
-            "Dark & Light mode",
-            "Coding statistics dashboard",
-            "Contact information",
-            "Project showcase",
-          ],
+          features: ["Multi-language support", "Dark & Light mode", "Coding statistics dashboard", "Contact information", "Project showcase"],
           impact: "Improve your professional personal branding and make it easier for recruiters to see your experience and developed projects.",
         },
         {
@@ -802,13 +717,8 @@ export const translations = {
           tech: ["React", "Tailwind CSS", "JavaScript"],
           problem: "Building my first portfolio website as a personal branding platform and showcase of development projects.",
           role: "Fullstack Developer — designing the interface and developing a modern and responsive website frontend.",
-          features: [
-            "Multi-language support",
-            "Contact information",
-            "GitHub statistics",
-            "Responsive design",
-          ],
-          impact: "Becoming a personal media platform Initial branding to showcase website development skills and experience."
+          features: ["Multi-language support", "Contact information", "GitHub statistics", "Responsive design"],
+          impact: "Becoming a personal media platform Initial branding to showcase website development skills and experience.",
         },
         {
           id: 7,
@@ -821,14 +731,7 @@ export const translations = {
           tech: ["React", "Tailwind CSS", "TypeScript", "WhatsApp", "Midtrans"],
           problem: "Building an online bookselling platform to help improve store branding and simplify the customer ordering process.",
           role: "Fullstack Developer — designing and developing an e-commerce system, modern frontend, and backend API integration.",
-          features: [
-            "Product catalog",
-            "Shopping cart",
-            "Automatic ordering via WhatsApp",
-            "Product search",
-            "Product details",
-            "Product wishlist",
-          ],
+          features: ["Product catalog", "Shopping cart", "Automatic ordering via WhatsApp", "Product search", "Product details", "Product wishlist"],
           impact: "Helping digitize book sales with automated booking integration and a modern payment gateway.",
         },
         {
@@ -842,14 +745,8 @@ export const translations = {
           tech: ["PHP", "Tailwind CSS", "CodeIgniter 4", "MySQL", "WhatsApp"],
           problem: "Car rental businesses need a digital platform to improve customer service and simplify the vehicle reservation process.",
           role: "Fullstack Developer — designing and developing a web-based car rental system with a modern UI and backend management system.",
-          features: [
-            "Car List",
-            "Vehicle Details",
-            "Reservation via WhatsApp",
-            "Review & Rating",
-            "Reservation Status",
-          ],
-          Impact: "Increasing customer confidence and helping the vehicle reservation process become faster and more efficient."
+          features: ["Car List", "Vehicle Details", "Reservation via WhatsApp", "Review & Rating", "Reservation Status"],
+          Impact: "Increasing customer confidence and helping the vehicle reservation process become faster and more efficient.",
         },
       ],
       demo: "Demo",
