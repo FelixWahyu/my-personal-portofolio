@@ -13,7 +13,6 @@ import { ArrowLeft, Save, Upload, Plus, X, Loader2, Sparkles, Check, Globe, Help
 import { toast } from "sonner";
 import axios from "axios";
 
-
 const ProjectFormPage = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -224,9 +223,7 @@ const ProjectFormPage = () => {
       }
     } catch (error) {
       console.error("Save project error:", error);
-      const errorMessage = axios.isAxiosError(error)
-        ? error.response?.data?.message
-        : "Terjadi kesalahan saat menyimpan project";
+      const errorMessage = axios.isAxiosError(error) ? error.response?.data?.message : "Terjadi kesalahan saat menyimpan project";
       toast.error(errorMessage || "Terjadi kesalahan saat menyimpan project");
     } finally {
       setSaving(false);
@@ -252,17 +249,12 @@ const ProjectFormPage = () => {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">
-            {isEditMode ? "Edit Project" : "Tambah Project Baru"}
-          </h1>
-          <p className="text-xs text-muted-foreground">
-            {isEditMode ? "Modifikasi detail informasi project." : "Buat entri proyek baru di database."}
-          </p>
+          <h1 className="text-2xl font-bold tracking-tight">{isEditMode ? "Edit Project" : "Tambah Project Baru"}</h1>
+          <p className="text-xs text-muted-foreground">{isEditMode ? "Modifikasi detail informasi project." : "Buat entri proyek baru di database."}</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
         {/* Left Side: Rich Text/Bilingual Forms (Span 2) */}
         <div className="lg:col-span-2 space-y-6">
           <Tabs defaultValue="id" className="w-full">
@@ -281,27 +273,21 @@ const ProjectFormPage = () => {
             <TabsContent value="id" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader className="border-b border-border pb-4">
-                  <CardTitle className="text-lg font-medium flex items-center gap-2">
-                    Konten Bilingual (ID)
-                  </CardTitle>
-                  <CardDescription>
-                    Isi detail informasi proyek dalam Bahasa Indonesia menggunakan tab di bawah ini.
-                  </CardDescription>
+                  <CardTitle className="text-lg font-medium flex items-center gap-2">Konten Bilingual (ID)</CardTitle>
+                  <CardDescription>Isi detail informasi proyek dalam Bahasa Indonesia menggunakan tab di bawah ini.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="titleId" className="text-sm font-semibold text-foreground">Judul Proyek (ID)</Label>
-                    <Input
-                      id="titleId"
-                      placeholder="Contoh: Roti Mruyung Sales System"
-                      value={titleId}
-                      onChange={(e) => setTitleId(e.target.value)}
-                      className="border-border focus-visible:ring-primary/40"
-                    />
+                    <Label htmlFor="titleId" className="text-sm font-semibold text-foreground">
+                      Judul Proyek (ID)
+                    </Label>
+                    <Input id="titleId" placeholder="Contoh: Roti Mruyung Sales System" value={titleId} onChange={(e) => setTitleId(e.target.value)} className="border-border focus-visible:ring-primary/40" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="descriptionId" className="text-sm font-semibold text-foreground">Deskripsi Singkat (ID)</Label>
+                    <Label htmlFor="descriptionId" className="text-sm font-semibold text-foreground">
+                      Deskripsi Singkat (ID)
+                    </Label>
                     <Textarea
                       id="descriptionId"
                       placeholder="Tuliskan deskripsi ringkas tentang apa proyek ini..."
@@ -313,7 +299,9 @@ const ProjectFormPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="roleId" className="text-sm font-semibold text-foreground">Peran Anda (ID)</Label>
+                    <Label htmlFor="roleId" className="text-sm font-semibold text-foreground">
+                      Peran Anda (ID)
+                    </Label>
                     <Textarea
                       id="roleId"
                       placeholder="Contoh: Fullstack Developer — melakukan analisis kebutuhan, merancang database..."
@@ -325,7 +313,9 @@ const ProjectFormPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="problemId" className="text-sm font-semibold text-foreground">Permasalahan / Background (ID)</Label>
+                    <Label htmlFor="problemId" className="text-sm font-semibold text-foreground">
+                      Permasalahan / Background (ID)
+                    </Label>
                     <Textarea
                       id="problemId"
                       placeholder="Masalah apa yang ingin dipecahkan dengan proyek ini..."
@@ -337,7 +327,9 @@ const ProjectFormPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="impactId" className="text-sm font-semibold text-foreground">Dampak / Hasil Proyek (ID)</Label>
+                    <Label htmlFor="impactId" className="text-sm font-semibold text-foreground">
+                      Dampak / Hasil Proyek (ID)
+                    </Label>
                     <Textarea
                       id="impactId"
                       placeholder="Dampak nyata yang dihasilkan proyek ini terhadap operasional atau bisnis..."
@@ -380,11 +372,7 @@ const ProjectFormPage = () => {
                               <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                               {feature}
                             </span>
-                            <button
-                              type="button"
-                              onClick={() => removeFeatureId(index)}
-                              className="text-muted-foreground hover:text-red-500 transition-colors"
-                            >
+                            <button type="button" onClick={() => removeFeatureId(index)} className="text-muted-foreground hover:text-red-500 transition-colors">
                               <X className="w-4 h-4" />
                             </button>
                           </div>
@@ -400,27 +388,21 @@ const ProjectFormPage = () => {
             <TabsContent value="en" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader className="border-b border-border pb-4">
-                  <CardTitle className="text-lg font-medium flex items-center gap-2">
-                    Bilingual Content (EN)
-                  </CardTitle>
-                  <CardDescription>
-                    Fill details project information in English language using the tab below.
-                  </CardDescription>
+                  <CardTitle className="text-lg font-medium flex items-center gap-2">Bilingual Content (EN)</CardTitle>
+                  <CardDescription>Fill details project information in English language using the tab below.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="titleEn" className="text-sm font-semibold text-foreground">Project Title (EN)</Label>
-                    <Input
-                      id="titleEn"
-                      placeholder="Example: Roti Mruyung Sales System"
-                      value={titleEn}
-                      onChange={(e) => setTitleEn(e.target.value)}
-                      className="border-border focus-visible:ring-primary/40"
-                    />
+                    <Label htmlFor="titleEn" className="text-sm font-semibold text-foreground">
+                      Project Title (EN)
+                    </Label>
+                    <Input id="titleEn" placeholder="Example: Roti Mruyung Sales System" value={titleEn} onChange={(e) => setTitleEn(e.target.value)} className="border-border focus-visible:ring-primary/40" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="descriptionEn" className="text-sm font-semibold text-foreground">Short Description (EN)</Label>
+                    <Label htmlFor="descriptionEn" className="text-sm font-semibold text-foreground">
+                      Short Description (EN)
+                    </Label>
                     <Textarea
                       id="descriptionEn"
                       placeholder="Write a concise overview of what this project does..."
@@ -432,7 +414,9 @@ const ProjectFormPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="roleEn" className="text-sm font-semibold text-foreground">Your Role (EN)</Label>
+                    <Label htmlFor="roleEn" className="text-sm font-semibold text-foreground">
+                      Your Role (EN)
+                    </Label>
                     <Textarea
                       id="roleEn"
                       placeholder="Example: Fullstack Developer — conducts direct observation, designs company profile..."
@@ -444,7 +428,9 @@ const ProjectFormPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="problemEn" className="text-sm font-semibold text-foreground">Problem / Background (EN)</Label>
+                    <Label htmlFor="problemEn" className="text-sm font-semibold text-foreground">
+                      Problem / Background (EN)
+                    </Label>
                     <Textarea
                       id="problemEn"
                       placeholder="What issues does this project resolve..."
@@ -456,7 +442,9 @@ const ProjectFormPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="impactEn" className="text-sm font-semibold text-foreground">Impact / Outcomes (EN)</Label>
+                    <Label htmlFor="impactEn" className="text-sm font-semibold text-foreground">
+                      Impact / Outcomes (EN)
+                    </Label>
                     <Textarea
                       id="impactEn"
                       placeholder="The business or operational results achieved through this project..."
@@ -499,11 +487,7 @@ const ProjectFormPage = () => {
                               <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                               {feature}
                             </span>
-                            <button
-                              type="button"
-                              onClick={() => removeFeatureEn(index)}
-                              className="text-muted-foreground hover:text-red-500 transition-colors"
-                            >
+                            <button type="button" onClick={() => removeFeatureEn(index)} className="text-muted-foreground hover:text-red-500 transition-colors">
                               <X className="w-4 h-4" />
                             </button>
                           </div>
@@ -532,29 +516,15 @@ const ProjectFormPage = () => {
               <div className="relative border-2 border-dashed border-border rounded-xl aspect-[16/10] overflow-hidden flex flex-col items-center justify-center bg-muted transition hover:border-primary/50 group">
                 {imagePreview ? (
                   <>
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
-                      <Button
-                        type="button"
-                        variant="secondary"
-                        size="sm"
-                        className="text-xs font-semibold"
-                        onClick={() => fileInputRef.current?.click()}
-                      >
+                      <Button type="button" variant="secondary" size="sm" className="text-xs font-semibold" onClick={() => fileInputRef.current?.click()}>
                         Ganti Gambar
                       </Button>
                     </div>
                   </>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center p-4 text-center cursor-pointer focus:outline-none w-full h-full"
-                  >
+                  <button type="button" onClick={() => fileInputRef.current?.click()} className="flex flex-col items-center justify-center p-4 text-center cursor-pointer focus:outline-none w-full h-full">
                     <Upload className="w-8 h-8 text-muted-foreground group-hover:text-primary transition duration-300 mb-2" />
                     <span className="text-xs font-semibold text-foreground">Upload Image</span>
                     <span className="text-[10px] text-muted-foreground mt-1">JPEG, PNG, WebP (Maks 5MB)</span>
@@ -562,13 +532,7 @@ const ProjectFormPage = () => {
                 )}
               </div>
 
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                className="hidden"
-                onChange={handleImageChange}
-              />
+              <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" className="hidden" onChange={handleImageChange} />
 
               {!imagePreview && (
                 <div className="text-[11px] text-amber-500 flex items-start gap-1 bg-amber-500/10 p-2.5 rounded-lg border border-amber-500/20">
@@ -588,10 +552,11 @@ const ProjectFormPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
-
               {/* Category */}
               <div className="space-y-2">
-                <Label htmlFor="category" className="text-xs font-semibold text-foreground">Kategori</Label>
+                <Label htmlFor="category" className="text-xs font-semibold text-foreground">
+                  Kategori
+                </Label>
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger id="category" className="border-border bg-card">
                     <SelectValue placeholder="Pilih Kategori" />
@@ -640,7 +605,6 @@ const ProjectFormPage = () => {
                   )}
                 </div>
               </div>
-
             </CardContent>
           </Card>
 
@@ -653,69 +617,46 @@ const ProjectFormPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-
               <div className="space-y-2">
-                <Label htmlFor="demolink" className="text-xs font-semibold text-foreground">Link Demo Live (Opsional)</Label>
-                <Input
-                  id="demolink"
-                  placeholder="https://..."
-                  value={demolink}
-                  onChange={(e) => setDemolink(e.target.value)}
-                  className="border-border focus-visible:ring-primary/40 h-9"
-                />
+                <Label htmlFor="demolink" className="text-xs font-semibold text-foreground">
+                  Link Demo Live (Opsional)
+                </Label>
+                <Input id="demolink" placeholder="https://..." value={demolink} onChange={(e) => setDemolink(e.target.value)} className="border-border focus-visible:ring-primary/40 h-9" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="sourcelink" className="text-xs font-semibold text-foreground">Link Source Code (Opsional)</Label>
-                <Input
-                  id="sourcelink"
-                  placeholder="https://github.com/..."
-                  value={sourcelink}
-                  onChange={(e) => setSourcelink(e.target.value)}
-                  className="border-border focus-visible:ring-primary/40 h-9"
-                />
+                <Label htmlFor="sourcelink" className="text-xs font-semibold text-foreground">
+                  Link Source Code (Opsional)
+                </Label>
+                <Input id="sourcelink" placeholder="https://github.com/..." value={sourcelink} onChange={(e) => setSourcelink(e.target.value)} className="border-border focus-visible:ring-primary/40 h-9" />
               </div>
 
               <div className="space-y-2 border-t border-border pt-3">
-                <Label htmlFor="sortOrder" className="text-xs font-semibold text-foreground">Urutan Tampilan (Sort Order)</Label>
-                <Input
-                  id="sortOrder"
-                  type="number"
-                  placeholder="0"
-                  value={sortOrder}
-                  onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)}
-                  className="border-border focus-visible:ring-primary/40 h-9"
-                />
-                <span className="text-[10px] text-muted-foreground block">
-                  Nilai lebih kecil akan ditampilkan paling awal pada grid publik.
-                </span>
+                <Label htmlFor="sortOrder" className="text-xs font-semibold text-foreground">
+                  Urutan Tampilan (Sort Order)
+                </Label>
+                <Input id="sortOrder" type="number" placeholder="0" value={sortOrder} onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)} className="border-border focus-visible:ring-primary/40 h-9" />
+                <span className="text-[10px] text-muted-foreground block">Nilai lebih kecil akan ditampilkan paling awal pada grid publik.</span>
               </div>
 
               <div className="flex items-center justify-between border-t border-border pt-4">
                 <div className="space-y-0.5">
-                  <Label htmlFor="isPublished" className="text-xs font-semibold text-foreground cursor-pointer">Status Published</Label>
-                  <span className="text-[10px] text-muted-foreground block">
-                    Tampilkan project ini di halaman utama.
-                  </span>
+                  <Label htmlFor="isPublished" className="text-xs font-semibold text-foreground cursor-pointer">
+                    Status Published
+                  </Label>
+                  <span className="text-[10px] text-muted-foreground block">Tampilkan project ini di halaman utama.</span>
                 </div>
-                <Switch
-                  id="isPublished"
-                  checked={isPublished}
-                  onCheckedChange={setIsPublished}
-                  className="data-[state=checked]:bg-primary"
-                />
+                <Switch id="isPublished" checked={isPublished} onCheckedChange={setIsPublished} className="data-[state=checked]:bg-primary" />
               </div>
-
             </CardContent>
           </Card>
 
           {/* Action buttons (Save/Cancel) */}
           <div className="flex flex-row items-center gap-3 pt-2">
-            <Button
-              type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2 shadow-md h-10 font-semibold"
-              disabled={saving}
-            >
+            <Button variant="outline" asChild className="w-full border-border text-foreground hover:bg-muted h-10 font-semibold" disabled={saving}>
+              <Link to="/fw-admin/projects">Batal</Link>
+            </Button>
+            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2 shadow-md h-10 font-semibold" disabled={saving}>
               {saving ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -728,14 +669,8 @@ const ProjectFormPage = () => {
                 </>
               )}
             </Button>
-
-            <Button variant="outline" asChild className="w-full border-border text-foreground hover:bg-muted h-10 font-semibold" disabled={saving}>
-              <Link to="/fw-admin/projects">Batal</Link>
-            </Button>
           </div>
-
         </div>
-
       </form>
     </div>
   );

@@ -7,6 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Plus, Search, Edit2, Trash2, FolderOpen, ExternalLink, Globe, LayoutGrid, CheckCircle2, AlertCircle, Loader2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -135,23 +142,24 @@ const ProjectsPage = () => {
               />
             </div>
 
-            {/* Category Filter Tabs */}
-            <div className="flex bg-muted p-1 rounded-lg border border-border self-start md:self-auto">
-              {["All", "Web", "Mobile"].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => {
-                    setCategory(cat);
-                    setPage(1);
-                  }}
-                  className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${category === cat
-                    ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                    }`}
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Category Filter Dropdown */}
+            <div className="w-full md:w-[180px] shrink-0">
+              <Select
+                value={category}
+                onValueChange={(val) => {
+                  setCategory(val);
+                  setPage(1);
+                }}
+              >
+                <SelectTrigger className="focus:ring-primary/40 border-border bg-background">
+                  <SelectValue placeholder="Pilih Kategori" />
+                </SelectTrigger>
+                <SelectContent className="border-border">
+                  <SelectItem value="All">Semua Kategori</SelectItem>
+                  <SelectItem value="Web">Web</SelectItem>
+                  <SelectItem value="Mobile">Mobile</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 

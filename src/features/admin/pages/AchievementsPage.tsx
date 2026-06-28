@@ -7,6 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Plus, Search, Edit2, Trash2, Award, Calendar, ShieldAlert, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -152,23 +159,27 @@ const AchievementsPage = () => {
               />
             </div>
 
-            {/* Dynamic Type Filter Tabs */}
-            <div className="flex flex-wrap gap-1.5 p-1 bg-muted rounded-lg border border-border">
-              {["All", ...types].map((type) => (
-                <button
-                  key={type}
-                  onClick={() => {
-                    setSelectedType(type);
-                    setPage(1);
-                  }}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${selectedType === type
-                    ? "bg-background text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                    }`}
-                >
-                  {type}
-                </button>
-              ))}
+            {/* Type Filter Dropdown */}
+            <div className="w-full md:w-[180px] shrink-0">
+              <Select
+                value={selectedType}
+                onValueChange={(val) => {
+                  setSelectedType(val);
+                  setPage(1);
+                }}
+              >
+                <SelectTrigger className="focus:ring-primary/40 border-border bg-background">
+                  <SelectValue placeholder="Pilih Kategori" />
+                </SelectTrigger>
+                <SelectContent className="border-border">
+                  <SelectItem value="All">Semua Kategori</SelectItem>
+                  {types.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
 

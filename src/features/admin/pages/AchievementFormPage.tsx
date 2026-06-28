@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, Save, Upload, Plus, X, Loader2, Globe, Calendar, Award } from "lucide-react";
+import { ArrowLeft, Save, Upload, Plus, X, Loader2, Globe, Calendar, Award, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import axios from "axios";
@@ -457,50 +457,59 @@ const AchievementFormPage = () => {
         <div className="space-y-6">
           {/* Certificate Image Upload Card */}
           <Card className="bg-card border-border shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-md font-semibold flex items-center gap-2">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold flex items-center gap-2">
                 <Upload className="w-4 h-4 text-primary" />
                 Berkas Achievement
               </CardTitle>
-              <CardDescription>Unggah gambar / foto sertifikat penghargaan.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleImageChange}
-                accept="image/*"
-                className="hidden"
-              />
-
-              {imagePreview ? (
-                <div className="space-y-3">
-                  <div className="relative aspect-video rounded-lg overflow-hidden border border-border bg-muted">
+              {/* Preview Box */}
+              <div className="relative border-2 border-dashed border-border rounded-xl aspect-[16/10] overflow-hidden flex flex-col items-center justify-center bg-muted transition hover:border-primary/50 group">
+                {imagePreview ? (
+                  <>
                     <img
                       src={imagePreview}
-                      alt="Certificate Preview"
+                      alt="Preview"
                       className="w-full h-full object-cover"
                     />
-                  </div>
-                  <Button
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        size="sm"
+                        className="text-xs font-semibold"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        Ganti Gambar
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <button
                     type="button"
-                    variant="outline"
-                    className="w-full border-border bg-card"
                     onClick={() => fileInputRef.current?.click()}
+                    className="flex flex-col items-center justify-center p-4 text-center cursor-pointer focus:outline-none w-full h-full"
                   >
-                    Ganti Gambar
-                  </Button>
-                </div>
-              ) : (
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="aspect-video rounded-lg border-2 border-dashed border-border flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-accent/30 transition-colors"
-                >
-                  <div className="p-3 bg-primary/5 rounded-full border border-primary/10 text-primary">
-                    <Upload className="w-6 h-6" />
-                  </div>
-                  <p className="text-sm font-semibold">Pilih Berkas Gambar</p>
-                  <p className="text-xs text-muted-foreground">Maksimal file 5MB. format JPG/PNG/WebP.</p>
+                    <Upload className="w-8 h-8 text-muted-foreground group-hover:text-primary transition duration-300 mb-2" />
+                    <span className="text-xs font-semibold text-foreground">Upload Image</span>
+                    <span className="text-[10px] text-muted-foreground mt-1">JPEG, PNG, WebP (Maks 5MB)</span>
+                  </button>
+                )}
+              </div>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+
+              {!imagePreview && (
+                <div className="text-[11px] text-amber-500 flex items-start gap-1 bg-amber-500/10 p-2.5 rounded-lg border border-amber-500/20">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>Gambar sertifikat diperlukan agar pencapaian dapat ditampilkan dengan benar di public page.</span>
                 </div>
               )}
             </CardContent>
