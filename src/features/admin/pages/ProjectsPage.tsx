@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Plus, Search, Edit2, Trash2, FolderOpen, ExternalLink, Globe, LayoutGrid, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, FolderOpen, ExternalLink, Globe, LayoutGrid, CheckCircle2, AlertCircle, Loader2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import axios from "axios";
@@ -293,23 +293,27 @@ const ProjectsPage = () => {
                                 <Trash2 className="w-4 h-4" />
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="bg-card border-border">
+                            <AlertDialogContent className="border-border">
                               <AlertDialogHeader>
-                                <AlertDialogTitle className="text-foreground">Apakah Anda sangat yakin?</AlertDialogTitle>
-                                <AlertDialogDescription className="text-muted-foreground text-sm">
-                                  Tindakan ini tidak dapat dibatalkan. Project <strong>{project.titleId}</strong> dan file gambarnya yang tersimpan di Cloudinary akan dihapus secara permanen.
+                                <AlertDialogTitle className="flex items-center gap-2 text-destructive">
+                                  <ShieldAlert className="w-5 h-5" />
+                                  Hapus Project?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Apakah Anda yakin ingin menghapus data project <strong>{project.titleId}</strong>? Tindakan ini tidak dapat dibatalkan
+                                  dan file gambar di Cloudinary juga akan dihapus secara permanen.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter>
-                                <AlertDialogCancel className="bg-muted text-foreground border-border hover:bg-muted/80">Batal</AlertDialogCancel>
+                                <AlertDialogCancel disabled={isDeleting}>Batal</AlertDialogCancel>
                                 <AlertDialogAction
+                                  className="bg-destructive hover:bg-destructive/90 text-destructive-foreground"
                                   onClick={handleDelete}
-                                  className="bg-red-500 text-white hover:bg-red-600 border-none flex items-center gap-2"
                                   disabled={isDeleting}
                                 >
                                   {isDeleting ? (
                                     <>
-                                      <Loader2 className="w-4 h-4 animate-spin" />
+                                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                                       Menghapus...
                                     </>
                                   ) : (

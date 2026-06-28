@@ -106,18 +106,21 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
       </header>
 
       <AlertDialog open={showLogoutDialog} onOpenChange={setShowLogoutDialog}>
-        <AlertDialogContent>
+        <AlertDialogContent className="border-border">
           <AlertDialogHeader>
-            <AlertDialogTitle>Apakah Anda yakin ingin logout?</AlertDialogTitle>
+            <AlertDialogTitle className="flex items-center gap-2 text-destructive">
+              <LogOut className="w-5 h-5" />
+              Logout?
+            </AlertDialogTitle>
             <AlertDialogDescription>
-              Sesi Anda akan berakhir dan Anda perlu login kembali untuk mengakses panel admin.
+              Apakah Anda yakin ingin logout? Sesi Anda akan berakhir dan Anda perlu login kembali untuk mengakses panel admin.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Batal</AlertDialogCancel>
             <AlertDialogAction
               onClick={logout}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-destructive hover:bg-destructive/90 text-destructive-foreground"
             >
               Logout
             </AlertDialogAction>
