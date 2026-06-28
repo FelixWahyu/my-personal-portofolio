@@ -38,11 +38,11 @@ const App = () => (
             >
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/tentang" element={<Index />} />
-                <Route path="/statistik" element={<Index />} />
-                <Route path="/pencapaian" element={<Index />} />
-                <Route path="/proyek" element={<Index />} />
-                <Route path="/kontak" element={<Index />} />
+                <Route path="/about" element={<Index />} />
+                <Route path="/statistics" element={<Index />} />
+                <Route path="/achievements" element={<Index />} />
+                <Route path="/projects" element={<Index />} />
+                <Route path="/contact" element={<Index />} />
 
                 {/* Admin Routes */}
                 <Route path="/fw-admin/login" element={<LoginPage />} />

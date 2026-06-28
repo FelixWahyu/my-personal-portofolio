@@ -16,21 +16,21 @@ import { usePageTitle } from "@/hooks/usePageTitle";
 // Map URL path → section key
 const pathToSection: Record<string, string> = {
   "/": "beranda",
-  "/tentang": "tentang",
-  "/statistik": "statistik",
-  "/pencapaian": "pencapaian",
-  "/proyek": "proyek",
-  "/kontak": "kontak",
+  "/about": "tentang",
+  "/statistics": "statistik",
+  "/achievements": "pencapaian",
+  "/projects": "proyek",
+  "/contact": "kontak",
 };
 
 // Map section key → URL path
 const sectionToPath: Record<string, string> = {
   beranda: "/",
-  tentang: "/tentang",
-  statistik: "/statistik",
-  pencapaian: "/pencapaian",
-  proyek: "/proyek",
-  kontak: "/kontak",
+  tentang: "/about",
+  statistik: "/statistics",
+  pencapaian: "/achievements",
+  proyek: "/projects",
+  kontak: "/contact",
 };
 
 const Index = () => {
