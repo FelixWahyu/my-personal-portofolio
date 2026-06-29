@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
-import { Achievement } from "./sections/AchievementsSection";
+import type { Achievement } from "@/types";
 
 interface PropsAchievement {
   achievement: Achievement | null;

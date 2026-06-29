@@ -4,20 +4,9 @@ import { useEffect, useState, useMemo } from "react";
 import AchievementDetailModal from "../AchievementDetailModal";
 import { cn } from "@/lib/utils";
 import { getAchievements } from "@/services/achievementService";
+import type { Achievement } from "@/types";
 
 const ITEMS_PER_PAGE = 4;
-
-export interface Achievement {
-  id: number | string;
-  title: string;
-  issuer: string;
-  tags: string[];
-  date: string;
-  code?: string;
-  image: string;
-  type?: string;
-  description?: string;
-}
 
 const AchievementsSection = () => {
   const { t, language } = useLanguage();
@@ -46,12 +35,12 @@ const AchievementsSection = () => {
             id: item.id,
             title: language === "id" ? item.titleId : item.titleEn,
             issuer: language === "id" ? item.issuerTextId : item.issuerTextEn,
-            tags: language === "id" ? (item.tagsId || []) : (item.tagsEn || []),
+            tags: language === "id" ? item.tagsId || [] : item.tagsEn || [],
             date: language === "id" ? item.dateId : item.dateEn,
             code: item.credentialCode || undefined,
             image: item.image,
             type: item.type,
-            description: language === "id" ? (item.descriptionId || undefined) : (item.descriptionEn || undefined),
+            description: language === "id" ? item.descriptionId || undefined : item.descriptionEn || undefined,
           }));
           setAchievements(mapped);
         } else {
@@ -149,9 +138,7 @@ const AchievementsSection = () => {
       {loading ? (
         <div className="h-64 flex flex-col items-center justify-center gap-3">
           <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          <span className="text-muted-foreground text-sm">
-            {language === "id" ? "Memuat pencapaian..." : "Loading achievements..."}
-          </span>
+          <span className="text-muted-foreground text-sm">{language === "id" ? "Memuat pencapaian..." : "Loading achievements..."}</span>
         </div>
       ) : paginatedAchievements.length > 0 ? (
         <div className="space-y-8">
@@ -179,11 +166,7 @@ const AchievementsSection = () => {
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
                       {t.achievements.issuedOn} {achievement.date}
                     </p>
-                    {achievement.type && (
-                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                        {achievement.type}
-                      </span>
-                    )}
+                    {achievement.type && <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">{achievement.type}</span>}
                   </div>
                 </div>
               </div>
@@ -209,9 +192,7 @@ const AchievementsSection = () => {
                       key={pageNumber}
                       onClick={() => setCurrentPage(pageNumber)}
                       className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors ${
-                        currentPage === pageNumber
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "border-border bg-card text-foreground hover:bg-primary/10 hover:text-primary"
+                        currentPage === pageNumber ? "bg-primary text-primary-foreground border-primary" : "border-border bg-card text-foreground hover:bg-primary/10 hover:text-primary"
                       }`}
                     >
                       {pageNumber}
@@ -237,9 +218,7 @@ const AchievementsSection = () => {
           </div>
           <h3 className="text-lg font-semibold">{language === "id" ? "Pencapaian tidak ditemukan" : "No achievements found"}</h3>
           <p className="text-muted-foreground mt-1 max-w-sm">
-            {language === "id"
-              ? "Tidak ada pencapaian yang cocok dengan kata kunci atau filter tipe yang dipilih."
-              : "There are no achievements matching your search keywords or selected type filter."}
+            {language === "id" ? "Tidak ada pencapaian yang cocok dengan kata kunci atau filter tipe yang dipilih." : "There are no achievements matching your search keywords or selected type filter."}
           </p>
           <button
             onClick={() => {

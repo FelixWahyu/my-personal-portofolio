@@ -2,28 +2,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Briefcase, GraduationCap, Download, Check, ListCheck, Rocket, Brain } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import { Button } from "@/components/ui/button";
-
-interface ExperienceItem {
-  role: string;
-  company: string;
-  location: string;
-  period: string;
-  duration: string;
-  type: string;
-  mode: string;
-  responsibilities: string[];
-  insight: string[];
-  impact: string[];
-}
-
-interface EducationItem {
-  institution: string;
-  degree: string;
-  prodi: string;
-  gpa: string;
-  period: string;
-  location: string;
-}
+import type { ExperienceItem, EducationItem } from "@/types";
 
 const ExperienceCard = ({ item }: { item: ExperienceItem }) => {
   const [isOpen, setIsOpen] = useState(false);

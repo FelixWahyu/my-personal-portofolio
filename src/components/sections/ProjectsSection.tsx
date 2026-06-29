@@ -3,21 +3,7 @@ import { useLanguage } from "../LanguageProvider";
 import ProjectDetailModal from "../ProjectDetailModal";
 import { useState, useEffect } from "react";
 import { getProjects, Project as DBProject } from "../../services/projectService";
-
-export interface Project {
-  id: string | number;
-  title: string;
-  image: string;
-  description: string;
-  demolink?: string;
-  sourcelink?: string;
-  tech: string[];
-  role: string;
-  impact: string;
-  problem: string;
-  features: string[];
-  category?: string;
-}
+import { Project } from "@/types";
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -67,7 +53,7 @@ const ProjectsSection = () => {
       role: isEn ? dbProj.roleEn : dbProj.roleId,
       problem: isEn ? dbProj.problemEn : dbProj.problemId,
       impact: isEn ? dbProj.impactEn : dbProj.impactId,
-      features: isEn ? (dbProj.featuresEn || []) : (dbProj.featuresId || []),
+      features: isEn ? dbProj.featuresEn || [] : dbProj.featuresId || [],
       image: dbProj.image,
       category: dbProj.category,
       tech: dbProj.tech || [],
@@ -76,9 +62,7 @@ const ProjectsSection = () => {
     };
   };
 
-  const projectsListSource = dynamicProjects.length > 0
-    ? dynamicProjects.map((p) => mapProject(p, language))
-    : t.projects.items;
+  const projectsListSource = dynamicProjects.length > 0 ? dynamicProjects.map((p) => mapProject(p, language)) : t.projects.items;
 
   const filteredProjects = projectsListSource.filter((project) => {
     if (selectedCategory === "All") return true;
@@ -112,10 +96,9 @@ const ProjectsSection = () => {
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${selectedCategory === category
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground border border-border hover:bg-muted hover:text-foreground"
-              }`}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
+              selectedCategory === category ? "bg-primary text-primary-foreground" : "text-muted-foreground border border-border hover:bg-muted hover:text-foreground"
+            }`}
           >
             {category === "All" ? (language === "id" ? "Semua" : "All") : category}
           </button>
@@ -125,9 +108,7 @@ const ProjectsSection = () => {
       {loading ? (
         <div className="h-64 flex flex-col items-center justify-center gap-3">
           <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          <span className="text-muted-foreground text-sm">
-            {language === "id" ? "Memuat proyek..." : "Loading projects..."}
-          </span>
+          <span className="text-muted-foreground text-sm">{language === "id" ? "Memuat proyek..." : "Loading projects..."}</span>
         </div>
       ) : paginatedProjects.length > 0 ? (
         <>
@@ -140,9 +121,7 @@ const ProjectsSection = () => {
 
                   {project.category && (
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                      <span className="px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-black/60 text-white border border-white/20 backdrop-blur-md">
-                        {project.category}
-                      </span>
+                      <span className="px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-black/60 text-white border border-white/20 backdrop-blur-md">{project.category}</span>
                     </div>
                   )}
 
@@ -203,10 +182,9 @@ const ProjectsSection = () => {
                     <button
                       key={pageNumber}
                       onClick={() => setCurrentPage(pageNumber)}
-                      className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors ${currentPage === pageNumber
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "border-border bg-card text-foreground hover:bg-primary/10 hover:text-primary"
-                        }`}
+                      className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors ${
+                        currentPage === pageNumber ? "bg-primary text-primary-foreground border-primary" : "border-border bg-card text-foreground hover:bg-primary/10 hover:text-primary"
+                      }`}
                     >
                       {pageNumber}
                     </button>
@@ -226,9 +204,7 @@ const ProjectsSection = () => {
         </>
       ) : (
         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in border-2 border-dashed rounded-lg">
-          <p className="text-muted-foreground">
-            {language === "id" ? "Belum ada proyek untuk kategori ini." : "No projects found for this category."}
-          </p>
+          <p className="text-muted-foreground">{language === "id" ? "Belum ada proyek untuk kategori ini." : "No projects found for this category."}</p>
         </div>
       )}
       <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />

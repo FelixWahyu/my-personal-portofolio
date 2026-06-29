@@ -2,17 +2,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 import { useTheme } from "next-themes";
 import config from "@/config/GitHubUsername";
-
-interface Day {
-  date: string;
-  count: number;
-  level: number;
-}
-
-interface StatProps {
-  label: string;
-  value: string | number;
-}
+import type { Day, StatProps } from "@/types";
 
 export const GitHubContributions = () => {
   const [days, setDays] = useState<Day[]>([]);
@@ -96,14 +86,11 @@ export const GitHubContributions = () => {
       {/* Header + Year Selector */}
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-sm font-semibold text-muted-foreground">{t.statistik.githubcont}</h3>
-        <select
-          value={year}
-          onChange={(e) => setYear(Number(e.target.value))}
-          className="bg-card border border-border text-foreground text-sm rounded px-2 py-1"
-          aria-label="Pilih tahun kontribusi"
-        >
+        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="bg-card border border-border text-foreground text-sm rounded px-2 py-1" aria-label="Pilih tahun kontribusi">
           {years.map((y) => (
-            <option key={y} value={y}>{y}</option>
+            <option key={y} value={y}>
+              {y}
+            </option>
           ))}
         </select>
       </div>
@@ -132,11 +119,7 @@ export const GitHubContributions = () => {
               {weeks.map((week, i) => (
                 <div key={i} className="flex flex-col gap-[3px] shrink-0">
                   {week.map((day, j) => (
-                    <div
-                      key={j}
-                      title={`${day.date} • ${day.count} contributions`}
-                      className={`w-[11px] h-[11px] rounded-sm ${getColor(day.level)}`}
-                    />
+                    <div key={j} title={`${day.date} • ${day.count} contributions`} className={`w-[11px] h-[11px] rounded-sm ${getColor(day.level)}`} />
                   ))}
                 </div>
               ))}
