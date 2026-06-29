@@ -22,7 +22,7 @@ const HomeSection = () => {
             className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 animate-fade-in text-muted-foreground flex items-center justify-center md:justify-start min-h-[40px] sm:min-h-[48px] lg:min-h-[56px]"
             style={{ animationDelay: "50ms" }}
           >
-            <TypewriterText text="Web Developer" delay={500} speed={80} />
+            <TypewriterText text="Fullstack Developer" delay={500} speed={80} />
           </h2>
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: "100ms" }}>

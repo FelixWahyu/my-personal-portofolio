@@ -4,7 +4,7 @@ const CodeTyping = () => {
   const [text, setText] = useState("");
   const code = `const developer = {
   name: 'Felix Wahyu Sejati',
-  role: 'Web Developer',
+  role: 'Fullstack Developer',
   skills: ['React', 'Laravel', 'TypeScript', 'TailwindCSS'],
   passion: 'Building awesome web apps'
 };
@@ -28,7 +28,7 @@ developer.startCoding();`;
     const html = codeText
       .replace(/const /g, '<span class="text-[#569cd6]">const </span>')
       .replace(/developer /g, '<span class="text-[#4fc1ff]">developer </span>')
-      .replace(/'([^'\n]*)'?/g, '<span class="text-[#ce9178]">\'$1\'</span>') // strings
+      .replace(/'([^'\n]*)'?/g, "<span class=\"text-[#ce9178]\">'$1'</span>") // strings
       .replace(/(name|role|skills|passion)(?=:)/g, '<span class="text-[#9cdcfe]">$1</span>') // object keys
       .replace(/\/\/.*$/gm, '<span class="text-[#6a9955]">$&</span>') // comments
       .replace(/startCoding/g, '<span class="text-[#dcdcaa]">startCoding</span>'); // functions
@@ -47,11 +47,10 @@ developer.startCoding();`;
 
       {/* Code Editor Body */}
       <div className="p-4 sm:p-6 text-xs sm:text-sm md:text-base text-left bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] relative">
-
         {/* INVISIBLE OVERLAY: Forces container to take exact final size from the start */}
         <div className="flex opacity-0 pointer-events-none select-none" aria-hidden="true">
           <div className="flex flex-col pr-4 text-right border-r border-transparent mr-4">
-            {code.split('\n').map((_, i) => (
+            {code.split("\n").map((_, i) => (
               <div key={i}>{i + 1}</div>
             ))}
           </div>
@@ -65,7 +64,7 @@ developer.startCoding();`;
         <div className="absolute top-4 sm:top-6 left-4 sm:left-6 right-4 sm:right-6 flex">
           {/* Line Numbers */}
           <div className="flex flex-col text-[#858585] select-none pr-4 text-right border-r border-[#ffffff10] mr-4 opacity-50">
-            {code.split('\n').map((_, i) => (
+            {code.split("\n").map((_, i) => (
               <div key={i}>{i + 1}</div>
             ))}
           </div>
@@ -75,7 +74,6 @@ developer.startCoding();`;
             <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-1 align-middle opacity-80"></span>
           </pre>
         </div>
-
       </div>
     </div>
   );
