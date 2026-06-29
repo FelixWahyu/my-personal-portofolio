@@ -378,6 +378,7 @@ export const translations = {
         linkedin: { title: "Ayo Terhubung", description: "Terhubung dengan saya secara profesional.", action: "Buka LinkedIn" },
         tiktok: { title: "Ikuti saya di TikTok", description: "Tonton konten yang menarik dan menyenangkan.", action: "Buka TikTok" },
         github: { title: "Jelajahi Kode saya", description: "Jelajahi karya open-source saya.", action: "Buka GitHub" },
+        whatsapp: { title: "Hubungi via WhatsApp", description: "Hubungi langsung untuk respon yang lebih cepat.", action: "Kirim Pesan" },
       },
     },
     footer: {
@@ -762,6 +763,7 @@ export const translations = {
         linkedin: { title: "Let's Connect", description: "Connect with me professionally.", action: "Open LinkedIn" },
         tiktok: { title: "Follow me on TikTok", description: "Watch engaging and fun content.", action: "Open TikTok" },
         github: { title: "Explore my Code", description: "Explore my open-source work.", action: "Open GitHub" },
+        whatsapp: { title: "Chat on WhatsApp", description: "Reach out directly for a faster response.", action: "Send Message" },
       },
     },
     footer: {
