@@ -279,14 +279,14 @@ const ProjectFormPage = () => {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="titleId" className="text-sm font-semibold text-foreground">
-                      Judul Proyek (ID)
+                      Judul Proyek
                     </Label>
                     <Input id="titleId" placeholder="Contoh: Roti Mruyung Sales System" value={titleId} onChange={(e) => setTitleId(e.target.value)} className="border-border focus-visible:ring-primary/40" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="descriptionId" className="text-sm font-semibold text-foreground">
-                      Deskripsi Singkat (ID)
+                      Deskripsi Singkat
                     </Label>
                     <Textarea
                       id="descriptionId"
@@ -300,7 +300,7 @@ const ProjectFormPage = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="roleId" className="text-sm font-semibold text-foreground">
-                      Peran Anda (ID)
+                      Peran Anda
                     </Label>
                     <Textarea
                       id="roleId"
@@ -314,7 +314,7 @@ const ProjectFormPage = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="problemId" className="text-sm font-semibold text-foreground">
-                      Permasalahan / Background (ID)
+                      Permasalahan / Background
                     </Label>
                     <Textarea
                       id="problemId"
@@ -328,7 +328,7 @@ const ProjectFormPage = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="impactId" className="text-sm font-semibold text-foreground">
-                      Dampak / Hasil Proyek (ID)
+                      Dampak / Hasil Proyek
                     </Label>
                     <Textarea
                       id="impactId"
@@ -342,7 +342,7 @@ const ProjectFormPage = () => {
 
                   {/* Indonesian Features Tag List */}
                   <div className="space-y-3 pt-3 border-t border-border">
-                    <Label className="text-sm font-semibold text-foreground">Daftar Fitur Unggulan (ID)</Label>
+                    <Label className="text-sm font-semibold text-foreground">Daftar Fitur Unggulan</Label>
                     <div className="flex gap-2">
                       <Input
                         placeholder="Contoh: Integrasi WhatsApp API"
@@ -394,14 +394,14 @@ const ProjectFormPage = () => {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="titleEn" className="text-sm font-semibold text-foreground">
-                      Project Title (EN)
+                      Project Title
                     </Label>
                     <Input id="titleEn" placeholder="Example: Roti Mruyung Sales System" value={titleEn} onChange={(e) => setTitleEn(e.target.value)} className="border-border focus-visible:ring-primary/40" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="descriptionEn" className="text-sm font-semibold text-foreground">
-                      Short Description (EN)
+                      Short Description
                     </Label>
                     <Textarea
                       id="descriptionEn"
@@ -415,7 +415,7 @@ const ProjectFormPage = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="roleEn" className="text-sm font-semibold text-foreground">
-                      Your Role (EN)
+                      Your Role
                     </Label>
                     <Textarea
                       id="roleEn"
@@ -429,7 +429,7 @@ const ProjectFormPage = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="problemEn" className="text-sm font-semibold text-foreground">
-                      Problem / Background (EN)
+                      Problem / Background
                     </Label>
                     <Textarea
                       id="problemEn"
@@ -443,7 +443,7 @@ const ProjectFormPage = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="impactEn" className="text-sm font-semibold text-foreground">
-                      Impact / Outcomes (EN)
+                      Impact / Outcomes
                     </Label>
                     <Textarea
                       id="impactEn"
@@ -457,7 +457,7 @@ const ProjectFormPage = () => {
 
                   {/* English Features Tag List */}
                   <div className="space-y-3 pt-3 border-t border-border">
-                    <Label className="text-sm font-semibold text-foreground">Key Features List (EN)</Label>
+                    <Label className="text-sm font-semibold text-foreground">Key Features List</Label>
                     <div className="flex gap-2">
                       <Input
                         placeholder="Example: WhatsApp API integration"

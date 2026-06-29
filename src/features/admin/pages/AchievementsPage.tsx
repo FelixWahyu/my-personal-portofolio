@@ -7,13 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Search, Edit2, Trash2, Award, Calendar, ShieldAlert, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -109,9 +103,7 @@ const AchievementsPage = () => {
       }
     } catch (error) {
       console.error("Delete achievement error:", error);
-      const errorMessage = axios.isAxiosError(error)
-        ? error.response?.data?.message
-        : "Terjadi kesalahan saat menghapus achievement";
+      const errorMessage = axios.isAxiosError(error) ? error.response?.data?.message : "Terjadi kesalahan saat menghapus achievement";
       toast.error(errorMessage || "Terjadi kesalahan saat menghapus achievement");
     } finally {
       setIsDeleting(false);
@@ -125,9 +117,7 @@ const AchievementsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Achievements</h1>
-          <p className="text-muted-foreground text-sm">
-            Manajemen data sertifikat, penghargaan, dan pencapaian portfolio yang ditampilkan pada halaman publik.
-          </p>
+          <p className="text-muted-foreground text-sm">Manajemen data sertifikat, penghargaan, dan pencapaian portfolio yang ditampilkan pada halaman publik.</p>
         </div>
         <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground shrink-0 shadow-md">
           <Link to="new" className="flex items-center gap-2">
@@ -151,12 +141,7 @@ const AchievementsPage = () => {
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Cari berdasarkan judul, penerbit, deskripsi..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 focus-visible:ring-primary/40 border-border"
-              />
+              <Input placeholder="Cari berdasarkan judul, penerbit, deskripsi..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 focus-visible:ring-primary/40 border-border" />
             </div>
 
             {/* Type Filter Dropdown */}
@@ -189,8 +174,8 @@ const AchievementsPage = () => {
               <TableHeader className="bg-muted/40">
                 <TableRow className="hover:bg-transparent border-border">
                   <TableHead className="w-[100px] text-foreground font-semibold">Gambar</TableHead>
-                  <TableHead className="text-foreground font-semibold">Judul (ID / EN)</TableHead>
-                  <TableHead className="text-foreground font-semibold">Penerbit (ID / EN)</TableHead>
+                  <TableHead className="text-foreground font-semibold">Judul</TableHead>
+                  <TableHead className="text-foreground font-semibold">Penerbit</TableHead>
                   <TableHead className="text-foreground font-semibold">Tipe & Kredensial</TableHead>
                   <TableHead className="text-foreground font-semibold">Tanggal</TableHead>
                   <TableHead className="text-foreground font-semibold">Status</TableHead>
@@ -240,12 +225,8 @@ const AchievementsPage = () => {
                       </TableCell>
                       <TableCell className="max-w-[200px]">
                         <div className="flex flex-col gap-0.5">
-                          <span className="text-sm font-medium text-foreground truncate block">
-                            {item.issuerTextId}
-                          </span>
-                          <span className="text-xs text-muted-foreground truncate block">
-                            {item.issuerTextEn}
-                          </span>
+                          <span className="text-sm font-medium text-foreground truncate block">{item.issuerTextId}</span>
+                          <span className="text-xs text-muted-foreground truncate block">{item.issuerTextEn}</span>
                         </div>
                       </TableCell>
                       <TableCell>
@@ -253,11 +234,7 @@ const AchievementsPage = () => {
                           <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20 text-[10px]">
                             {item.type}
                           </Badge>
-                          {item.credentialCode && (
-                            <span className="text-xs font-mono text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border">
-                              {item.credentialCode}
-                            </span>
-                          )}
+                          {item.credentialCode && <span className="text-xs font-mono text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border">{item.credentialCode}</span>}
                         </div>
                       </TableCell>
                       <TableCell>
@@ -286,12 +263,7 @@ const AchievementsPage = () => {
                               <Edit2 className="w-4 h-4" />
                             </Link>
                           </Button>
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="h-8 w-8 hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
-                            onClick={() => setAchievementToDelete(item.id)}
-                          >
+                          <Button size="icon" variant="ghost" className="h-8 w-8 hover:bg-destructive/10 text-muted-foreground hover:text-destructive" onClick={() => setAchievementToDelete(item.id)}>
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -333,10 +305,7 @@ const AchievementsPage = () => {
 
                       <button
                         onClick={() => setPage(idx + 1)}
-                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "border-border hover:bg-muted text-foreground"
-                          }`}
+                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1 ? "bg-primary text-primary-foreground border-primary" : "border-border hover:bg-muted text-foreground"}`}
                       >
                         {idx + 1}
                       </button>
@@ -360,28 +329,18 @@ const AchievementsPage = () => {
       </Card>
 
       {/* Delete Confirmation Alert Dialog */}
-      <AlertDialog
-        open={achievementToDelete !== null}
-        onOpenChange={(open) => !open && setAchievementToDelete(null)}
-      >
+      <AlertDialog open={achievementToDelete !== null} onOpenChange={(open) => !open && setAchievementToDelete(null)}>
         <AlertDialogContent className="border-border">
           <AlertDialogHeader>
             <AlertDialogTitle className="flex items-center gap-2 text-destructive">
               <ShieldAlert className="w-5 h-5" />
               Hapus Achievement?
             </AlertDialogTitle>
-            <AlertDialogDescription>
-              Apakah Anda yakin ingin menghapus data achievement ini? Tindakan ini tidak dapat dibatalkan
-              dan file gambar di Cloudinary juga akan dihapus secara permanen.
-            </AlertDialogDescription>
+            <AlertDialogDescription>Apakah Anda yakin ingin menghapus data achievement ini? Tindakan ini tidak dapat dibatalkan dan file gambar di Cloudinary juga akan dihapus secara permanen.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel disabled={isDeleting}>Batal</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive hover:bg-destructive/90 text-destructive-foreground"
-              onClick={handleDelete}
-              disabled={isDeleting}
-            >
+            <AlertDialogAction className="bg-destructive hover:bg-destructive/90 text-destructive-foreground" onClick={handleDelete} disabled={isDeleting}>
               {isDeleting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

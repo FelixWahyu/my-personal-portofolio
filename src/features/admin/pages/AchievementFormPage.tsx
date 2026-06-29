@@ -14,16 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import axios from "axios";
 
-const PRESET_TYPES = [
-  "Profesional",
-  "Course",
-  "Organisasi",
-  "Kompetisi",
-  "Seminar",
-  "Workshop",
-  "Akademik",
-  "Lainnya"
-];
+const PRESET_TYPES = ["Profesional", "Course", "Organisasi", "Kompetisi", "Seminar", "Workshop", "Akademik", "Lainnya"];
 
 const AchievementFormPage = () => {
   const navigate = useNavigate();
@@ -223,9 +214,7 @@ const AchievementFormPage = () => {
       }
     } catch (error) {
       console.error("Save achievement error:", error);
-      const errorMessage = axios.isAxiosError(error)
-        ? error.response?.data?.message
-        : "Terjadi kesalahan saat menyimpan data";
+      const errorMessage = axios.isAxiosError(error) ? error.response?.data?.message : "Terjadi kesalahan saat menyimpan data";
       toast.error(errorMessage || "Terjadi kesalahan saat menyimpan data");
     } finally {
       setSaving(false);
@@ -251,12 +240,8 @@ const AchievementFormPage = () => {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">
-            {isEditMode ? "Edit Achievement" : "Tambah Achievement Baru"}
-          </h1>
-          <p className="text-muted-foreground text-xs sm:text-sm">
-            {isEditMode ? "Perbarui informasi detail pencapaian Anda." : "Masukkan pencapaian baru Anda untuk ditampilkan di portfolio."}
-          </p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">{isEditMode ? "Edit Achievement" : "Tambah Achievement Baru"}</h1>
+          <p className="text-muted-foreground text-xs sm:text-sm">{isEditMode ? "Perbarui informasi detail pencapaian Anda." : "Masukkan pencapaian baru Anda untuk ditampilkan di portfolio."}</p>
         </div>
       </div>
 
@@ -284,56 +269,37 @@ const AchievementFormPage = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="titleId">Nama / Judul Achievement <span className="text-destructive">*</span></Label>
-                    <Input
-                      id="titleId"
-                      placeholder="Masukkan nama sertifikat atau pencapaian..."
-                      value={titleId}
-                      onChange={(e) => setTitleId(e.target.value)}
-                      className="border-border"
-                    />
+                    <Label htmlFor="titleId">
+                      Nama / Judul Achievement <span className="text-destructive">*</span>
+                    </Label>
+                    <Input id="titleId" placeholder="Masukkan nama sertifikat atau pencapaian..." value={titleId} onChange={(e) => setTitleId(e.target.value)} className="border-border" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="issuerTextId">Nama Penerbit <span className="text-destructive">*</span></Label>
-                    <Input
-                      id="issuerTextId"
-                      placeholder="Contoh: PT. Revolusi Citra Edukasi"
-                      value={issuerTextId}
-                      onChange={(e) => setIssuerTextId(e.target.value)}
-                      className="border-border"
-                    />
+                    <Label htmlFor="issuerTextId">
+                      Nama Penerbit <span className="text-destructive">*</span>
+                    </Label>
+                    <Input id="issuerTextId" placeholder="Contoh: PT. Revolusi Citra Edukasi" value={issuerTextId} onChange={(e) => setIssuerTextId(e.target.value)} className="border-border" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="dateId">Tanggal Terbit (Format bebas, direkomendasikan BULAN TAHUN) <span className="text-destructive">*</span></Label>
+                    <Label htmlFor="dateId">
+                      Tanggal Terbit (Format bebas, direkomendasikan BULAN TAHUN) <span className="text-destructive">*</span>
+                    </Label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        id="dateId"
-                        placeholder="Contoh: DESEMBER 2023"
-                        value={dateId}
-                        onChange={(e) => setDateId(e.target.value)}
-                        className="pl-10 border-border"
-                      />
+                      <Input id="dateId" placeholder="Contoh: DESEMBER 2023" value={dateId} onChange={(e) => setDateId(e.target.value)} className="pl-10 border-border" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="descriptionId">Deskripsi / Penjelasan Singkat (Optional)</Label>
-                    <Textarea
-                      id="descriptionId"
-                      placeholder="Jelaskan mengenai pencapaian Anda, apa yang dipelajari..."
-                      value={descriptionId}
-                      onChange={(e) => setDescriptionId(e.target.value)}
-                      rows={4}
-                      className="border-border resize-y"
-                    />
+                    <Textarea id="descriptionId" placeholder="Jelaskan mengenai pencapaian Anda, apa yang dipelajari..." value={descriptionId} onChange={(e) => setDescriptionId(e.target.value)} rows={4} className="border-border resize-y" />
                   </div>
 
                   {/* Indonesian Tags */}
                   <div className="space-y-2">
-                    <Label>Tags / Kategori Lencana (ID)</Label>
+                    <Label>Tags / Kategori Lencana</Label>
                     <div className="flex gap-2">
                       <Input
                         placeholder="Ketik tag dan klik tambah (contoh: Frontend)"
@@ -372,56 +338,37 @@ const AchievementFormPage = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="titleEn">Achievement Name / Title <span className="text-destructive">*</span></Label>
-                    <Input
-                      id="titleEn"
-                      placeholder="Enter certificate or award title..."
-                      value={titleEn}
-                      onChange={(e) => setTitleEn(e.target.value)}
-                      className="border-border"
-                    />
+                    <Label htmlFor="titleEn">
+                      Achievement Name / Title <span className="text-destructive">*</span>
+                    </Label>
+                    <Input id="titleEn" placeholder="Enter certificate or award title..." value={titleEn} onChange={(e) => setTitleEn(e.target.value)} className="border-border" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="issuerTextEn">Issuer Name <span className="text-destructive">*</span></Label>
-                    <Input
-                      id="issuerTextEn"
-                      placeholder="e.g. PT. Revolusi Citra Edukasi"
-                      value={issuerTextEn}
-                      onChange={(e) => setIssuerTextEn(e.target.value)}
-                      className="border-border"
-                    />
+                    <Label htmlFor="issuerTextEn">
+                      Issuer Name <span className="text-destructive">*</span>
+                    </Label>
+                    <Input id="issuerTextEn" placeholder="e.g. PT. Revolusi Citra Edukasi" value={issuerTextEn} onChange={(e) => setIssuerTextEn(e.target.value)} className="border-border" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="dateEn">Issued Date (e.g. MONTH YEAR) <span className="text-destructive">*</span></Label>
+                    <Label htmlFor="dateEn">
+                      Issued Date (e.g. MONTH YEAR) <span className="text-destructive">*</span>
+                    </Label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        id="dateEn"
-                        placeholder="e.g. DECEMBER 2023"
-                        value={dateEn}
-                        onChange={(e) => setDateEn(e.target.value)}
-                        className="pl-10 border-border"
-                      />
+                      <Input id="dateEn" placeholder="e.g. DECEMBER 2023" value={dateEn} onChange={(e) => setDateEn(e.target.value)} className="pl-10 border-border" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="descriptionEn">Short Description / Explanation (Optional)</Label>
-                    <Textarea
-                      id="descriptionEn"
-                      placeholder="Explain about your achievement, what was learned..."
-                      value={descriptionEn}
-                      onChange={(e) => setDescriptionEn(e.target.value)}
-                      rows={4}
-                      className="border-border resize-y"
-                    />
+                    <Textarea id="descriptionEn" placeholder="Explain about your achievement, what was learned..." value={descriptionEn} onChange={(e) => setDescriptionEn(e.target.value)} rows={4} className="border-border resize-y" />
                   </div>
 
                   {/* English Tags */}
                   <div className="space-y-2">
-                    <Label>Tags / Badges Category (EN)</Label>
+                    <Label>Tags / Badges Category</Label>
                     <div className="flex gap-2">
                       <Input
                         placeholder="Type tag and click add (e.g. Backend)"
@@ -468,29 +415,15 @@ const AchievementFormPage = () => {
               <div className="relative border-2 border-dashed border-border rounded-xl aspect-[16/10] overflow-hidden flex flex-col items-center justify-center bg-muted transition hover:border-primary/50 group">
                 {imagePreview ? (
                   <>
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
-                      <Button
-                        type="button"
-                        variant="secondary"
-                        size="sm"
-                        className="text-xs font-semibold"
-                        onClick={() => fileInputRef.current?.click()}
-                      >
+                      <Button type="button" variant="secondary" size="sm" className="text-xs font-semibold" onClick={() => fileInputRef.current?.click()}>
                         Ganti Gambar
                       </Button>
                     </div>
                   </>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="flex flex-col items-center justify-center p-4 text-center cursor-pointer focus:outline-none w-full h-full"
-                  >
+                  <button type="button" onClick={() => fileInputRef.current?.click()} className="flex flex-col items-center justify-center p-4 text-center cursor-pointer focus:outline-none w-full h-full">
                     <Upload className="w-8 h-8 text-muted-foreground group-hover:text-primary transition duration-300 mb-2" />
                     <span className="text-xs font-semibold text-foreground">Upload Image</span>
                     <span className="text-[10px] text-muted-foreground mt-1">JPEG, PNG, WebP (Maks 5MB)</span>
@@ -498,13 +431,7 @@ const AchievementFormPage = () => {
                 )}
               </div>
 
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                className="hidden"
-                onChange={handleImageChange}
-              />
+              <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" className="hidden" onChange={handleImageChange} />
 
               {!imagePreview && (
                 <div className="text-[11px] text-amber-500 flex items-start gap-1 bg-amber-500/10 p-2.5 rounded-lg border border-amber-500/20">
@@ -545,43 +472,24 @@ const AchievementFormPage = () => {
               {/* Custom Type Field (shows only when 'Lainnya' is selected) */}
               {typeSelect === "Lainnya" && (
                 <div className="space-y-2 animate-fade-in">
-                  <Label htmlFor="customType">Ketik Tipe Baru <span className="text-destructive">*</span></Label>
-                  <Input
-                    id="customType"
-                    placeholder="Contoh: Kompetisi / Beasiswa"
-                    value={customType}
-                    onChange={(e) => setCustomType(e.target.value)}
-                    className="border-border"
-                  />
+                  <Label htmlFor="customType">
+                    Ketik Tipe Baru <span className="text-destructive">*</span>
+                  </Label>
+                  <Input id="customType" placeholder="Contoh: Kompetisi / Beasiswa" value={customType} onChange={(e) => setCustomType(e.target.value)} className="border-border" />
                 </div>
               )}
 
               {/* Credential Code */}
               <div className="space-y-2">
                 <Label htmlFor="credentialCode">ID Kredensial / No. Sertifikat (Optional)</Label>
-                <Input
-                  id="credentialCode"
-                  placeholder="Contoh: CMP/12-23/HCLGA/6256556"
-                  value={credentialCode}
-                  onChange={(e) => setCredentialCode(e.target.value)}
-                  className="border-border"
-                />
+                <Input id="credentialCode" placeholder="Contoh: CMP/12-23/HCLGA/6256556" value={credentialCode} onChange={(e) => setCredentialCode(e.target.value)} className="border-border" />
               </div>
 
               {/* Sort Order */}
               <div className="space-y-2">
                 <Label htmlFor="sortOrder">Urutan Tampilan</Label>
-                <Input
-                  id="sortOrder"
-                  type="number"
-                  placeholder="0"
-                  value={sortOrder}
-                  onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)}
-                  className="border-border"
-                />
-                <span className="text-muted-foreground text-[10px] sm:text-xs">
-                  Semakin kecil angka, posisi pencapaian semakin awal.
-                </span>
+                <Input id="sortOrder" type="number" placeholder="0" value={sortOrder} onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)} className="border-border" />
+                <span className="text-muted-foreground text-[10px] sm:text-xs">Semakin kecil angka, posisi pencapaian semakin awal.</span>
               </div>
 
               {/* Publish Toggle */}
@@ -590,31 +498,17 @@ const AchievementFormPage = () => {
                   <Label htmlFor="isPublished">Tampilkan di Publik</Label>
                   <p className="text-xs text-muted-foreground">Aktifkan untuk menampilkan di website utama.</p>
                 </div>
-                <Switch
-                  id="isPublished"
-                  checked={isPublished}
-                  onCheckedChange={setIsPublished}
-                />
+                <Switch id="isPublished" checked={isPublished} onCheckedChange={setIsPublished} />
               </div>
             </CardContent>
           </Card>
 
           {/* Form Actions */}
           <div className="flex flex-row items-center gap-3">
-            <Button
-              asChild
-              type="button"
-              variant="outline"
-              className="flex-1 border-border bg-card"
-              disabled={saving}
-            >
+            <Button asChild type="button" variant="outline" className="flex-1 border-border bg-card" disabled={saving}>
               <Link to="/fw-admin/achievements">Batal</Link>
             </Button>
-            <Button
-              type="submit"
-              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow"
-              disabled={saving}
-            >
+            <Button type="submit" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow" disabled={saving}>
               {saving ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

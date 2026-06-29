@@ -179,21 +179,14 @@ const ProjectsPage = () => {
               </TableHeader>
               <TableBody>
                 {loading ? (
-                  // Loading skeletons
-                  Array.from({ length: limit }).map((_, idx) => (
-                    <TableRow key={idx} className="border-border animate-pulse">
-                      <TableCell><div className="w-[70px] h-[45px] bg-muted rounded-md" /></TableCell>
-                      <TableCell>
-                        <div className="h-4 bg-muted rounded w-48 mb-2" />
-                        <div className="h-3 bg-muted rounded w-32" />
-                      </TableCell>
-                      <TableCell><div className="h-5 bg-muted rounded-full w-12" /></TableCell>
-                      <TableCell><div className="h-4 bg-muted rounded w-36" /></TableCell>
-                      <TableCell><div className="h-4 bg-muted rounded w-6 mx-auto" /></TableCell>
-                      <TableCell><div className="h-5 bg-muted rounded-full w-16" /></TableCell>
-                      <TableCell className="text-right"><div className="h-8 bg-muted rounded-md w-16 ml-auto" /></TableCell>
-                    </TableRow>
-                  ))
+                  <TableRow className="hover:bg-transparent">
+                    <TableCell colSpan={7} className="h-48 text-center">
+                      <div className="flex flex-col items-center justify-center gap-2">
+                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                        <span className="text-muted-foreground text-sm">Memuat data...</span>
+                      </div>
+                    </TableCell>
+                  </TableRow>
                 ) : projects.length === 0 ? (
                   // Empty state
                   <TableRow>
