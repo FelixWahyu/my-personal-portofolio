@@ -1,4 +1,4 @@
-import { ChevronRight, ExternalLink, Github, ChevronLeft } from "lucide-react";
+import { ChevronRight, ExternalLink, Github, ChevronLeft, Loader2 } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import ProjectDetailModal from "../ProjectDetailModal";
 import { useState, useEffect } from "react";
@@ -24,11 +24,13 @@ const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const { t, language } = useLanguage();
+  const [loading, setLoading] = useState(false);
   const [dynamicProjects, setDynamicProjects] = useState<DBProject[]>([]);
   const itemsPerPage = 4;
 
   useEffect(() => {
     const fetchDynamicProjects = async () => {
+      setLoading(true);
       try {
         const response = await getProjects({ limit: 100 });
         if (response.success && response.data?.projects) {
@@ -36,6 +38,8 @@ const ProjectsSection = () => {
         }
       } catch (error) {
         console.error("Failed to load dynamic projects, using static fallback:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchDynamicProjects();
@@ -118,7 +122,14 @@ const ProjectsSection = () => {
         ))}
       </div>
 
-      {paginatedProjects.length > 0 ? (
+      {loading ? (
+        <div className="h-64 flex flex-col items-center justify-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <span className="text-muted-foreground text-sm">
+            {language === "id" ? "Memuat proyek..." : "Loading projects..."}
+          </span>
+        </div>
+      ) : paginatedProjects.length > 0 ? (
         <>
           <div className="grid gap-4 md:grid-cols-2">
             {paginatedProjects.map((project, index) => (
