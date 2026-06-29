@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { X, MessageCircleMore } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
 const WHATSAPP_NUMBER = "6285869906592";
@@ -22,12 +22,12 @@ const WhatsappButton = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
       <div
         role="tooltip"
         aria-hidden={!isOpen}
         className={`p-3 rounded-xl bg-card border border-border shadow-lg text-sm font-medium text-foreground transition-all duration-300 origin-bottom-right min-w-[170px] ${
-          isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-2 pointer-events-none"
+          isOpen ? "opacity-100 scale-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-90 translate-y-2 pointer-events-none"
         }`}
       >
         <p className="text-xs text-muted-foreground mb-2 px-1">{language === "id" ? "Hubungi saya di :" : "Contact me on :"}</p>
@@ -49,13 +49,12 @@ const WhatsappButton = () => {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`group relative w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl ${
+        className={`group relative w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl pointer-events-auto ${
           isOpen ? "bg-muted text-foreground rotate-0" : "bg-primary text-primary-foreground rotate-0"
         }`}
         aria-label="WhatsApp"
       >
-        {!isOpen && <span className="absolute inset-0 rounded-full bg-primary motion-safe:animate-ping opacity-20" />}
-        <span className="relative transition-transform duration-300">{isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}</span>
+        <span className="relative transition-transform duration-300">{isOpen ? <X className="w-6 h-6" /> : <MessageCircleMore className="w-6 h-6" />}</span>
       </button>
     </div>
   );
