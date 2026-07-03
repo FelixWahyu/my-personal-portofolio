@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { getAchievements } from "@/services/achievementService";
 import type { Achievement } from "@/types";
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 6;
 
 const AchievementsSection = () => {
   const { t, language } = useLanguage();
@@ -142,7 +142,7 @@ const AchievementsSection = () => {
         </div>
       ) : paginatedAchievements.length > 0 ? (
         <div className="space-y-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {paginatedAchievements.map((achievement, index) => (
               <div
                 key={achievement.id}
@@ -162,7 +162,7 @@ const AchievementsSection = () => {
                   {achievement.code && <p className="text-xs text-muted-foreground font-mono truncate">{achievement.code}</p>}
                   <h3 className="font-semibold text-sm leading-tight line-clamp-2">{achievement.title}</h3>
                   <p className="text-xs text-muted-foreground">{achievement.issuer}</p>
-                  <div className="flex justify-between items-center pt-1 border-t border-border">
+                  <div className="flex justify-between items-center pt-4 border-t border-border">
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">
                       {t.achievements.issuedOn} {achievement.date}
                     </p>
