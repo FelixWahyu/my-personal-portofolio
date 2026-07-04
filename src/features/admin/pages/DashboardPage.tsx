@@ -4,17 +4,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LayoutDashboard, FolderOpen, FileBadge, User, CheckCircle } from "lucide-react";
 import { getDashboardStats } from "../../../services/projectService";
 import { getAchievementStats } from "../../../services/achievementService";
+import { getExperienceStats } from "../../../services/experienceService";
+import { Briefcase } from "lucide-react";
 
 const DashboardPage = () => {
   const { user } = useAuth();
   const [totalProjects, setTotalProjects] = useState<number>(0);
   const [totalAchievements, setTotalAchievements] = useState<number>(0);
+  const [totalExperiences, setTotalExperiences] = useState<number>(0);
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [projRes, achRes] = await Promise.allSettled([
+      const [projRes, achRes, expRes] = await Promise.allSettled([
         getDashboardStats(),
         getAchievementStats(),
+        getExperienceStats(),
       ]);
 
       if (projRes.status === "fulfilled" && projRes.value?.success && projRes.value?.data) {
@@ -27,6 +31,12 @@ const DashboardPage = () => {
         setTotalAchievements(achRes.value.data.totalAchievements);
       } else if (achRes.status === "rejected") {
         console.error("Failed to load achievement stats:", achRes.reason);
+      }
+
+      if (expRes.status === "fulfilled" && expRes.value?.success && expRes.value?.data) {
+        setTotalExperiences(expRes.value.data.totalExperiences);
+      } else if (expRes.status === "rejected") {
+        console.error("Failed to load experience stats:", expRes.reason);
       }
     };
     fetchStats();
@@ -44,6 +54,12 @@ const DashboardPage = () => {
       value: totalAchievements.toString(),
       icon: <FileBadge className="h-4 w-4 text-primary" />,
       description: "Sertifikat & pencapaian",
+    },
+    {
+      title: "Total Experiences",
+      value: totalExperiences.toString(),
+      icon: <Briefcase className="h-4 w-4 text-primary" />,
+      description: "Pengalaman kerja & magang",
     },
     {
       title: "User Role",
@@ -97,6 +113,7 @@ const DashboardPage = () => {
               <li>Sistem Autentikasi Admin & Guard Route aman</li>
               <li>Manajemen data Proyek / Projects (Tambah, Edit, Hapus, Cari, Filter & Pagination)</li>
               <li>Manajemen data Pencapaian / Achievements (Tambah, Edit, Hapus, Cari, Filter Dinamis & Pagination)</li>
+              <li>Manajemen data Pengalaman / Experiences (Tambah, Edit, Hapus, Cari & Pagination)</li>
               <li>Integrasi upload dan hapus media secara otomatis di Cloudinary Cloud</li>
               <li>Dukungan konten Bilingual penuh (Bahasa Indonesia & English)</li>
             </ul>

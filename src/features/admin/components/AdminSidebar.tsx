@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, FolderOpen, FileBadge, ChevronRight, User, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, FolderOpen, FileBadge, ChevronRight, User, Settings, LogOut, Briefcase } from "lucide-react";
 import { useAuth } from "../../../contexts/AuthContext";
 import ThemeToggle from "@/components/ThemeToggle";
 import profilePhoto from "@/assets/foto-profile.webp";
@@ -26,6 +26,7 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
     { id: "dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" />, path: "/fw-admin/dashboard" },
     { id: "projects", label: "Projects", icon: <FolderOpen className="w-5 h-5" />, path: "/fw-admin/projects" },
     { id: "achievements", label: "Achievements", icon: <FileBadge className="w-5 h-5" />, path: "/fw-admin/achievements" },
+    { id: "experiences", label: "Experiences", icon: <Briefcase className="w-5 h-5" />, path: "/fw-admin/experiences" },
   ];
 
   return (
