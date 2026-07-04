@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { ChevronDown, ChevronUp, Briefcase, GraduationCap, Download, Check, ListCheck, Rocket, Brain } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronDown, ChevronUp, Briefcase, GraduationCap, Download, Check, ListCheck, Rocket, Brain, Loader2 } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import { Button } from "@/components/ui/button";
 import type { ExperienceItem, EducationItem } from "@/types";
+import { getExperiences } from "../../services/experienceService";
 
 const ExperienceCard = ({ item }: { item: ExperienceItem }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -113,7 +114,43 @@ const EducationCard = ({ item }: { item: EducationItem }) => {
 };
 
 const AboutSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      setLoading(true);
+      try {
+        const response = await getExperiences();
+        if (response.success && response.data?.experiences) {
+          const mapped = response.data.experiences.map((exp) => ({
+            role: language === "id" ? exp.roleId : exp.roleEn,
+            company: language === "id" ? exp.companyId : exp.companyEn,
+            location: language === "id" ? exp.locationId : exp.locationEn,
+            period: language === "id" ? exp.periodId : exp.periodEn,
+            duration: language === "id" ? exp.durationId : exp.durationEn,
+            type: language === "id" ? exp.typeId : exp.typeEn,
+            mode: language === "id" ? exp.modeId : exp.modeEn,
+            responsibilities: language === "id" ? exp.responsibilitiesId : exp.responsibilitiesEn,
+            insight: language === "id" ? exp.insightId : exp.insightEn,
+            impact: language === "id" ? exp.impactId : exp.impactEn,
+          }));
+          setExperiences(mapped);
+        } else {
+          // Fallback to translations if API fails
+          setExperiences(t.about.experiences);
+        }
+      } catch (error) {
+        console.error("Failed to load experiences:", error);
+        setExperiences(t.about.experiences);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExperiences();
+  }, [language, t.about.experiences]);
 
   return (
     <section className="animate-fade-in space-y-10 mb-16 md:mb-0">
@@ -145,11 +182,27 @@ const AboutSection = () => {
         </h3>
         <p className="text-lg text-muted-foreground mb-4">{t.about.careerSubtitle}</p>
         <div className="space-y-4">
-          {t.about.experiences.map((item, index) => (
-            <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-              <ExperienceCard item={item} />
+          {loading ? (
+            <div className="space-y-4">
+              {[1, 2, 3].map((n) => (
+                <div key={n} className="p-5 rounded-lg bg-card border border-border animate-pulse flex flex-col gap-3">
+                  <div className="h-4 bg-muted rounded w-1/3" />
+                  <div className="h-3 bg-muted rounded w-1/2" />
+                  <div className="flex gap-2">
+                    <div className="h-5 bg-muted rounded-full w-16" />
+                    <div className="h-5 bg-muted rounded-full w-20" />
+                    <div className="h-5 bg-muted rounded-full w-16" />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            experiences.map((item, index) => (
+              <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                <ExperienceCard item={item} />
+              </div>
+            ))
+          )}
         </div>
       </div>
 
