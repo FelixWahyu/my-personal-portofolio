@@ -128,10 +128,10 @@ const ExperiencesPage = () => {
             <Table>
               <TableHeader className="bg-muted/40">
                 <TableRow className="border-border">
-                  <TableHead className="w-[200px]">Peran (ID/EN)</TableHead>
-                  <TableHead>Perusahaan (ID/EN)</TableHead>
-                  <TableHead className="w-[150px]">Periode (ID/EN)</TableHead>
-                  <TableHead className="w-[100px]">Tipe / Mode</TableHead>
+                  <TableHead className="w-[320px]">Peran</TableHead>
+                  <TableHead>Perusahaan</TableHead>
+                  <TableHead className="w-[150px]">Periode</TableHead>
+                  <TableHead className="w-[120px]">Mode</TableHead>
                   <TableHead className="w-[100px]">Status</TableHead>
                   <TableHead className="w-[120px] text-right">Aksi</TableHead>
                 </TableRow>
@@ -160,10 +160,7 @@ const ExperiencesPage = () => {
                   experiences.map((exp) => (
                     <TableRow key={exp.id} className="border-border hover:bg-muted/10 transition-colors">
                       <TableCell className="font-medium align-top">
-                        <div className="flex flex-col gap-1">
-                          <span className="text-foreground text-sm font-semibold">{exp.roleId}</span>
-                          <span className="text-muted-foreground text-xs italic">({exp.roleEn})</span>
-                        </div>
+                        <span className="text-foreground text-sm font-semibold">{exp.roleId}</span>
                       </TableCell>
                       <TableCell className="align-top text-foreground/80">
                         <div className="flex flex-col gap-0.5">
@@ -172,20 +169,12 @@ const ExperiencesPage = () => {
                         </div>
                       </TableCell>
                       <TableCell className="align-top text-muted-foreground text-sm">
-                        <div className="flex flex-col gap-0.5">
-                          <span>{exp.periodId}</span>
-                          <span className="text-xs italic">({exp.periodEn})</span>
-                        </div>
+                        <span>{exp.periodId}</span>
                       </TableCell>
                       <TableCell className="align-top">
-                        <div className="flex flex-col gap-1.5">
-                          <Badge variant="outline" className="w-fit text-[10px] bg-accent/10 border-accent/20 text-foreground py-0.5">
-                            {exp.typeId}
-                          </Badge>
-                          <Badge variant="secondary" className="w-fit text-[10px] py-0.5">
-                            {exp.modeId}
-                          </Badge>
-                        </div>
+                        <Badge variant="secondary" className="text-[11px] py-0.5">
+                          {exp.modeId}
+                        </Badge>
                       </TableCell>
                       <TableCell className="align-top">
                         {exp.isPublished ? (
@@ -254,9 +243,7 @@ const ExperiencesPage = () => {
               <ShieldAlert className="w-5 h-5" />
               Hapus Data Experience?
             </AlertDialogTitle>
-            <AlertDialogDescription>
-              Tindakan ini tidak dapat dibatalkan. Pengalaman kerja ini akan dihapus secara permanen dari server dan tidak akan ditampilkan lagi di halaman portofolio utama.
-            </AlertDialogDescription>
+            <AlertDialogDescription>Tindakan ini tidak dapat dibatalkan. Pengalaman kerja ini akan dihapus secara permanen dari server dan tidak akan ditampilkan lagi di halaman portofolio utama.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel disabled={isDeleting}>Batal</AlertDialogCancel>
