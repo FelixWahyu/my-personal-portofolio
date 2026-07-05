@@ -7,13 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Search, Edit2, Trash2, FolderOpen, ExternalLink, Globe, LayoutGrid, CheckCircle2, AlertCircle, Loader2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -92,9 +86,7 @@ const ProjectsPage = () => {
       }
     } catch (error) {
       console.error("Delete project error:", error);
-      const errorMessage = axios.isAxiosError(error)
-        ? error.response?.data?.message
-        : "Terjadi kesalahan saat menghapus project";
+      const errorMessage = axios.isAxiosError(error) ? error.response?.data?.message : "Terjadi kesalahan saat menghapus project";
       toast.error(errorMessage || "Terjadi kesalahan saat menghapus project");
     } finally {
       setIsDeleting(false);
@@ -108,9 +100,7 @@ const ProjectsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
-          <p className="text-muted-foreground text-sm">
-            Manajemen data proyek portfolio yang akan ditampilkan pada halaman publik.
-          </p>
+          <p className="text-muted-foreground text-sm">Manajemen data proyek portfolio yang akan ditampilkan pada halaman publik.</p>
         </div>
         <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground shrink-0 shadow-md">
           <Link to="new" className="flex items-center gap-2">
@@ -134,12 +124,7 @@ const ProjectsPage = () => {
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Cari berdasarkan nama proyek..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 focus-visible:ring-primary/40 border-border"
-              />
+              <Input placeholder="Cari berdasarkan nama proyek..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 focus-visible:ring-primary/40 border-border" />
             </div>
 
             {/* Category Filter Dropdown */}
@@ -164,17 +149,16 @@ const ProjectsPage = () => {
           </div>
 
           {/* Table Container */}
-          <div className="border border-border rounded-lg overflow-hidden bg-card">
+          <div className="border border-border rounded-lg overflow-hidden bg-background">
             <Table>
               <TableHeader className="bg-muted/40">
                 <TableRow className="border-border hover:bg-transparent">
-                  <TableHead className="w-[100px] text-muted-foreground font-semibold">Gambar</TableHead>
-                  <TableHead className="text-muted-foreground font-semibold">Proyek</TableHead>
-                  <TableHead className="text-muted-foreground font-semibold">Kategori</TableHead>
-                  <TableHead className="text-muted-foreground font-semibold">Tech Stack</TableHead>
-                  <TableHead className="text-muted-foreground font-semibold text-center">Urutan</TableHead>
-                  <TableHead className="text-muted-foreground font-semibold">Status</TableHead>
-                  <TableHead className="w-[120px] text-right text-muted-foreground font-semibold">Aksi</TableHead>
+                  <TableHead className="text-foreground font-semibold">Gambar</TableHead>
+                  <TableHead className="text-foreground font-semibold">Proyek</TableHead>
+                  <TableHead className="text-foreground font-semibold">Kategori</TableHead>
+                  <TableHead className="text-foreground font-semibold">Tech Stack</TableHead>
+                  <TableHead className="text-foreground font-semibold">Status</TableHead>
+                  <TableHead className="text-center text-foreground font-semibold">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -196,11 +180,7 @@ const ProjectsPage = () => {
                           <FolderOpen className="w-8 h-8" />
                         </div>
                         <h3 className="font-semibold text-base text-foreground">Tidak ada proyek ditemukan</h3>
-                        <p className="text-xs text-muted-foreground max-w-sm">
-                          {search
-                            ? "Coba sesuaikan kata kunci pencarian atau bersihkan filter."
-                            : "Mulai tambahkan proyek pertama Anda untuk menampilkannya di portfolio."}
-                        </p>
+                        <p className="text-xs text-muted-foreground max-w-sm">{search ? "Coba sesuaikan kata kunci pencarian atau bersihkan filter." : "Mulai tambahkan proyek pertama Anda untuk menampilkannya di portfolio."}</p>
                         {search && (
                           <Button variant="outline" size="sm" onClick={() => setSearch("")}>
                             Clear Search
@@ -212,13 +192,13 @@ const ProjectsPage = () => {
                 ) : (
                   // Project Rows
                   projects.map((project) => (
-                    <TableRow key={project.id} className="border-border hover:bg-muted/10 transition-colors">
+                    <TableRow key={project.id} className="border-border hover:bg-muted/30 transition-colors">
                       <TableCell>
-                        <div className="relative w-[70px] h-[45px] rounded-md overflow-hidden bg-muted border border-border group shrink-0">
+                        <div className="w-[70px] h-[45px] rounded-md overflow-hidden bg-muted border border-border group shrink-0">
                           <img
                             src={project.image}
                             alt={project.titleId}
-                            className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover"
                             onError={(e) => {
                               (e.target as HTMLImageElement).src = "/placeholder-project.webp";
                             }}
@@ -231,33 +211,25 @@ const ProjectsPage = () => {
                         </div>
                         <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
                           <Globe className="w-3.5 h-3.5" />
-                          <span className="line-clamp-1" title={project.titleEn}>{project.titleEn}</span>
+                          <span className="line-clamp-1" title={project.titleEn}>
+                            {project.titleEn}
+                          </span>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className={`font-semibold ${project.category.toLowerCase() === "web"
-                          ? "bg-blue-500/10 text-blue-500 border-blue-500/25"
-                          : "bg-purple-500/10 text-purple-500 border-purple-500/25"
-                          }`}>
+                        <Badge variant="outline" className={`font-semibold ${project.category.toLowerCase() === "web" ? "bg-blue-500/10 text-blue-500 border-blue-500/25" : "bg-purple-500/10 text-purple-500 border-purple-500/25"}`}>
                           {project.category}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <div className="flex flex-wrap gap-1 max-w-[200px]">
+                        <div className="flex flex-wrap gap-1">
                           {project.tech.slice(0, 3).map((t) => (
                             <span key={t} className="px-1.5 py-0.5 text-[10px] font-semibold bg-muted rounded border border-border text-muted-foreground">
                               {t}
                             </span>
                           ))}
-                          {project.tech.length > 3 && (
-                            <span className="px-1 py-0.5 text-[10px] font-semibold text-muted-foreground">
-                              +{project.tech.length - 3}
-                            </span>
-                          )}
+                          {project.tech.length > 3 && <span className="px-1 py-0.5 text-[10px] font-semibold text-muted-foreground">+{project.tech.length - 3}</span>}
                         </div>
-                      </TableCell>
-                      <TableCell className="text-center font-medium text-sm text-foreground">
-                        {project.sortOrder}
                       </TableCell>
                       <TableCell>
                         {project.isPublished ? (
@@ -274,23 +246,13 @@ const ProjectsPage = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1.5">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 hover:bg-muted text-muted-foreground hover:text-foreground"
-                            onClick={() => navigate(`${project.id}/edit`)}
-                          >
+                          <Button variant="outline" size="icon" className="h-8 w-8 hover:bg-primary/10 hover:text-primary transition-colors border-border" onClick={() => navigate(`${project.id}/edit`)}>
                             <Edit2 className="w-4 h-4" />
                           </Button>
 
                           <AlertDialog>
                             <AlertDialogTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 hover:bg-red-500/10 text-muted-foreground hover:text-red-500"
-                                onClick={() => setProjectToDelete(project.id)}
-                              >
+                              <Button variant="outline" size="icon" className="h-8 w-8 hover:bg-red-500/10 hover:text-red-500 transition-colors border-border" onClick={() => setProjectToDelete(project.id)}>
                                 <Trash2 className="w-4 h-4" />
                               </Button>
                             </AlertDialogTrigger>
@@ -301,17 +263,12 @@ const ProjectsPage = () => {
                                   Hapus Project?
                                 </AlertDialogTitle>
                                 <AlertDialogDescription>
-                                  Apakah Anda yakin ingin menghapus data project <strong>{project.titleId}</strong>? Tindakan ini tidak dapat dibatalkan
-                                  dan file gambar di Cloudinary juga akan dihapus secara permanen.
+                                  Apakah Anda yakin ingin menghapus data project <strong>{project.titleId}</strong>? Tindakan ini tidak dapat dibatalkan dan file gambar di Cloudinary juga akan dihapus secara permanen.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter>
                                 <AlertDialogCancel disabled={isDeleting}>Batal</AlertDialogCancel>
-                                <AlertDialogAction
-                                  className="bg-destructive hover:bg-destructive/90 text-destructive-foreground"
-                                  onClick={handleDelete}
-                                  disabled={isDeleting}
-                                >
+                                <AlertDialogAction className="bg-destructive hover:bg-destructive/90 text-destructive-foreground" onClick={handleDelete} disabled={isDeleting}>
                                   {isDeleting ? (
                                     <>
                                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -356,10 +313,7 @@ const ProjectsPage = () => {
                     <PaginationItem key={idx}>
                       <button
                         onClick={() => setPage(idx + 1)}
-                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "border-border hover:bg-muted text-foreground"
-                          }`}
+                        className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1 ? "bg-primary text-primary-foreground border-primary" : "border-border hover:bg-muted text-foreground"}`}
                       >
                         {idx + 1}
                       </button>

@@ -173,13 +173,13 @@ const AchievementsPage = () => {
             <Table>
               <TableHeader className="bg-muted/40">
                 <TableRow className="hover:bg-transparent border-border">
-                  <TableHead className="w-[100px] text-foreground font-semibold">Gambar</TableHead>
+                  <TableHead className="text-foreground font-semibold">Gambar</TableHead>
                   <TableHead className="text-foreground font-semibold">Judul</TableHead>
                   <TableHead className="text-foreground font-semibold">Penerbit</TableHead>
-                  <TableHead className="text-foreground font-semibold">Tipe & Kredensial</TableHead>
+                  <TableHead className="text-foreground font-semibold">Tipe</TableHead>
                   <TableHead className="text-foreground font-semibold">Tanggal</TableHead>
                   <TableHead className="text-foreground font-semibold">Status</TableHead>
-                  <TableHead className="w-[120px] text-right text-foreground font-semibold">Aksi</TableHead>
+                  <TableHead className="text-center text-foreground font-semibold">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -202,7 +202,7 @@ const AchievementsPage = () => {
                   achievements.map((item) => (
                     <TableRow key={item.id} className="hover:bg-muted/30 transition-colors border-border">
                       <TableCell>
-                        <div className="w-14 h-14 rounded-md overflow-hidden bg-muted border border-border">
+                        <div className="w-[70px] h-[45px] rounded-md overflow-hidden bg-muted border border-border">
                           <img
                             src={item.image}
                             alt={item.titleId}
@@ -234,7 +234,6 @@ const AchievementsPage = () => {
                           <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20 text-[10px]">
                             {item.type}
                           </Badge>
-                          {item.credentialCode && <span className="text-xs font-mono text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border">{item.credentialCode}</span>}
                         </div>
                       </TableCell>
                       <TableCell>
@@ -258,12 +257,12 @@ const AchievementsPage = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <Button asChild size="icon" variant="ghost" className="h-8 w-8 hover:bg-accent text-muted-foreground hover:text-foreground">
+                          <Button asChild size="icon" variant="outline" className="h-8 w-8 hover:bg-primary/10 hover:text-primary transition-colors border-border">
                             <Link to={`${item.id}/edit`}>
                               <Edit2 className="w-4 h-4" />
                             </Link>
                           </Button>
-                          <Button size="icon" variant="ghost" className="h-8 w-8 hover:bg-destructive/10 text-muted-foreground hover:text-destructive" onClick={() => setAchievementToDelete(item.id)}>
+                          <Button size="icon" variant="outline" className="h-8 w-8 hover:bg-destructive/10 hover:text-destructive transition-colors border-border" onClick={() => setAchievementToDelete(item.id)}>
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -295,14 +294,6 @@ const AchievementsPage = () => {
                   </PaginationItem>
                   {Array.from({ length: totalPages }).map((_, idx) => (
                     <PaginationItem key={idx}>
-                      {/* <PaginationLink
-                        onClick={() => setPage(i + 1)}
-                        isActive={page === i + 1}
-                        className="cursor-pointer"
-                      >
-                        {i + 1}
-                      </PaginationLink> */}
-
                       <button
                         onClick={() => setPage(idx + 1)}
                         className={`w-8 h-8 text-xs font-semibold rounded-md border transition-all ${page === idx + 1 ? "bg-primary text-primary-foreground border-primary" : "border-border hover:bg-muted text-foreground"}`}

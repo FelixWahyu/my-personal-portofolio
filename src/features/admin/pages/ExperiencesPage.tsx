@@ -128,12 +128,12 @@ const ExperiencesPage = () => {
             <Table>
               <TableHeader className="bg-muted/40">
                 <TableRow className="border-border">
-                  <TableHead className="w-[320px]">Peran</TableHead>
+                  <TableHead>Peran</TableHead>
                   <TableHead>Perusahaan</TableHead>
-                  <TableHead className="w-[150px]">Periode</TableHead>
-                  <TableHead className="w-[120px]">Mode</TableHead>
-                  <TableHead className="w-[100px]">Status</TableHead>
-                  <TableHead className="w-[120px] text-right">Aksi</TableHead>
+                  <TableHead>Periode</TableHead>
+                  <TableHead>Mode</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-center">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
