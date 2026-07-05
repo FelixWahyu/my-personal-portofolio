@@ -653,7 +653,7 @@ const ProjectFormPage = () => {
 
           {/* Action buttons (Save/Cancel) */}
           <div className="flex flex-row items-center gap-3 pt-2">
-            <Button variant="outline" asChild className="w-full border-border text-foreground hover:bg-muted h-10 font-semibold" disabled={saving}>
+            <Button variant="outline" type="button" asChild className="w-full border-border bg-card text-foreground hover:bg-muted h-10 font-semibold" disabled={saving}>
               <Link to="/fw-admin/projects">Batal</Link>
             </Button>
             <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2 shadow-md h-10 font-semibold" disabled={saving}>

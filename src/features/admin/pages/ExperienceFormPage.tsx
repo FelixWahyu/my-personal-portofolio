@@ -110,12 +110,7 @@ const ExperienceFormPage = () => {
   }, [id, isEditMode, navigate]);
 
   // Array item helper handlers
-  const handleAddItem = (
-    input: string,
-    setInput: React.Dispatch<React.SetStateAction<string>>,
-    list: string[],
-    setList: React.Dispatch<React.SetStateAction<string[]>>
-  ) => {
+  const handleAddItem = (input: string, setInput: React.Dispatch<React.SetStateAction<string>>, list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>) => {
     const trimmed = input.trim();
     if (trimmed && !list.includes(trimmed)) {
       setList([...list, trimmed]);
@@ -199,7 +194,7 @@ const ExperienceFormPage = () => {
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-10 animate-fade-in">
       {/* Navigation Top */}
-      <div className="flex items-center justify-between border-b border-border pb-4">
+      <div className="flex items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="icon" className="h-9 w-9 border-border hover:bg-accent">
             <Link to="/fw-admin/experiences">
@@ -233,7 +228,7 @@ const ExperienceFormPage = () => {
                       Bahasa Indonesia
                     </TabsTrigger>
                     <TabsTrigger value="english" className="rounded-md font-medium text-xs py-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm">
-                      English (UK/US)
+                      English
                     </TabsTrigger>
                   </TabsList>
 
@@ -241,52 +236,60 @@ const ExperienceFormPage = () => {
                   <TabsContent value="indonesia" className="space-y-5 focus-visible:outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="roleId">Peran / Posisi (ID) <span className="text-destructive">*</span></Label>
+                        <Label htmlFor="roleId">
+                          Peran / Posisi <span className="text-destructive">*</span>
+                        </Label>
                         <Input id="roleId" placeholder="cth: IT Project, Software Engineer" value={roleId} onChange={(e) => setRoleId(e.target.value)} required className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="companyId">Perusahaan (ID) <span className="text-destructive">*</span></Label>
+                        <Label htmlFor="companyId">
+                          Perusahaan <span className="text-destructive">*</span>
+                        </Label>
                         <Input id="companyId" placeholder="cth: PT. Alkes Fulki Hasya" value={companyId} onChange={(e) => setCompanyId(e.target.value)} required className="focus-visible:ring-primary/40 border-border" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="locationId">Lokasi (ID)</Label>
+                        <Label htmlFor="locationId">Lokasi </Label>
                         <Input id="locationId" placeholder="cth: Purwokerto, Jawa Tengah" value={locationId} onChange={(e) => setLocationId(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="periodId">Periode (ID)</Label>
+                        <Label htmlFor="periodId">Periode </Label>
                         <Input id="periodId" placeholder="cth: Des 2025 - Jan 2026" value={periodId} onChange={(e) => setPeriodId(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="durationId">Durasi Kerja (ID)</Label>
+                        <Label htmlFor="durationId">Durasi Kerja </Label>
                         <Input id="durationId" placeholder="cth: 2 Bulan, 1 Tahun" value={durationId} onChange={(e) => setDurationId(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="typeId">Tipe Pekerjaan (ID)</Label>
+                        <Label htmlFor="typeId">Tipe Pekerjaan </Label>
                         <Input id="typeId" placeholder="cth: Kontrak, Full-time, Magang" value={typeId} onChange={(e) => setTypeId(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="modeId">Mode Kerja (ID)</Label>
+                        <Label htmlFor="modeId">Mode Kerja </Label>
                         <Input id="modeId" placeholder="cth: Hybrid, Remote, Onsite" value={modeId} onChange={(e) => setModeId(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                     </div>
-
-                    <hr className="border-border my-4" />
 
                     {/* Array Fields: ID */}
                     <div className="space-y-6">
                       {/* Responsibilities ID */}
                       <div className="space-y-3">
-                        <Label>Tugas & Tanggung Jawab (ID)</Label>
+                        <Label>Tugas & Tanggung Jawab </Label>
                         <div className="flex gap-2">
-                          <Input placeholder="Tambahkan tugas..." value={respIdInput} onChange={(e) => setRespIdInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(respIdInput, setRespIdInput, responsibilitiesId, setResponsibilitiesId))} className="focus-visible:ring-primary/40 border-border" />
+                          <Input
+                            placeholder="Tambahkan tugas..."
+                            value={respIdInput}
+                            onChange={(e) => setRespIdInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(respIdInput, setRespIdInput, responsibilitiesId, setResponsibilitiesId))}
+                            className="focus-visible:ring-primary/40 border-border"
+                          />
                           <Button type="button" onClick={() => handleAddItem(respIdInput, setRespIdInput, responsibilitiesId, setResponsibilitiesId)} size="sm">
-                            <Plus className="w-4 h-4 mr-1" /> Tambah
+                            <Plus className="w-4 h-4" />
                           </Button>
                         </div>
                         <ul className="space-y-2">
@@ -303,11 +306,17 @@ const ExperienceFormPage = () => {
 
                       {/* Insight ID */}
                       <div className="space-y-3">
-                        <Label>Apa Yang Dipelajari (ID)</Label>
+                        <Label>Apa Yang Dipelajari </Label>
                         <div className="flex gap-2">
-                          <Input placeholder="Tambahkan insight..." value={insightIdInput} onChange={(e) => setInsightIdInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(insightIdInput, setInsightIdInput, insightId, setInsightId))} className="focus-visible:ring-primary/40 border-border" />
+                          <Input
+                            placeholder="Tambahkan insight..."
+                            value={insightIdInput}
+                            onChange={(e) => setInsightIdInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(insightIdInput, setInsightIdInput, insightId, setInsightId))}
+                            className="focus-visible:ring-primary/40 border-border"
+                          />
                           <Button type="button" onClick={() => handleAddItem(insightIdInput, setInsightIdInput, insightId, setInsightId)} size="sm">
-                            <Plus className="w-4 h-4 mr-1" /> Tambah
+                            <Plus className="w-4 h-4" />
                           </Button>
                         </div>
                         <ul className="space-y-2">
@@ -324,11 +333,17 @@ const ExperienceFormPage = () => {
 
                       {/* Impact ID */}
                       <div className="space-y-3">
-                        <Label>Dampak (ID)</Label>
+                        <Label>Dampak </Label>
                         <div className="flex gap-2">
-                          <Input placeholder="Tambahkan dampak..." value={impactIdInput} onChange={(e) => setImpactIdInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(impactIdInput, setImpactIdInput, impactId, setImpactId))} className="focus-visible:ring-primary/40 border-border" />
+                          <Input
+                            placeholder="Tambahkan dampak..."
+                            value={impactIdInput}
+                            onChange={(e) => setImpactIdInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(impactIdInput, setImpactIdInput, impactId, setImpactId))}
+                            className="focus-visible:ring-primary/40 border-border"
+                          />
                           <Button type="button" onClick={() => handleAddItem(impactIdInput, setImpactIdInput, impactId, setImpactId)} size="sm">
-                            <Plus className="w-4 h-4 mr-1" /> Tambah
+                            <Plus className="w-4 h-4" />
                           </Button>
                         </div>
                         <ul className="space-y-2">
@@ -349,52 +364,60 @@ const ExperienceFormPage = () => {
                   <TabsContent value="english" className="space-y-5 focus-visible:outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="roleEn">Role / Position (EN) <span className="text-destructive">*</span></Label>
+                        <Label htmlFor="roleEn">
+                          Role / Position <span className="text-destructive">*</span>
+                        </Label>
                         <Input id="roleEn" placeholder="e.g. IT Project, Software Engineer" value={roleEn} onChange={(e) => setRoleEn(e.target.value)} required className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="companyEn">Company (EN) <span className="text-destructive">*</span></Label>
+                        <Label htmlFor="companyEn">
+                          Company <span className="text-destructive">*</span>
+                        </Label>
                         <Input id="companyEn" placeholder="e.g. PT. Alkes Fulki Hasya" value={companyEn} onChange={(e) => setCompanyEn(e.target.value)} required className="focus-visible:ring-primary/40 border-border" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="locationEn">Location (EN)</Label>
+                        <Label htmlFor="locationEn">Location</Label>
                         <Input id="locationEn" placeholder="e.g. Purwokerto, Central Java" value={locationEn} onChange={(e) => setLocationEn(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="periodEn">Period (EN)</Label>
+                        <Label htmlFor="periodEn">Period</Label>
                         <Input id="periodEn" placeholder="e.g. Dec 2025 - Jan 2026" value={periodEn} onChange={(e) => setPeriodEn(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="durationEn">Work Duration (EN)</Label>
+                        <Label htmlFor="durationEn">Work Duration</Label>
                         <Input id="durationEn" placeholder="e.g. 2 Months, 1 Year" value={durationEn} onChange={(e) => setDurationEn(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="typeEn">Employment Type (EN)</Label>
+                        <Label htmlFor="typeEn">Employment Type</Label>
                         <Input id="typeEn" placeholder="e.g. Contract, Full-time, Internship" value={typeEn} onChange={(e) => setTypeEn(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="modeEn">Work Mode (EN)</Label>
+                        <Label htmlFor="modeEn">Work Mode</Label>
                         <Input id="modeEn" placeholder="e.g. Hybrid, Remote, Onsite" value={modeEn} onChange={(e) => setModeEn(e.target.value)} className="focus-visible:ring-primary/40 border-border" />
                       </div>
                     </div>
-
-                    <hr className="border-border my-4" />
 
                     {/* Array Fields: EN */}
                     <div className="space-y-6">
                       {/* Responsibilities EN */}
                       <div className="space-y-3">
-                        <Label>Responsibilities & Tasks (EN)</Label>
+                        <Label>Responsibilities & Tasks</Label>
                         <div className="flex gap-2">
-                          <Input placeholder="Add responsibility..." value={respEnInput} onChange={(e) => setRespEnInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(respEnInput, setRespEnInput, responsibilitiesEn, setResponsibilitiesEn))} className="focus-visible:ring-primary/40 border-border" />
+                          <Input
+                            placeholder="Add responsibility..."
+                            value={respEnInput}
+                            onChange={(e) => setRespEnInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(respEnInput, setRespEnInput, responsibilitiesEn, setResponsibilitiesEn))}
+                            className="focus-visible:ring-primary/40 border-border"
+                          />
                           <Button type="button" onClick={() => handleAddItem(respEnInput, setRespEnInput, responsibilitiesEn, setResponsibilitiesEn)} size="sm">
-                            <Plus className="w-4 h-4 mr-1" /> Add
+                            <Plus className="w-4 h-4" />
                           </Button>
                         </div>
                         <ul className="space-y-2">
@@ -411,11 +434,17 @@ const ExperienceFormPage = () => {
 
                       {/* Insight EN */}
                       <div className="space-y-3">
-                        <Label>What I Learned (EN)</Label>
+                        <Label>What I Learned</Label>
                         <div className="flex gap-2">
-                          <Input placeholder="Add insight..." value={insightEnInput} onChange={(e) => setInsightEnInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(insightEnInput, setInsightEnInput, insightEn, setInsightEn))} className="focus-visible:ring-primary/40 border-border" />
+                          <Input
+                            placeholder="Add insight..."
+                            value={insightEnInput}
+                            onChange={(e) => setInsightEnInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(insightEnInput, setInsightEnInput, insightEn, setInsightEn))}
+                            className="focus-visible:ring-primary/40 border-border"
+                          />
                           <Button type="button" onClick={() => handleAddItem(insightEnInput, setInsightEnInput, insightEn, setInsightEn)} size="sm">
-                            <Plus className="w-4 h-4 mr-1" /> Add
+                            <Plus className="w-4 h-4" />
                           </Button>
                         </div>
                         <ul className="space-y-2">
@@ -432,11 +461,17 @@ const ExperienceFormPage = () => {
 
                       {/* Impact EN */}
                       <div className="space-y-3">
-                        <Label>Impact (EN)</Label>
+                        <Label>Impact</Label>
                         <div className="flex gap-2">
-                          <Input placeholder="Add impact..." value={impactEnInput} onChange={(e) => setImpactEnInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(impactEnInput, setImpactEnInput, impactEn, setImpactEn))} className="focus-visible:ring-primary/40 border-border" />
+                          <Input
+                            placeholder="Add impact..."
+                            value={impactEnInput}
+                            onChange={(e) => setImpactEnInput(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddItem(impactEnInput, setImpactEnInput, impactEn, setImpactEn))}
+                            className="focus-visible:ring-primary/40 border-border"
+                          />
                           <Button type="button" onClick={() => handleAddItem(impactEnInput, setImpactEnInput, impactEn, setImpactEn)} size="sm">
-                            <Plus className="w-4 h-4 mr-1" /> Add
+                            <Plus className="w-4 h-4" />
                           </Button>
                         </div>
                         <ul className="space-y-2">
@@ -489,36 +524,23 @@ const ExperienceFormPage = () => {
             </Card>
 
             {/* Submit Action Card */}
-            <Card className="bg-card border-border shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex flex-col gap-3">
-                  <Button type="submit" disabled={saving} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-sm gap-2">
-                    {saving ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Menyimpan...
-                      </>
-                    ) : (
-                      <>
-                        <Save className="w-4 h-4" />
-                        Simpan Data
-                      </>
-                    )}
-                  </Button>
-                  <Button asChild variant="outline" className="w-full border-border">
-                    <Link to="/fw-admin/experiences">Batal</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Validation Info Alert */}
-            <div className="bg-amber-500/10 border border-amber-500/20 text-amber-500/90 rounded-lg p-3 text-xs flex gap-2">
-              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold mb-1">Catatan Penting</p>
-                <p className="leading-normal">Untuk data multi-bahasa, pastikan teks di tab Indonesia dan English terisi dengan padanan kata yang tepat.</p>
-              </div>
+            <div className="flex items-center gap-3 pt-2">
+              <Button asChild variant="outline" type="button" className="w-full bg-card border-border text-foreground hover:bg-muted font-semibold" disabled={saving}>
+                <Link to="/fw-admin/experiences">Batal</Link>
+              </Button>
+              <Button type="submit" disabled={saving} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-sm gap-2">
+                {saving ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Menyimpan...
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4" />
+                    Simpan
+                  </>
+                )}
+              </Button>
             </div>
           </div>
         </div>

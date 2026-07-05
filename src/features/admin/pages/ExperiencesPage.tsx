@@ -128,12 +128,12 @@ const ExperiencesPage = () => {
             <Table>
               <TableHeader className="bg-muted/40">
                 <TableRow className="border-border">
-                  <TableHead>Peran</TableHead>
-                  <TableHead>Perusahaan</TableHead>
-                  <TableHead>Periode</TableHead>
-                  <TableHead>Mode</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-center">Aksi</TableHead>
+                  <TableHead className="text-foreground">Peran</TableHead>
+                  <TableHead className="text-foreground">Perusahaan</TableHead>
+                  <TableHead className="text-foreground">Periode</TableHead>
+                  <TableHead className="text-foreground">Mode</TableHead>
+                  <TableHead className="text-foreground">Status</TableHead>
+                  <TableHead className="text-center text-foreground">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
