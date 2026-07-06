@@ -246,7 +246,7 @@ const ResumeFormPage = () => {
         </Card>
 
         {/* Info Box and Actions Container */}
-        <div className="flex flex-row md:items-start justify-between gap-6 pt-2">
+        <div className="flex flex-row md:items-start justify-end gap-6 pt-2">
           {/* Submit Action (Right) */}
           <div className="flex items-center gap-3 w-full md:w-auto md:min-w-[280px] shrink-0">
             <Button asChild variant="outline" type="button" className="w-full bg-card border-border text-foreground hover:bg-muted font-semibold text-sm h-10" disabled={saving}>
