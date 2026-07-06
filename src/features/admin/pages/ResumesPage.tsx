@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Switch } from "@/components/ui/switch";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Plus, Search, Edit2, Trash2, FileText, Star, ShieldAlert, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -126,7 +127,7 @@ const ResumesPage = () => {
     });
   };
 
-  const selectedDeleteResume = resumes.find(r => r.id === resumeToDelete);
+  const selectedDeleteResume = resumes.find((r) => r.id === resumeToDelete);
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -169,7 +170,7 @@ const ResumesPage = () => {
                 <TableRow className="border-border">
                   <TableHead className="text-foreground">Nama File</TableHead>
                   <TableHead className="w-[120px] text-foreground">Ukuran</TableHead>
-                  <TableHead className="w-[120px] text-foreground">Status</TableHead>
+                  <TableHead className="w-[150px] text-foreground">Status</TableHead>
                   <TableHead className="w-[150px] text-foreground">Tanggal Upload</TableHead>
                   <TableHead className="w-[160px] text-center text-foreground">Aksi</TableHead>
                 </TableRow>
@@ -205,36 +206,15 @@ const ResumesPage = () => {
                           </span>
                         </div>
                       </TableCell>
-                      <TableCell className="align-middle text-foreground/80 text-sm">
-                        {formatFileSize(resume.fileSize)}
-                      </TableCell>
+                      <TableCell className="align-middle text-foreground/80 text-sm">{formatFileSize(resume.fileSize)}</TableCell>
                       <TableCell className="align-middle">
-                        <button
-                          disabled={resume.isActive || isActivating !== null}
-                          onClick={() => handleActivate(resume.id)}
-                          className={`inline-flex items-center transition-all ${resume.isActive ? "cursor-default" : "cursor-pointer"}`}
-                          title={resume.isActive ? "Resume Aktif" : "Aktifkan Resume"}
-                        >
-                          {resume.isActive ? (
-                            <Badge variant="default" className="bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 gap-1 text-[11px] py-0.5 select-none">
-                              <CheckCircle2 className="w-3.5 h-3.5" />
-                              Aktif
-                            </Badge>
-                          ) : (
-                            <Badge variant="secondary" className="bg-muted hover:bg-amber-500/10 hover:text-amber-500 hover:border-amber-500/30 gap-1 text-[11px] py-0.5 transition-colors border border-transparent">
-                              {isActivating === resume.id ? (
-                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                              ) : (
-                                <Star className="w-3.5 h-3.5" />
-                              )}
-                              Non-aktif
-                            </Badge>
-                          )}
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <Switch checked={resume.isActive} disabled={resume.isActive || isActivating !== null} onCheckedChange={() => handleActivate(resume.id)} aria-label={resume.isActive ? "Resume Aktif" : "Aktifkan Resume"} />
+                          <span className={`text-[12px] font-medium ${resume.isActive ? "text-emerald-500" : "text-muted-foreground"}`}>{resume.isActive ? "Aktif" : "Non-aktif"}</span>
+                          {isActivating === resume.id && <Loader2 className="w-3.5 h-3.5 animate-spin text-muted-foreground" />}
+                        </div>
                       </TableCell>
-                      <TableCell className="align-middle text-muted-foreground text-sm">
-                        {formatDate(resume.createdAt)}
-                      </TableCell>
+                      <TableCell className="align-middle text-muted-foreground text-sm">{formatDate(resume.createdAt)}</TableCell>
                       <TableCell className="text-center align-middle">
                         <div className="flex items-center justify-center gap-2">
                           <Button asChild variant="outline" size="icon" className="h-8 w-8 hover:bg-primary/10 hover:text-primary transition-colors border-border">
