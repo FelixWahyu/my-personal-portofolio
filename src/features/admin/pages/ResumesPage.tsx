@@ -209,36 +209,34 @@ const ResumesPage = () => {
                         {formatFileSize(resume.fileSize)}
                       </TableCell>
                       <TableCell className="align-middle">
-                        {resume.isActive ? (
-                          <Badge variant="default" className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 gap-1 text-[11px] py-0.5">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
-                            Aktif
-                          </Badge>
-                        ) : (
-                          <Badge variant="secondary" className="bg-muted text-muted-foreground gap-1 text-[11px] py-0.5">
-                            Non-aktif
-                          </Badge>
-                        )}
+                        <button
+                          disabled={resume.isActive || isActivating !== null}
+                          onClick={() => handleActivate(resume.id)}
+                          className={`inline-flex items-center transition-all ${resume.isActive ? "cursor-default" : "cursor-pointer"}`}
+                          title={resume.isActive ? "Resume Aktif" : "Aktifkan Resume"}
+                        >
+                          {resume.isActive ? (
+                            <Badge variant="default" className="bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 gap-1 text-[11px] py-0.5 select-none">
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                              Aktif
+                            </Badge>
+                          ) : (
+                            <Badge variant="secondary" className="bg-muted hover:bg-amber-500/10 hover:text-amber-500 hover:border-amber-500/30 gap-1 text-[11px] py-0.5 transition-colors border border-transparent">
+                              {isActivating === resume.id ? (
+                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                              ) : (
+                                <Star className="w-3.5 h-3.5" />
+                              )}
+                              Non-aktif
+                            </Badge>
+                          )}
+                        </button>
                       </TableCell>
                       <TableCell className="align-middle text-muted-foreground text-sm">
                         {formatDate(resume.createdAt)}
                       </TableCell>
                       <TableCell className="text-center align-middle">
                         <div className="flex items-center justify-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            disabled={resume.isActive || isActivating !== null}
-                            onClick={() => handleActivate(resume.id)}
-                            className={`h-8 w-8 transition-colors border-border ${resume.isActive ? "bg-amber-500/10 text-amber-500 border-amber-500/30 hover:bg-amber-500/10" : "hover:bg-amber-500/10 hover:text-amber-500"}`}
-                            title={resume.isActive ? "Resume Aktif" : "Aktifkan Resume"}
-                          >
-                            {isActivating === resume.id ? (
-                              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            ) : (
-                              <Star className={`w-3.5 h-3.5 ${resume.isActive ? "fill-amber-500 text-amber-500" : ""}`} />
-                            )}
-                          </Button>
                           <Button asChild variant="outline" size="icon" className="h-8 w-8 hover:bg-primary/10 hover:text-primary transition-colors border-border">
                             <Link to={`${resume.id}/edit`}>
                               <Edit2 className="w-3.5 h-3.5" />
