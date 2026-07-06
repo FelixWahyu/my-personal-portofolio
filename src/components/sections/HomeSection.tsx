@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { MapPin, Briefcase, Download, User, Code2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../LanguageProvider";
@@ -5,9 +6,26 @@ import { Button } from "../ui/button";
 import config from "@/config/GitHubUsername";
 import CodeTyping from "../ui/CodeTyping";
 import TypewriterText from "../ui/TypewriterText";
+import { getActiveResume } from "../../services/resumeService";
 
 const HomeSection = () => {
   const { t } = useLanguage();
+  const [resumeUrl, setResumeUrl] = useState<string>("");
+
+  useEffect(() => {
+    const fetchActiveResume = async () => {
+      try {
+        const response = await getActiveResume();
+        if (response.success && response.data) {
+          setResumeUrl(response.data.fileUrl);
+        }
+      } catch (error) {
+        console.error("Failed to load active resume:", error);
+      }
+    };
+    fetchActiveResume();
+  }, []);
+
 
   return (
     <section className="animate-fade-in pb-12 mb-8 mt-4">
@@ -58,7 +76,7 @@ const HomeSection = () => {
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-10 animate-fade-in w-full sm:w-auto" style={{ animationDelay: "300ms" }}>
             <Button asChild size="lg" className="gap-2 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 rounded-full px-8 w-full sm:w-auto text-base">
-              <a href="/files/Resume-06072026.pdf" download>
+              <a href={resumeUrl || "/files/Resume-06072026.pdf"} download target="_blank" rel="noopener noreferrer">
                 <Download className="w-5 h-5" />
                 {t.about.downloadResume}
               </a>

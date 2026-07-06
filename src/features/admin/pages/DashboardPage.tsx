@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LayoutDashboard, FolderOpen, FileBadge, User, CheckCircle } from "lucide-react";
+import { LayoutDashboard, FolderOpen, FileBadge, User, CheckCircle, FileText } from "lucide-react";
 import { getDashboardStats } from "../../../services/projectService";
 import { getAchievementStats } from "../../../services/achievementService";
 import { getExperienceStats } from "../../../services/experienceService";
+import { getResumeStats } from "../../../services/resumeService";
 import { Briefcase } from "lucide-react";
 
 const DashboardPage = () => {
@@ -12,14 +13,11 @@ const DashboardPage = () => {
   const [totalProjects, setTotalProjects] = useState<number>(0);
   const [totalAchievements, setTotalAchievements] = useState<number>(0);
   const [totalExperiences, setTotalExperiences] = useState<number>(0);
+  const [totalResumes, setTotalResumes] = useState<number>(0);
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [projRes, achRes, expRes] = await Promise.allSettled([
-        getDashboardStats(),
-        getAchievementStats(),
-        getExperienceStats(),
-      ]);
+      const [projRes, achRes, expRes, resRes] = await Promise.allSettled([getDashboardStats(), getAchievementStats(), getExperienceStats(), getResumeStats()]);
 
       if (projRes.status === "fulfilled" && projRes.value?.success && projRes.value?.data) {
         setTotalProjects(projRes.value.data.totalProjects);
@@ -37,6 +35,12 @@ const DashboardPage = () => {
         setTotalExperiences(expRes.value.data.totalExperiences);
       } else if (expRes.status === "rejected") {
         console.error("Failed to load experience stats:", expRes.reason);
+      }
+
+      if (resRes.status === "fulfilled" && resRes.value?.success && resRes.value?.data) {
+        setTotalResumes(resRes.value.data.totalResumes);
+      } else if (resRes.status === "rejected") {
+        console.error("Failed to load resume stats:", resRes.reason);
       }
     };
     fetchStats();
@@ -62,10 +66,10 @@ const DashboardPage = () => {
       description: "Pengalaman kerja & magang",
     },
     {
-      title: "User Role",
-      value: user?.role || "Admin",
-      icon: <User className="h-4 w-4 text-primary" />,
-      description: "Hak akses saat ini",
+      title: "Total Resumes",
+      value: totalResumes.toString(),
+      icon: <FileText className="h-4 w-4 text-primary" />,
+      description: "File resume & CV PDF",
     },
   ];
 
@@ -73,12 +77,10 @@ const DashboardPage = () => {
     <div className="space-y-6 animate-fade-in">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
-          Selamat datang kembali, {user?.name || "Admin"}! Senang melihat Anda lagi.
-        </p>
+        <p className="text-muted-foreground">Selamat datang kembali, {user?.name || "Admin"}! Senang melihat Anda lagi.</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.title} className="bg-card border-border shadow-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -101,9 +103,7 @@ const DashboardPage = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            Ini adalah panel admin untuk mengelola data website portfolio Anda. Semua fitur manajemen konten dirancang dengan performa optimal dan keamanan tinggi.
-          </p>
+          <p className="text-sm text-muted-foreground">Ini adalah panel admin untuk mengelola data website portfolio Anda. Semua fitur manajemen konten dirancang dengan performa optimal dan keamanan tinggi.</p>
           <div className="rounded-md bg-muted p-4">
             <h4 className="mb-2 font-medium flex items-center gap-1.5 text-sm">
               <CheckCircle className="w-4 h-4 text-emerald-500" />
@@ -114,6 +114,7 @@ const DashboardPage = () => {
               <li>Manajemen data Proyek / Projects (Tambah, Edit, Hapus, Cari, Filter & Pagination)</li>
               <li>Manajemen data Pencapaian / Achievements (Tambah, Edit, Hapus, Cari, Filter Dinamis & Pagination)</li>
               <li>Manajemen data Pengalaman / Experiences (Tambah, Edit, Hapus, Cari & Pagination)</li>
+              <li>Manajemen data Resume / CV (Upload, Edit, Hapus, Activate & Download)</li>
               <li>Integrasi upload dan hapus media secara otomatis di Cloudinary Cloud</li>
               <li>Dukungan konten Bilingual penuh (Bahasa Indonesia & English)</li>
             </ul>
@@ -125,4 +126,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-

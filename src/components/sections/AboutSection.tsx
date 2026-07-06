@@ -4,6 +4,7 @@ import { useLanguage } from "../LanguageProvider";
 import { Button } from "@/components/ui/button";
 import type { ExperienceItem, EducationItem } from "@/types";
 import { getExperiences } from "../../services/experienceService";
+import { getActiveResume } from "../../services/resumeService";
 
 const ExperienceCard = ({ item }: { item: ExperienceItem }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -117,6 +118,21 @@ const AboutSection = () => {
   const { t, language } = useLanguage();
   const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [resumeUrl, setResumeUrl] = useState<string>("");
+
+  useEffect(() => {
+    const fetchActiveResume = async () => {
+      try {
+        const response = await getActiveResume();
+        if (response.success && response.data) {
+          setResumeUrl(response.data.fileUrl);
+        }
+      } catch (error) {
+        console.error("Failed to load active resume:", error);
+      }
+    };
+    fetchActiveResume();
+  }, []);
 
   useEffect(() => {
     const fetchExperiences = async () => {
@@ -168,7 +184,7 @@ const AboutSection = () => {
 
       <div className="flex flex-wrap gap-3 mt-6">
         <Button asChild variant="outline" className="gap-2">
-          <a href="/files/Resume-06072026.pdf" download>
+          <a href={resumeUrl || "/files/Resume-06072026.pdf"} download target="_blank" rel="noopener noreferrer">
             <Download className="w-4 h-4" />
             {t.about.downloadResume}
           </a>
