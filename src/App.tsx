@@ -21,6 +21,9 @@ import AchievementsPage from "./features/admin/pages/AchievementsPage";
 import AchievementFormPage from "./features/admin/pages/AchievementFormPage";
 import ExperiencesPage from "./features/admin/pages/ExperiencesPage";
 import ExperienceFormPage from "./features/admin/pages/ExperienceFormPage";
+import ResumesPage from "./features/admin/pages/ResumesPage";
+import ResumeFormPage from "./features/admin/pages/ResumeFormPage";
+
 
 const queryClient = new QueryClient();
 
@@ -68,6 +71,9 @@ const App = () => (
                   <Route path="experiences" element={<ExperiencesPage />} />
                   <Route path="experiences/new" element={<ExperienceFormPage />} />
                   <Route path="experiences/:id/edit" element={<ExperienceFormPage />} />
+                  <Route path="resumes" element={<ResumesPage />} />
+                  <Route path="resumes/new" element={<ResumeFormPage />} />
+                  <Route path="resumes/:id/edit" element={<ResumeFormPage />} />
                 </Route>
 
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
