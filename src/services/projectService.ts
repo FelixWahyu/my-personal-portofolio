@@ -30,6 +30,7 @@ export interface ProjectListParams {
   category?: string;
   page?: number;
   limit?: number;
+  adminView?: boolean;
 }
 
 export interface ProjectListResponse {
@@ -84,6 +85,11 @@ export const updateProject = async (id: string, formData: FormData): Promise<Pro
 
 export const deleteProject = async (id: string): Promise<{ success: boolean; message: string }> => {
   const response = await api.delete<{ success: boolean; message: string }>(`/api/projects/${id}`);
+  return response.data;
+};
+
+export const togglePublishProject = async (id: string): Promise<ProjectSingleResponse> => {
+  const response = await api.put<ProjectSingleResponse>(`/api/projects/${id}/toggle-publish`);
   return response.data;
 };
 

@@ -26,6 +26,7 @@ export interface AchievementListParams {
   type?: string;
   page?: number;
   limit?: number;
+  adminView?: boolean;
 }
 
 export interface AchievementListResponse {
@@ -80,6 +81,11 @@ export const updateAchievement = async (id: string, formData: FormData): Promise
 
 export const deleteAchievement = async (id: string): Promise<{ success: boolean; message: string }> => {
   const response = await api.delete<{ success: boolean; message: string }>(`/api/achievements/${id}`);
+  return response.data;
+};
+
+export const togglePublishAchievement = async (id: string): Promise<AchievementSingleResponse> => {
+  const response = await api.put<AchievementSingleResponse>(`/api/achievements/${id}/toggle-publish`);
   return response.data;
 };
 

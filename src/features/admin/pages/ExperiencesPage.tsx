@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getExperiences, deleteExperience, Experience } from "../../../services/experienceService";
+import { getExperiences, deleteExperience, togglePublishExperience, Experience } from "../../../services/experienceService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Switch } from "@/components/ui/switch";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Plus, Search, Edit2, Trash2, Briefcase, ShieldAlert, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -23,6 +24,7 @@ const ExperiencesPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [experienceToDelete, setExperienceToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isToggling, setIsToggling] = useState<string[]>([]);
 
   // Search Debouncing
   useEffect(() => {
@@ -41,6 +43,7 @@ const ExperiencesPage = () => {
         search: debouncedSearch,
         page,
         limit,
+        adminView: true,
       });
 
       if (response.success && response.data) {
@@ -86,6 +89,24 @@ const ExperiencesPage = () => {
     } finally {
       setIsDeleting(false);
       setExperienceToDelete(null);
+    }
+  };
+
+  const handleTogglePublish = async (id: string) => {
+    setIsToggling((prev) => [...prev, id]);
+    try {
+      const response = await togglePublishExperience(id);
+      if (response.success) {
+        toast.success("Status publikasi experience berhasil diubah");
+        fetchExperiences();
+      } else {
+        toast.error(response.message || "Gagal mengubah status publikasi");
+      }
+    } catch (error) {
+      console.error("Toggle publish experience error:", error);
+      toast.error("Terjadi kesalahan koneksi saat mengubah status publikasi");
+    } finally {
+      setIsToggling((prev) => prev.filter((item) => item !== id));
     }
   };
 
@@ -177,16 +198,18 @@ const ExperiencesPage = () => {
                         </Badge>
                       </TableCell>
                       <TableCell className="align-top">
-                        {exp.isPublished ? (
-                          <Badge variant="default" className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 gap-1 text-[11px] py-0.5">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
-                            Published
-                          </Badge>
-                        ) : (
-                          <Badge variant="secondary" className="bg-muted text-muted-foreground gap-1 text-[11px] py-0.5">
-                            Draft
-                          </Badge>
-                        )}
+                        <div className="flex items-center gap-2">
+                          <Switch
+                            checked={exp.isPublished}
+                            disabled={isToggling.includes(exp.id)}
+                            onCheckedChange={() => handleTogglePublish(exp.id)}
+                            aria-label={exp.isPublished ? "Experience Published" : "Publish Experience"}
+                          />
+                          <span className={`text-[12px] font-medium ${exp.isPublished ? "text-emerald-500" : "text-muted-foreground"}`}>
+                            {exp.isPublished ? "Published" : "Draft"}
+                          </span>
+                          {isToggling.includes(exp.id) && <Loader2 className="w-3 h-3 animate-spin text-muted-foreground" />}
+                        </div>
                       </TableCell>
                       <TableCell className="text-right align-top">
                         <div className="flex items-center justify-end gap-2">

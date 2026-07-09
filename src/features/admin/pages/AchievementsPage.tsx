@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAchievements, deleteAchievement, getAchievementTypes, Achievement } from "../../../services/achievementService";
+import { getAchievements, deleteAchievement, togglePublishAchievement, getAchievementTypes, Achievement } from "../../../services/achievementService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Switch } from "@/components/ui/switch";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Search, Edit2, Trash2, Award, Calendar, ShieldAlert, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
@@ -26,6 +27,7 @@ const AchievementsPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [achievementToDelete, setAchievementToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isToggling, setIsToggling] = useState<string[]>([]);
 
   // Search Debouncing
   useEffect(() => {
@@ -56,6 +58,7 @@ const AchievementsPage = () => {
         type: selectedType === "All" ? undefined : selectedType,
         page,
         limit,
+        adminView: true,
       });
 
       if (response.success && response.data) {
@@ -108,6 +111,24 @@ const AchievementsPage = () => {
     } finally {
       setIsDeleting(false);
       setAchievementToDelete(null);
+    }
+  };
+
+  const handleTogglePublish = async (id: string) => {
+    setIsToggling((prev) => [...prev, id]);
+    try {
+      const response = await togglePublishAchievement(id);
+      if (response.success) {
+        toast.success("Status publikasi achievement berhasil diubah");
+        fetchAchievements();
+      } else {
+        toast.error(response.message || "Gagal mengubah status publikasi");
+      }
+    } catch (error) {
+      console.error("Toggle publish achievement error:", error);
+      toast.error("Terjadi kesalahan koneksi saat mengubah status publikasi");
+    } finally {
+      setIsToggling((prev) => prev.filter((item) => item !== id));
     }
   };
 
@@ -243,17 +264,18 @@ const AchievementsPage = () => {
                         </div>
                       </TableCell>
                       <TableCell>
-                        {item.isPublished ? (
-                          <Badge className="bg-emerald-500/10 text-emerald-500 border hover:bg-emerald-500/20 font-semibold border-emerald-500/20 flex items-center gap-1 w-fit">
-                            <CheckCircle2 className="w-3 h-3" />
-                            Published
-                          </Badge>
-                        ) : (
-                          <Badge className="bg-amber-500/10 text-amber-500 border hover:bg-amber-500/20 font-semibold border-amber-500/20 flex items-center gap-1 w-fit">
-                            <AlertCircle className="w-3 h-3" />
-                            Draft
-                          </Badge>
-                        )}
+                        <div className="flex items-center gap-2">
+                          <Switch
+                            checked={item.isPublished}
+                            disabled={isToggling.includes(item.id)}
+                            onCheckedChange={() => handleTogglePublish(item.id)}
+                            aria-label={item.isPublished ? "Achievement Published" : "Publish Achievement"}
+                          />
+                          <span className={`text-[12px] font-medium ${item.isPublished ? "text-emerald-500" : "text-muted-foreground"}`}>
+                            {item.isPublished ? "Published" : "Draft"}
+                          </span>
+                          {isToggling.includes(item.id) && <Loader2 className="w-3 h-3 animate-spin text-muted-foreground" />}
+                        </div>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-2">

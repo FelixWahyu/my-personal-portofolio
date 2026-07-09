@@ -32,6 +32,7 @@ export interface ExperienceListParams {
   search?: string;
   page?: number;
   limit?: number;
+  adminView?: boolean;
 }
 
 export interface ExperienceListResponse {
@@ -82,6 +83,11 @@ export const updateExperience = async (id: string, data: Partial<Experience>): P
 
 export const deleteExperience = async (id: string): Promise<{ success: boolean; message: string }> => {
   const response = await api.delete<{ success: boolean; message: string }>(`/api/experiences/${id}`);
+  return response.data;
+};
+
+export const togglePublishExperience = async (id: string): Promise<ExperienceSingleResponse> => {
+  const response = await api.put<ExperienceSingleResponse>(`/api/experiences/${id}/toggle-publish`);
   return response.data;
 };
 

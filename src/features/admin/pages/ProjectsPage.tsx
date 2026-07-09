@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getProjects, deleteProject, Project } from "../../../services/projectService";
+import { getProjects, deleteProject, togglePublishProject, Project } from "../../../services/projectService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Switch } from "@/components/ui/switch";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Search, Edit2, Trash2, FolderOpen, ExternalLink, Globe, LayoutGrid, CheckCircle2, AlertCircle, Loader2, ShieldAlert } from "lucide-react";
@@ -26,6 +27,7 @@ const ProjectsPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [projectToDelete, setProjectToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isToggling, setIsToggling] = useState<string[]>([]);
 
   // Search Debouncing
   useEffect(() => {
@@ -45,6 +47,7 @@ const ProjectsPage = () => {
         category: category === "All" ? undefined : category,
         page,
         limit,
+        adminView: true,
       });
 
       if (response.success && response.data) {
@@ -91,6 +94,24 @@ const ProjectsPage = () => {
     } finally {
       setIsDeleting(false);
       setProjectToDelete(null);
+    }
+  };
+
+  const handleTogglePublish = async (id: string) => {
+    setIsToggling((prev) => [...prev, id]);
+    try {
+      const response = await togglePublishProject(id);
+      if (response.success) {
+        toast.success("Status publikasi project berhasil diubah");
+        fetchProjects();
+      } else {
+        toast.error(response.message || "Gagal mengubah status publikasi");
+      }
+    } catch (error) {
+      console.error("Toggle publish project error:", error);
+      toast.error("Terjadi kesalahan koneksi saat mengubah status publikasi");
+    } finally {
+      setIsToggling((prev) => prev.filter((item) => item !== id));
     }
   };
 
@@ -232,17 +253,18 @@ const ProjectsPage = () => {
                         </div>
                       </TableCell>
                       <TableCell>
-                        {project.isPublished ? (
-                          <Badge className="bg-emerald-500/10 text-emerald-500 border border-emerald-500/25 font-semibold hover:bg-emerald-500/15 flex items-center gap-1 w-fit">
-                            <CheckCircle2 className="w-3 h-3" />
-                            Published
-                          </Badge>
-                        ) : (
-                          <Badge className="bg-amber-500/10 text-amber-500 border border-amber-500/25 font-semibold hover:bg-amber-500/15 flex items-center gap-1 w-fit">
-                            <AlertCircle className="w-3 h-3" />
-                            Draft
-                          </Badge>
-                        )}
+                        <div className="flex items-center gap-2">
+                          <Switch
+                            checked={project.isPublished}
+                            disabled={isToggling.includes(project.id)}
+                            onCheckedChange={() => handleTogglePublish(project.id)}
+                            aria-label={project.isPublished ? "Project Published" : "Publish Project"}
+                          />
+                          <span className={`text-[12px] font-medium ${project.isPublished ? "text-emerald-500" : "text-muted-foreground"}`}>
+                            {project.isPublished ? "Published" : "Draft"}
+                          </span>
+                          {isToggling.includes(project.id) && <Loader2 className="w-3 h-3 animate-spin text-muted-foreground" />}
+                        </div>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1.5">
