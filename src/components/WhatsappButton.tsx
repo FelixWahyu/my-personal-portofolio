@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { X, MessageCircleMore } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
-
-const WHATSAPP_NUMBER = "6285869906592";
-const TELEGRAM_USERNAME = "Haifeyyt";
+import { ContactData } from "../config/contact";
 
 const WhatsappButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,12 +11,12 @@ const WhatsappButton = () => {
 
   const handleWhatsApp = () => {
     if (typeof window === "undefined") return;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/${ContactData.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   };
 
   const handleTelegram = () => {
     if (typeof window === "undefined") return;
-    window.open(`https://t.me/${TELEGRAM_USERNAME}`, "_blank", "noopener,noreferrer");
+    window.open(`https://t.me/${ContactData.TELEGRAM_USERNAME}`, "_blank", "noopener,noreferrer");
   };
 
   return (
