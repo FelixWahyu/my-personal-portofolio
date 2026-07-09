@@ -1,4 +1,4 @@
-import { ChevronRight, ExternalLink, Github, ChevronLeft, Loader2 } from "lucide-react";
+import { ChevronRight, ExternalLink, Github, ChevronLeft, Loader2, Search } from "lucide-react";
 import { useLanguage } from "../LanguageProvider";
 import ProjectDetailModal from "../ProjectDetailModal";
 import { useState, useEffect } from "react";
@@ -202,9 +202,29 @@ const ProjectsSection = () => {
             </div>
           )}
         </>
-      ) : (
+      ) : dynamicProjects && dynamicProjects.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in border-2 border-dashed rounded-lg">
-          <p className="text-muted-foreground">{language === "id" ? "Belum ada proyek untuk kategori ini." : "No projects found for this category."}</p>
+          <p className="text-muted-foreground">
+            {language === "id" ? "Proyek belum ditambahkan." : "Projects have not been added yet."}
+          </p>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
+          <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center mb-4">
+            <Search className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="text-lg font-semibold">{language === "id" ? "Proyek tidak ditemukan" : "No projects found"}</h3>
+          <p className="text-muted-foreground mt-1 max-w-sm">
+            {language === "id" ? "Tidak ada proyek yang cocok dengan filter kategori yang dipilih." : "There are no projects matching the selected category filter."}
+          </p>
+          <button
+            onClick={() => {
+              setSelectedCategory("All");
+            }}
+            className="mt-4 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium"
+          >
+            {language === "id" ? "Reset Filter" : "Reset Filters"}
+          </button>
         </div>
       )}
       <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />

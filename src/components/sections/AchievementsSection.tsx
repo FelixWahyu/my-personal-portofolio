@@ -16,6 +16,7 @@ const AchievementsSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [hasAchievementsInDB, setHasAchievementsInDB] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (!selectedAchievement) return;
@@ -43,12 +44,15 @@ const AchievementsSection = () => {
             description: language === "id" ? item.descriptionId || undefined : item.descriptionEn || undefined,
           }));
           setAchievements(mapped);
+          setHasAchievementsInDB(mapped.length > 0);
         } else {
           setAchievements(t.achievements.items);
+          setHasAchievementsInDB(true);
         }
       } catch (error) {
         console.error("Failed to load achievements from API, using fallback static data:", error);
         setAchievements(t.achievements.items);
+        setHasAchievementsInDB(true);
       } finally {
         setLoading(false);
       }
@@ -210,6 +214,12 @@ const AchievementsSection = () => {
               </button>
             </div>
           )}
+        </div>
+      ) : hasAchievementsInDB === false ? (
+        <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in border-2 border-dashed rounded-lg">
+          <p className="text-muted-foreground">
+            {language === "id" ? "Pencapaian belum ditambahkan." : "Achievements have not been added yet."}
+          </p>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
