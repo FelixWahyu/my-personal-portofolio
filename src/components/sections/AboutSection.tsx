@@ -212,6 +212,12 @@ const AboutSection = () => {
                 </div>
               ))}
             </div>
+          ) : experiences.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-8 text-center animate-fade-in border-2 border-dashed rounded-lg">
+              <p className="text-muted-foreground text-sm">
+                {language === "id" ? "Pengalaman belum ditambahkan." : "Experiences have not been added yet."}
+              </p>
+            </div>
           ) : (
             experiences.map((item, index) => (
               <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
