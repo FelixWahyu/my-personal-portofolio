@@ -1,17 +1,13 @@
-interface SkillIconProps {
-  name: string;
-  color: string;
-  icon: React.ReactNode;
-}
+import type { SkillIconProps } from "@/types";
 
 const SkillIcon = ({ name, color, icon }: SkillIconProps) => {
   return (
     <div className="group relative flex flex-col items-center">
-      <div 
-        className="skill-icon w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 ease-out grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-lg bg-card border border-border" 
-        style={{ '--hover-bg': color } as React.CSSProperties}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = color}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = ''}
+      <div
+        className="skill-icon w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 ease-out grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-lg bg-card border border-border"
+        style={{ "--hover-bg": color } as React.CSSProperties}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = color)}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "")}
       >
         <span className="text-3xl transition-colors duration-300 text-foreground group-hover:text-white">{icon}</span>
       </div>

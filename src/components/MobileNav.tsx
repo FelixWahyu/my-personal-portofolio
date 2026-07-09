@@ -5,11 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "./LanguageProvider";
 import config from "@/config/GitHubUsername";
-
-interface MobileNavProps {
-  activeSection: string;
-  onNavigate: (section: string) => void;
-}
+import type { MobileNavProps } from "@/types";
 
 const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,13 +42,7 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
           <div className="flex items-center gap-2">
             <LanguageToggle compact />
             <ThemeToggle compact />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-nav-menu"
-              className="p-2 rounded-lg hover:bg-accent transition-colors"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? "Tutup menu navigasi" : "Buka menu navigasi"} aria-expanded={isOpen} aria-controls="mobile-nav-menu" className="p-2 rounded-lg hover:bg-accent transition-colors">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>

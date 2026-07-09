@@ -4,11 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "./LanguageProvider";
 import config from "@/config/GitHubUsername";
-
-interface SidebarProps {
-  activeSection: string;
-  onNavigate: (section: string) => void;
-}
+import type { SidebarProps } from "@/types";
 
 const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
   const { t } = useLanguage();

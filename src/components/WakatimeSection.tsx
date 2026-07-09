@@ -1,27 +1,7 @@
 import { Code2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
-
-interface WakaTimeLang {
-  name: string;
-  percent: number;
-}
-
-interface WakaTimeProject {
-  name: string;
-}
-
-interface WakaTimeStats {
-  human_readable_total: string;
-  human_readable_daily_average: string;
-  languages: WakaTimeLang[];
-  projects: WakaTimeProject[];
-}
-
-interface statCardProps {
-  title: string;
-  value: string | number;
-}
+import type { WakaTimeStats, statCardProps } from "@/types";
 
 const WakaTimeStats = () => {
   const [stats, setStats] = useState<WakaTimeStats | null>(null);
@@ -33,7 +13,7 @@ const WakaTimeStats = () => {
   const fetchStats = () => {
     setLoading(true);
     setError(false);
-    
+
     // Auto-retry up to 3 times for Koyeb cold starts
     const maxRetries = 3;
 
@@ -75,16 +55,10 @@ const WakaTimeStats = () => {
     return (
       <div className="p-6 border border-border rounded-xl bg-card text-center space-y-3">
         <div className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full mx-auto"></div>
-        <p className="text-muted-foreground text-sm">
-          {language === "id" 
-            ? "Sedang mengambil data statistik WakaTime..." 
-            : "Fetching WakaTime statistics..."}
-        </p>
+        <p className="text-muted-foreground text-sm">{language === "id" ? "Sedang mengambil data statistik WakaTime..." : "Fetching WakaTime statistics..."}</p>
         {retryCount > 0 && (
           <p className="text-xs text-yellow-500">
-            {language === "id"
-              ? `Server sedang dibangunkan (Mencoba ulang ${retryCount}/3)... Ini mungkin memakan waktu hingga 15 detik.`
-              : `Waking up server (Retry ${retryCount}/3)... This may take up to 15 seconds.`}
+            {language === "id" ? `Server sedang dibangunkan (Mencoba ulang ${retryCount}/3)... Ini mungkin memakan waktu hingga 15 detik.` : `Waking up server (Retry ${retryCount}/3)... This may take up to 15 seconds.`}
           </p>
         )}
       </div>
@@ -94,18 +68,11 @@ const WakaTimeStats = () => {
   if (error || !stats) {
     return (
       <div className="p-6 border border-border rounded-xl bg-card text-center space-y-3">
-        <p className="text-destructive font-semibold">
-          {language === "id" ? "Gagal memuat statistik WakaTime." : "Failed to load WakaTime stats."}
-        </p>
+        <p className="text-destructive font-semibold">{language === "id" ? "Gagal memuat statistik WakaTime." : "Failed to load WakaTime stats."}</p>
         <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-          {language === "id" 
-            ? "Server backend mungkin sedang tidak aktif atau terjadi batas waktu permintaan (timeout)." 
-            : "The backend server might be inactive or a request timeout occurred."}
+          {language === "id" ? "Server backend mungkin sedang tidak aktif atau terjadi batas waktu permintaan (timeout)." : "The backend server might be inactive or a request timeout occurred."}
         </p>
-        <button 
-          onClick={fetchStats}
-          className="mt-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm rounded-md transition-colors"
-        >
+        <button onClick={fetchStats} className="mt-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm rounded-md transition-colors">
           {language === "id" ? "Coba Lagi" : "Try Again"}
         </button>
       </div>

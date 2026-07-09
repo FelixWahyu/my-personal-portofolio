@@ -12,3 +12,8 @@ export interface Project {
   features: string[];
   category?: string;
 }
+
+export interface Props {
+  project: Project | null;
+  onClose: () => void;
+}

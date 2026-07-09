@@ -2,17 +2,7 @@ import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
-import type { Achievement } from "@/types";
-
-interface PropsAchievement {
-  achievement: Achievement | null;
-  onClose: () => void;
-}
-
-interface PropsInfo {
-  label: string;
-  value?: string;
-}
+import type { PropsAchievement, PropsInfo } from "@/types";
 
 const AchievementDetailModal = ({ achievement, onClose }: PropsAchievement) => {
   const { t } = useLanguage();

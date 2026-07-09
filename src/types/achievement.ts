@@ -9,3 +9,13 @@ export interface Achievement {
   type?: string;
   description?: string;
 }
+
+export interface PropsAchievement {
+  achievement: Achievement | null;
+  onClose: () => void;
+}
+
+export interface PropsInfo {
+  label: string;
+  value?: string;
+}

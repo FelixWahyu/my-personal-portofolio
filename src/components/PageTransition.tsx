@@ -1,10 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ReactNode } from "react";
-
-interface PageTransitionProps {
-  children: ReactNode;
-  sectionKey: string;
-}
+import type { PageTransitionProps } from "@/types";
 
 const variants = {
   initial: { opacity: 0, y: 16 },
@@ -15,14 +10,7 @@ const variants = {
 const PageTransition = ({ children, sectionKey }: PageTransitionProps) => {
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={sectionKey}
-        variants={variants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        transition={{ duration: 0.22, ease: "easeInOut" }}
-      >
+      <motion.div key={sectionKey} variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.22, ease: "easeInOut" }}>
         {children}
       </motion.div>
     </AnimatePresence>

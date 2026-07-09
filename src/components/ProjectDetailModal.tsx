@@ -1,13 +1,8 @@
 import { createPortal } from "react-dom";
 import { ExternalLink, Github, X, Check } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
-import type { Project } from "@/types";
+import type { Props } from "@/types";
 import { useEffect } from "react";
-
-interface Props {
-  project: Project | null;
-  onClose: () => void;
-}
 
 const ProjectDetailModal = ({ project, onClose }: Props) => {
   const { t } = useLanguage();
