@@ -11,7 +11,7 @@ const ProjectsSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { t, language } = useLanguage();
   const [loading, setLoading] = useState(false);
-  const [dynamicProjects, setDynamicProjects] = useState<DBProject[]>([]);
+  const [dynamicProjects, setDynamicProjects] = useState<DBProject[] | null>(null);
   const itemsPerPage = 4;
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const ProjectsSection = () => {
     };
   };
 
-  const projectsListSource = dynamicProjects.length > 0 ? dynamicProjects.map((p) => mapProject(p, language)) : t.projects.items;
+  const projectsListSource = dynamicProjects !== null ? dynamicProjects.map((p) => mapProject(p, language)) : t.projects.items;
 
   const filteredProjects = projectsListSource.filter((project) => {
     if (selectedCategory === "All") return true;
