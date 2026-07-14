@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import config from "@/config/GitHubUsername";
 import CodeTyping from "../ui/CodeTyping";
 import TypewriterText from "../ui/TypewriterText";
-import { useHomeSection } from "../../hooks/useHomeSection";
+import { useHomeSection } from "@/hooks/useHomeSection";
 
 const HomeSection = () => {
   const { t } = useLanguage();

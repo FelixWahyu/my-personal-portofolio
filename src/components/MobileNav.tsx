@@ -1,24 +1,15 @@
 import { useState } from "react";
-import { Menu, X, Home, User, ChartLine, FileBadge, FolderOpen, Mail } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/foto-profile.webp";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
-import { useLanguage } from "./LanguageProvider";
 import config from "@/config/GitHubUsername";
 import type { MobileNavProps } from "@/types";
+import { NavItems } from "@/const/nav-item";
 
 const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage();
-
-  const navItems = [
-    { id: "beranda", label: t.nav.beranda, icon: <Home className="w-5 h-5" /> },
-    { id: "tentang", label: t.nav.tentang, icon: <User className="w-5 h-5" /> },
-    { id: "statistik", label: t.nav.statistik, icon: <ChartLine className="w-5 h-5" /> },
-    { id: "pencapaian", label: t.nav.pencapaian, icon: <FileBadge className="w-5 h-5" /> },
-    { id: "proyek", label: t.nav.proyek, icon: <FolderOpen className="w-5 h-5" /> },
-    { id: "kontak", label: t.nav.kontak, icon: <Mail className="w-5 h-5" /> },
-  ];
+  const navItems = NavItems();
 
   const handleNavigate = (section: string) => {
     onNavigate(section);
