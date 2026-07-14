@@ -1,31 +1,15 @@
-import { useState, useEffect } from "react";
-import { MapPin, Briefcase, Download, User, Code2 } from "lucide-react";
+import { MapPin, Briefcase, Download, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../LanguageProvider";
 import { Button } from "../ui/button";
 import config from "@/config/GitHubUsername";
 import CodeTyping from "../ui/CodeTyping";
 import TypewriterText from "../ui/TypewriterText";
-import { getActiveResume } from "../../services/resumeService";
+import { useHomeSection } from "../../hooks/useHomeSection";
 
 const HomeSection = () => {
   const { t } = useLanguage();
-  const [resumeUrl, setResumeUrl] = useState<string>("");
-
-  useEffect(() => {
-    const fetchActiveResume = async () => {
-      try {
-        const response = await getActiveResume();
-        if (response.success && response.data) {
-          setResumeUrl(response.data.fileUrl);
-        }
-      } catch (error) {
-        console.error("Failed to load active resume:", error);
-      }
-    };
-    fetchActiveResume();
-  }, []);
-
+  const { resumeUrl } = useHomeSection();
 
   return (
     <section className="animate-fade-in pb-12 mb-8 mt-4">
