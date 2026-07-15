@@ -1,6 +1,5 @@
 import { MapPin, Briefcase, Download, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLanguage } from "../LanguageProvider";
 import { Button } from "../ui/button";
 import config from "@/config/GitHubUsername";
 import CodeTyping from "../ui/CodeTyping";
@@ -8,8 +7,7 @@ import TypewriterText from "../ui/TypewriterText";
 import { useHomeSection } from "@/hooks/useHomeSection";
 
 const HomeSection = () => {
-  const { t } = useLanguage();
-  const { resumeUrl } = useHomeSection();
+  const { resumeUrl, t } = useHomeSection();
 
   return (
     <section className="animate-fade-in pb-12 mb-8 mt-4">
@@ -40,7 +38,7 @@ const HomeSection = () => {
 
           <div className="flex flex-row justify-center md:justify-start gap-5 sm:gap-10 mt-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
             <div className="flex items-center gap-4 group">
-              <span className="text-3xl lg:text-4xl font-black text-primary drop-shadow-md group-hover:scale-110 transition-transform">1+</span>
+              <span className="text-3xl lg:text-4xl font-black text-primary drop-shadow-md group-hover:scale-110 transition-transform">2+</span>
               <span className="text-sm font-medium text-muted-foreground leading-tight text-left uppercase tracking-wider">
                 Years
                 <br />

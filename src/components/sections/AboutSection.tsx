@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronDown, ChevronUp, Briefcase, GraduationCap, Download, Check, ListCheck, Rocket, Brain, Loader2 } from "lucide-react";
-import { useLanguage } from "../LanguageProvider";
 import { Button } from "@/components/ui/button";
 import type { ExperienceItem, EducationItem } from "@/types";
-import { getExperiences } from "../../services/experienceService";
-import { getActiveResume } from "../../services/resumeService";
+import { useAboutSection } from "@/hooks/useAboutSection";
 
 const ExperienceCard = ({ item }: { item: ExperienceItem }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t } = useAboutSection();
 
   return (
     <div className="p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors">
@@ -115,58 +113,7 @@ const EducationCard = ({ item }: { item: EducationItem }) => {
 };
 
 const AboutSection = () => {
-  const { t, language } = useLanguage();
-  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [resumeUrl, setResumeUrl] = useState<string>("");
-
-  useEffect(() => {
-    const fetchActiveResume = async () => {
-      try {
-        const response = await getActiveResume();
-        if (response.success && response.data) {
-          setResumeUrl(response.data.fileUrl);
-        }
-      } catch (error) {
-        console.error("Failed to load active resume:", error);
-      }
-    };
-    fetchActiveResume();
-  }, []);
-
-  useEffect(() => {
-    const fetchExperiences = async () => {
-      setLoading(true);
-      try {
-        const response = await getExperiences();
-        if (response.success && response.data?.experiences) {
-          const mapped = response.data.experiences.map((exp) => ({
-            role: language === "id" ? exp.roleId : exp.roleEn,
-            company: language === "id" ? exp.companyId : exp.companyEn,
-            location: language === "id" ? exp.locationId : exp.locationEn,
-            period: language === "id" ? exp.periodId : exp.periodEn,
-            duration: language === "id" ? exp.durationId : exp.durationEn,
-            type: language === "id" ? exp.typeId : exp.typeEn,
-            mode: language === "id" ? exp.modeId : exp.modeEn,
-            responsibilities: language === "id" ? exp.responsibilitiesId : exp.responsibilitiesEn,
-            insight: language === "id" ? exp.insightId : exp.insightEn,
-            impact: language === "id" ? exp.impactId : exp.impactEn,
-          }));
-          setExperiences(mapped);
-        } else {
-          // Fallback to translations if API fails
-          setExperiences(t.about.experiences);
-        }
-      } catch (error) {
-        console.error("Failed to load experiences:", error);
-        setExperiences(t.about.experiences);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchExperiences();
-  }, [language, t.about.experiences]);
+  const { experiences, loading, resumeUrl, t, language } = useAboutSection();
 
   return (
     <section className="animate-fade-in space-y-10 mb-16 md:mb-0">
@@ -214,9 +161,7 @@ const AboutSection = () => {
             </div>
           ) : experiences.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8 text-center animate-fade-in border-2 border-dashed rounded-lg">
-              <p className="text-muted-foreground text-sm">
-                {language === "id" ? "Pengalaman belum ditambahkan." : "Experiences have not been added yet."}
-              </p>
+              <p className="text-muted-foreground text-sm">{language === "id" ? "Pengalaman belum ditambahkan." : "Experiences have not been added yet."}</p>
             </div>
           ) : (
             experiences.map((item, index) => (

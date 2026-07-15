@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
 import { getActiveResume } from "../services/resumeService";
 
 export const useHomeSection = () => {
+  const { t } = useLanguage();
   const [resumeUrl, setResumeUrl] = useState<string>("");
 
   useEffect(() => {
@@ -18,5 +20,5 @@ export const useHomeSection = () => {
     fetchActiveResume();
   }, []);
 
-  return { resumeUrl };
+  return { resumeUrl, t };
 };
