@@ -1,17 +1,11 @@
-import { useTheme } from "next-themes";
-import { useLanguage } from "../LanguageProvider";
 import { FaGithub } from "react-icons/fa";
 import WakaTimeStats from "../WakatimeSection";
 import { GitHubContributions, GithubActivityGraph } from "../GitHubContribution";
-import { useState } from "react";
 import config from "@/config/GitHubUsername";
+import { useStatisticsSection } from "@/hooks/useStatisticsSection";
 
 const StatisticsSection = () => {
-  const { t } = useLanguage();
-  const { theme } = useTheme();
-  const [streakLoaded, setStreakLoaded] = useState(false);
-
-  const githubTheme = theme === "dark" ? "tokyonight" : "github-light";
+  const { t, theme, streakLoaded, setStreakLoaded, githubTheme } = useStatisticsSection();
 
   return (
     <section className="animate-fade-in mb-16 md:mb-0">
@@ -40,7 +34,9 @@ const StatisticsSection = () => {
           <div className="overflow-x-auto w-full">
             <img
               onLoad={() => setStreakLoaded(true)}
-              onError={(e) => { e.currentTarget.style.display = "none"; }}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
               className="w-full min-w-[320px] h-auto block"
               src={`https://streak-stats.demolab.com?user=${config.github.username}&theme=${githubTheme}&hide_border=true`}
               alt="GitHub Streak Stats"
