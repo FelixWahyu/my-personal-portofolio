@@ -1,95 +1,12 @@
-import { useState } from "react";
 import { Mail, ExternalLink, Github, Linkedin, Instagram, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { useLanguage } from "../LanguageProvider";
-import { z } from "zod";
-
-const NAME_MAX = 100;
-const EMAIL_MAX = 255;
-const MESSAGE_MAX = 1000;
-
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
+import { useContactForm, useContactSection } from "@/hooks/useContactSection";
 
 const ContactForm = () => {
-  const { t, language } = useLanguage();
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
-
-  const schema = z.object({
-    name: z
-      .string()
-      .trim()
-      .min(3, language === "id" ? "Nama wajib diisi" : "Name is required")
-      .max(NAME_MAX, language === "id" ? `Maksimal ${NAME_MAX} karakter` : `Max ${NAME_MAX} characters`),
-    email: z
-      .string()
-      .trim()
-      .min(3, language === "id" ? "Email wajib diisi" : "Email is required")
-      .email(language === "id" ? "Format email tidak valid" : "Invalid email format")
-      .max(EMAIL_MAX, language === "id" ? `Maksimal ${EMAIL_MAX} karakter` : `Max ${EMAIL_MAX} characters`),
-    message: z
-      .string()
-      .trim()
-      .min(3, language === "id" ? "Pesan wajib diisi" : "Message is required")
-      .max(MESSAGE_MAX, language === "id" ? `Maksimal ${MESSAGE_MAX} karakter` : `Max ${MESSAGE_MAX} characters`),
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = schema.safeParse(form);
-    if (!result.success) {
-      const fieldErrors: typeof errors = {};
-      result.error.errors.forEach((err) => {
-        const field = err.path[0] as keyof typeof errors;
-        if (!fieldErrors[field]) fieldErrors[field] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-    setErrors({});
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          name: form.name,
-          email: form.email,
-          message: form.message,
-          subject: `[Portfolio] Pesan baru dari ${form.name}`,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        toast({ title: t.contact.form.success, description: t.contact.form.successDesc });
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        toast({
-          title: language === "id" ? "Gagal mengirim pesan" : "Failed to send message",
-          description: language === "id" ? "Terjadi kesalahan, coba lagi nanti." : "Something went wrong, please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch {
-      toast({
-        title: language === "id" ? "Gagal mengirim pesan" : "Failed to send message",
-        description: language === "id" ? "Periksa koneksi internet Anda." : "Please check your internet connection.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const { t, isSubmitting, form, errors, handleSubmit, handleInputChange, NAME_MAX, EMAIL_MAX, MESSAGE_MAX } = useContactForm();
 
   const charCount = (val: string, max: number) => (
     <span className={`text-xs ${val.length > max ? "text-destructive" : "text-muted-foreground"}`}>
@@ -111,10 +28,7 @@ const ContactForm = () => {
             <Input
               id="contact-name"
               value={form.name}
-              onChange={(e) => {
-                setForm((p) => ({ ...p, name: e.target.value }));
-                setErrors((p) => ({ ...p, name: undefined }));
-              }}
+              onChange={(e) => handleInputChange("name", e.target.value)}
               maxLength={NAME_MAX + 1}
               placeholder={t.contact.form.namePlaceholder}
               className={errors.name ? "border-destructive" : ""}
@@ -132,10 +46,7 @@ const ContactForm = () => {
               id="contact-email"
               type="email"
               value={form.email}
-              onChange={(e) => {
-                setForm((p) => ({ ...p, email: e.target.value }));
-                setErrors((p) => ({ ...p, email: undefined }));
-              }}
+              onChange={(e) => handleInputChange("email", e.target.value)}
               maxLength={EMAIL_MAX + 1}
               placeholder={t.contact.form.emailPlaceholder}
               className={errors.email ? "border-destructive" : ""}
@@ -153,10 +64,7 @@ const ContactForm = () => {
           <Textarea
             id="contact-message"
             value={form.message}
-            onChange={(e) => {
-              setForm((p) => ({ ...p, message: e.target.value }));
-              setErrors((p) => ({ ...p, message: undefined }));
-            }}
+            onChange={(e) => handleInputChange("message", e.target.value)}
             maxLength={MESSAGE_MAX + 1}
             rows={5}
             placeholder={t.contact.form.messagePlaceholder}
@@ -176,8 +84,7 @@ const ContactForm = () => {
 };
 
 const ContactSection = () => {
-  const { t, language } = useLanguage();
-  const whatsappMessage = language === "id" ? "Halo, Saya tertarik untuk berdiskusi lebih lanjut." : "Hello, I'm interested in discussing further.";
+  const { t, language, whatsappMessage } = useContactSection();
 
   const socials = [
     {
