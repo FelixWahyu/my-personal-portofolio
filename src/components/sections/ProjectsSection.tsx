@@ -1,85 +1,10 @@
 import { ChevronRight, ExternalLink, Github, ChevronLeft, Loader2, Search } from "lucide-react";
-import { useLanguage } from "../LanguageProvider";
 import ProjectDetailModal from "../ProjectDetailModal";
-import { useState, useEffect } from "react";
-import { getProjects, Project as DBProject } from "../../services/projectService";
-import { Project } from "@/types";
+import { useProjectSection } from "@/hooks/useProjectSection";
 
 const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
-  const { t, language } = useLanguage();
-  const [loading, setLoading] = useState(false);
-  const [dynamicProjects, setDynamicProjects] = useState<DBProject[] | null>(null);
-  const itemsPerPage = 4;
-
-  useEffect(() => {
-    const fetchDynamicProjects = async () => {
-      setLoading(true);
-      try {
-        const response = await getProjects({ limit: 100 });
-        if (response.success && response.data?.projects) {
-          setDynamicProjects(response.data.projects);
-        }
-      } catch (error) {
-        console.error("Failed to load dynamic projects, using static fallback:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDynamicProjects();
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = selectedProject ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedProject]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory]);
-
-  const categories = ["All", "Web", "Mobile"];
-
-  const mapProject = (dbProj: DBProject, lang: "id" | "en"): Project => {
-    const isEn = lang === "en";
-    return {
-      id: dbProj.id,
-      title: isEn ? dbProj.titleEn : dbProj.titleId,
-      description: isEn ? dbProj.descriptionEn : dbProj.descriptionId,
-      role: isEn ? dbProj.roleEn : dbProj.roleId,
-      problem: isEn ? dbProj.problemEn : dbProj.problemId,
-      impact: isEn ? dbProj.impactEn : dbProj.impactId,
-      features: isEn ? dbProj.featuresEn || [] : dbProj.featuresId || [],
-      image: dbProj.image,
-      category: dbProj.category,
-      tech: dbProj.tech || [],
-      demolink: dbProj.demolink || undefined,
-      sourcelink: dbProj.sourcelink || undefined,
-    };
-  };
-
-  const projectsListSource = dynamicProjects !== null ? dynamicProjects.map((p) => mapProject(p, language)) : t.projects.items;
-
-  const filteredProjects = projectsListSource.filter((project) => {
-    if (selectedCategory === "All") return true;
-    return project.category?.toLowerCase() === selectedCategory.toLowerCase();
-  });
-
-  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedProjects = filteredProjects.slice(startIndex, startIndex + itemsPerPage);
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
+  const { selectedProject, setSelectedProject, handlePrevPage, handleNextPage, totalPages, paginatedProjects, categories, setSelectedCategory, currentPage, setCurrentPage, dynamicProjects, selectedCategory, language, t, loading } =
+    useProjectSection();
 
   return (
     <section className="animate-fade-in">
@@ -204,9 +129,7 @@ const ProjectsSection = () => {
         </>
       ) : dynamicProjects && dynamicProjects.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in border-2 border-dashed rounded-lg">
-          <p className="text-muted-foreground">
-            {language === "id" ? "Proyek belum ditambahkan." : "Projects have not been added yet."}
-          </p>
+          <p className="text-muted-foreground">{language === "id" ? "Proyek belum ditambahkan." : "Projects have not been added yet."}</p>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
@@ -214,9 +137,7 @@ const ProjectsSection = () => {
             <Search className="h-8 w-8 text-muted-foreground" />
           </div>
           <h3 className="text-lg font-semibold">{language === "id" ? "Proyek tidak ditemukan" : "No projects found"}</h3>
-          <p className="text-muted-foreground mt-1 max-w-sm">
-            {language === "id" ? "Tidak ada proyek yang cocok dengan filter kategori yang dipilih." : "There are no projects matching the selected category filter."}
-          </p>
+          <p className="text-muted-foreground mt-1 max-w-sm">{language === "id" ? "Tidak ada proyek yang cocok dengan filter kategori yang dipilih." : "There are no projects matching the selected category filter."}</p>
           <button
             onClick={() => {
               setSelectedCategory("All");
