@@ -1,77 +1,14 @@
-import { useEffect, useState } from "react";
-import { useLanguage } from "./LanguageProvider";
 import { useTheme } from "next-themes";
 import config from "@/config/GitHubUsername";
-import type { Day, StatProps } from "@/types";
+import type { StatProps } from "@/types";
+import { useGithubContribution } from "@/hooks/useStatisticsSection";
 
 export const GitHubContributions = () => {
-  const [days, setDays] = useState<Day[]>([]);
-  const [year, setYear] = useState(new Date().getFullYear());
-  const { t } = useLanguage();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(`https://github-contributions-api.jogruber.de/v4/${config.github.username}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch");
-        return res.json();
-      })
-      .then((json) => {
-        setDays(json.contributions || []);
-        setError(null);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Failed to load GitHub contributions");
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const { loading, error, days, year, setYear, t, years, total, best, avg, weekTotal, weeks, getColor, getMonthLabel } = useGithubContribution();
 
   if (loading) return <div className="p-6 text-center">Loading contributions...</div>;
   if (error) return <div className="p-6 text-center text-red-500">{error}</div>;
   if (!days.length) return null;
-
-  const years = Array.from(new Set(days.map((d) => new Date(d.date).getFullYear()))).sort((a, b) => b - a);
-  const filteredDays = days.filter((d) => new Date(d.date).getFullYear() === year);
-  const sortedDays = [...filteredDays].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-  const total = filteredDays.reduce((s, d) => s + d.count, 0);
-  const best = Math.max(0, ...filteredDays.map((d) => d.count));
-  const avg = Math.round(total / filteredDays.length || 0);
-
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  const weekTotal = filteredDays.filter((d) => new Date(d.date) >= sevenDaysAgo).reduce((s, d) => s + d.count, 0);
-
-  const groupByWeeks = (days: Day[]) => {
-    const weeks: Day[][] = [];
-    let week: Day[] = [];
-    days.forEach((day) => {
-      if (week.length === 7) {
-        weeks.push(week);
-        week = [];
-      }
-      week.push(day);
-    });
-    if (week.length) weeks.push(week);
-    return weeks;
-  };
-
-  const weeks = groupByWeeks(sortedDays);
-
-  const getColor = (level: number) => {
-    const lightColors = ["bg-gray-100", "bg-green-200", "bg-green-400", "bg-green-600", "bg-green-700"];
-    const darkColors = ["bg-[#161b22]", "bg-[#0e4429]", "bg-[#006d32]", "bg-[#26a641]", "bg-[#39d353]"];
-    return theme === "dark" ? darkColors[level] : lightColors[level];
-  };
-
-  const getMonthLabel = (day: Day) => {
-    const date = new Date(day.date);
-    return date.toLocaleString("en-US", { month: "short" });
-  };
 
   return (
     <div className="p-4 sm:p-6 rounded-md text-foreground">
