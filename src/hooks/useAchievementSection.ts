@@ -110,3 +110,23 @@ export const useAchievementSection = () => {
     setHasAchievementsInDB,
   };
 };
+
+export const useAchievementDetailModal = (achievement: Achievement | null, onClose: () => void) => {
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    if (!achievement) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [achievement, onClose]);
+
+  return {
+    t,
+    achievementModal: achievement,
+    onCloseModal: onClose,
+  };
+};
