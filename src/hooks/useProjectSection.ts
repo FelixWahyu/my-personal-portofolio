@@ -109,3 +109,22 @@ export const useProjectSection = () => {
     handleCategoryChange: setSelectedCategory,
   };
 };
+
+export const useProjectDetailModal = (project: Project | null, onClose: () => void) => {
+  const { t } = useLanguage();
+  useEffect(() => {
+    if (!project) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, project]);
+
+  return {
+    t,
+    projectModal: project,
+    onCloseModal: onClose,
+  };
+};
