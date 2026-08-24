@@ -6,6 +6,7 @@ import * as z from "zod";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -22,6 +23,7 @@ const LoginPage = () => {
   const { login, isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -46,7 +48,7 @@ const LoginPage = () => {
   const onSubmit = async (values: LoginFormValues) => {
     setIsSubmitting(true);
     try {
-      await login(values.email, values.password);
+      await login(values.email, values.password, rememberMe);
       toast.success("Login berhasil! Selamat datang kembali.");
       navigate("/fw-admin/dashboard");
     } catch (error) {
@@ -67,9 +69,7 @@ const LoginPage = () => {
             </div>
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight">Admin Login</CardTitle>
-          <CardDescription>
-            Masukkan email dan password Anda untuk masuk ke panel admin
-          </CardDescription>
+          <CardDescription>Masukkan email dan password Anda untuk masuk ke panel admin</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -83,12 +83,7 @@ const LoginPage = () => {
                     <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="email"
-                          placeholder="admin@felixws.my.id"
-                          className="pl-10"
-                          {...field}
-                        />
+                        <Input id="email" placeholder="admin@felixws.my.id" className="pl-10" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -104,24 +99,20 @@ const LoginPage = () => {
                     <FormControl>
                       <div className="relative">
                         <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          type="password"
-                          id="password"
-                          placeholder="••••••••"
-                          className="pl-10"
-                          {...field}
-                        />
+                        <Input type="password" id="password" placeholder="••••••••" className="pl-10" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                disabled={isSubmitting}
-              >
+              <div className="flex items-center space-x-2">
+                <Checkbox id="rememberMe" checked={rememberMe} onCheckedChange={(checked) => setRememberMe(checked === true)} />
+                <label htmlFor="rememberMe" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer select-none text-muted-foreground">
+                  Remember me
+                </label>
+              </div>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -135,12 +126,7 @@ const LoginPage = () => {
           </Form>
         </CardContent>
         <CardFooter className="flex justify-center border-t border-border py-4">
-          <Button
-            variant="link"
-            size="sm"
-            className="text-muted-foreground hover:text-primary"
-            onClick={() => navigate("/")}
-          >
+          <Button variant="link" size="sm" className="text-muted-foreground hover:text-primary" onClick={() => navigate("/")}>
             Kembali ke Website
           </Button>
         </CardFooter>

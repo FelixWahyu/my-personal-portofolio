@@ -9,7 +9,7 @@ const api = axios.create({
 // Request Interceptor: Attach token to headers
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,6 +26,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       // Optional: redirect to login if we're not already there
       if (!window.location.pathname.includes("/fw-admin/login")) {
         window.location.href = "/fw-admin/login";
