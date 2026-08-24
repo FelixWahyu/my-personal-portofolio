@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, FolderOpen, FileBadge, ChevronRight, User, Settings, LogOut, Briefcase, FileText } from "lucide-react";
+import { LayoutDashboard, FolderOpen, FileBadge, ChevronRight, User, Settings, LogOut, Briefcase, FileText, ArrowLeft } from "lucide-react";
 import { useAuth } from "../../../contexts/AuthContext";
 import ThemeToggle from "@/components/ThemeToggle";
 import profilePhoto from "@/assets/foto-profile.webp";
@@ -29,7 +29,6 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
     { id: "experiences", label: "Experiences", icon: <Briefcase className="w-5 h-5" />, path: "/fw-admin/experiences" },
     { id: "resumes", label: "Resumes", icon: <FileText className="w-5 h-5" />, path: "/fw-admin/resumes" },
   ];
-
 
   return (
     <>
@@ -74,6 +73,13 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
             <ThemeToggle />
           </div>
 
+          <div className="my-1">
+            <NavLink to="/" onClick={onNavItemClick} className="flex items-center justify-center gap-3 px-3 py-2 rounded-lg text-sm font-medium border border-border bg-card hover:bg-accent text-foreground transition-all duration-200">
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Website</span>
+            </NavLink>
+          </div>
+
           {/* Profile Info, Edit, and Logout - Mobile Only */}
           <div className="lg:hidden flex flex-col gap-3">
             <div className="px-2 py-1 bg-accent/20 rounded-lg flex items-center gap-3">
@@ -114,9 +120,7 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
               <LogOut className="w-5 h-5" />
               Logout?
             </AlertDialogTitle>
-            <AlertDialogDescription>
-              Apakah Anda yakin ingin logout? Sesi Anda akan berakhir dan Anda perlu login kembali untuk mengakses panel admin.
-            </AlertDialogDescription>
+            <AlertDialogDescription>Apakah Anda yakin ingin logout? Sesi Anda akan berakhir dan Anda perlu login kembali untuk mengakses panel admin.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Batal</AlertDialogCancel>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import profilePhoto from "@/assets/foto-profile.webp";
 import ThemeToggle from "./ThemeToggle";
@@ -10,6 +10,18 @@ import { NavItems } from "@/const/nav-item";
 const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const navItems = NavItems();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setIsOpen(false);
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleMediaChange);
+    return () => mediaQuery.removeEventListener("change", handleMediaChange);
+  }, []);
 
   const handleNavigate = (section: string) => {
     onNavigate(section);
