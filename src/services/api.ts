@@ -6,7 +6,6 @@ const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
-// Request Interceptor: Attach token to headers
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -20,14 +19,12 @@ api.interceptors.request.use(
   }
 );
 
-// Response Interceptor: Handle 401 Unauthorized
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
-      // Optional: redirect to login if we're not already there
       if (!window.location.pathname.includes("/fw-admin/login")) {
         window.location.href = "/fw-admin/login";
       }

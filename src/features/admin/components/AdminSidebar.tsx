@@ -67,7 +67,6 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
         </nav>
 
         <div className="px-4 pt-6 pb-20 lg:pb-4 lg:pt-4 border-t border-sidebar-border flex flex-col gap-3">
-          {/* Theme Toggle - Desktop Only */}
           <div className="hidden lg:flex items-center justify-between px-4 py-2 bg-accent/30 rounded-lg">
             <span className="text-xs font-medium text-muted-foreground">Theme</span>
             <ThemeToggle />
@@ -80,7 +79,6 @@ const AdminSidebar = ({ onNavItemClick }: AdminSidebarProps) => {
             </NavLink>
           </div>
 
-          {/* Profile Info, Edit, and Logout - Mobile Only */}
           <div className="lg:hidden flex flex-col gap-3">
             <div className="px-2 py-1 bg-accent/20 rounded-lg flex items-center gap-3">
               <span className="rounded-full flex items-center justify-center bg-accent/20 border border-accent/40 p-2">

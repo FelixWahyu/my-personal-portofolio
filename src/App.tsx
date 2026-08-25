@@ -49,7 +49,6 @@ const App = () => (
                 <Route path="/projects" element={<Index />} />
                 <Route path="/contact" element={<Index />} />
 
-                {/* Admin Routes */}
                 <Route path="/fw-admin/login" element={<LoginPage />} />
                 <Route
                   path="/fw-admin"
@@ -76,7 +75,6 @@ const App = () => (
                   <Route path="resumes/:id/edit" element={<ResumeFormPage />} />
                 </Route>
 
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>

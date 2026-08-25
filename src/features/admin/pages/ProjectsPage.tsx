@@ -29,11 +29,10 @@ const ProjectsPage = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isToggling, setIsToggling] = useState<string[]>([]);
 
-  // Search Debouncing
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1); // Reset to page 1 on search change
+      setPage(1);
     }, 400);
 
     return () => clearTimeout(handler);
@@ -76,7 +75,6 @@ const ProjectsPage = () => {
       const response = await deleteProject(projectToDelete);
       if (response.success) {
         toast.success("Project berhasil dihapus");
-        // Refetch and adjust page if necessary
         const nextTotal = total - 1;
         const nextTotalPages = Math.ceil(nextTotal / limit) || 1;
         if (page > nextTotalPages) {
@@ -117,7 +115,6 @@ const ProjectsPage = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
@@ -131,7 +128,6 @@ const ProjectsPage = () => {
         </Button>
       </div>
 
-      {/* Main Controls Card */}
       <Card className="bg-card border-border shadow-md">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
@@ -141,14 +137,12 @@ const ProjectsPage = () => {
           <CardDescription>Cari, filter, dan kelola semua project Anda di sini.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Controls: Search and Filters */}
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Cari berdasarkan nama proyek..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 focus-visible:ring-primary/40 border-border" />
             </div>
 
-            {/* Category Filter Dropdown */}
             <div className="w-full md:w-[180px] shrink-0">
               <Select
                 value={category}
@@ -169,7 +163,6 @@ const ProjectsPage = () => {
             </div>
           </div>
 
-          {/* Table Container */}
           <div className="border border-border rounded-lg overflow-hidden bg-background">
             <Table>
               <TableHeader className="bg-muted/40">
@@ -193,7 +186,6 @@ const ProjectsPage = () => {
                     </TableCell>
                   </TableRow>
                 ) : projects.length === 0 ? (
-                  // Empty state
                   <TableRow>
                     <TableCell colSpan={7} className="h-56 text-center border-border">
                       <div className="flex flex-col items-center justify-center space-y-3">
@@ -211,7 +203,6 @@ const ProjectsPage = () => {
                     </TableCell>
                   </TableRow>
                 ) : (
-                  // Project Rows
                   projects.map((project) => (
                     <TableRow key={project.id} className="border-border hover:bg-muted/30 transition-colors">
                       <TableCell>
@@ -312,7 +303,6 @@ const ProjectsPage = () => {
             </Table>
           </div>
 
-          {/* Pagination Controls */}
           {!loading && totalPages > 1 && (
             <div className="flex items-center justify-between pt-2">
               <div className="text-xs text-muted-foreground">

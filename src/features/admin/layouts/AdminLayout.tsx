@@ -21,12 +21,10 @@ const AdminLayout = () => {
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
-      {/* Sidebar - Desktop */}
       <div className="hidden lg:block shrink-0">
         <AdminSidebar />
       </div>
 
-      {/* Sidebar - Mobile */}
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <SheetContent side="left" className="p-0 w-64 border-none">
           <SheetHeader className="sr-only">

@@ -15,9 +15,7 @@ const AchievementsSection = () => {
         </div>
       </div>
 
-      {/* Search and Filter Controls */}
       <div className="flex flex-col mb-10 sm:flex-row gap-6 w-full md:w-auto">
-        {/* Search */}
         <div className="relative group w-full sm:w-64">
           <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-muted-foreground group-focus-within:text-primary transition-colors">
             <Search className="h-4 w-4" />
@@ -31,7 +29,6 @@ const AchievementsSection = () => {
           />
         </div>
 
-        {/* Type Filter */}
         <div className="relative group w-full sm:w-48">
           <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-muted-foreground group-focus-within:text-primary transition-colors">
             <Filter className="h-4 w-4" />
@@ -94,7 +91,6 @@ const AchievementsSection = () => {
             ))}
           </div>
 
-          {/* Pagination Controls */}
           {totalPages > 1 && (
             <div className="flex justify-left md:justify-center items-center gap-2 mt-8 mb-16 md:mb-0">
               <button

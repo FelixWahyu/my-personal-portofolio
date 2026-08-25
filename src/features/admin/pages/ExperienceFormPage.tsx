@@ -19,11 +19,9 @@ const ExperienceFormPage = () => {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // Non-translatable fields state
   const [sortOrder, setSortOrder] = useState<number>(0);
   const [isPublished, setIsPublished] = useState<boolean>(true);
 
-  // Translatable fields state (Indonesia)
   const [roleId, setRoleId] = useState("");
   const [companyId, setCompanyId] = useState("");
   const [locationId, setLocationId] = useState("");
@@ -35,7 +33,6 @@ const ExperienceFormPage = () => {
   const [insightId, setInsightId] = useState<string[]>([]);
   const [impactId, setImpactId] = useState<string[]>([]);
 
-  // Translatable fields state (English)
   const [roleEn, setRoleEn] = useState("");
   const [companyEn, setCompanyEn] = useState("");
   const [locationEn, setLocationEn] = useState("");
@@ -47,7 +44,6 @@ const ExperienceFormPage = () => {
   const [insightEn, setInsightEn] = useState<string[]>([]);
   const [impactEn, setImpactEn] = useState<string[]>([]);
 
-  // Array item inputs
   const [respIdInput, setRespIdInput] = useState("");
   const [respEnInput, setRespEnInput] = useState("");
   const [insightIdInput, setInsightIdInput] = useState("");
@@ -55,7 +51,6 @@ const ExperienceFormPage = () => {
   const [impactIdInput, setImpactIdInput] = useState("");
   const [impactEnInput, setImpactEnInput] = useState("");
 
-  // Load existing experience if in edit mode
   useEffect(() => {
     if (!isEditMode) return;
 
@@ -66,11 +61,9 @@ const ExperienceFormPage = () => {
         if (response.success && response.data) {
           const exp = response.data;
 
-          // Set non-translatable fields
           setSortOrder(exp.sortOrder);
           setIsPublished(exp.isPublished);
 
-          // Set Indonesian fields
           setRoleId(exp.roleId);
           setCompanyId(exp.companyId);
           setLocationId(exp.locationId);
@@ -82,7 +75,6 @@ const ExperienceFormPage = () => {
           setInsightId(exp.insightId || []);
           setImpactId(exp.impactId || []);
 
-          // Set English fields
           setRoleEn(exp.roleEn);
           setCompanyEn(exp.companyEn);
           setLocationEn(exp.locationEn);
@@ -109,7 +101,6 @@ const ExperienceFormPage = () => {
     fetchExperience();
   }, [id, isEditMode, navigate]);
 
-  // Array item helper handlers
   const handleAddItem = (input: string, setInput: React.Dispatch<React.SetStateAction<string>>, list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>) => {
     const trimmed = input.trim();
     if (trimmed && !list.includes(trimmed)) {
@@ -122,11 +113,9 @@ const ExperienceFormPage = () => {
     setList(list.filter((_, idx) => idx !== indexToRemove));
   };
 
-  // Submit Handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Form validation
     if (!roleId.trim() || !roleEn.trim() || !companyId.trim() || !companyEn.trim()) {
       toast.error("Peran & Perusahaan (Indonesia & Inggris) wajib diisi!");
       return;
@@ -193,7 +182,6 @@ const ExperienceFormPage = () => {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-10 animate-fade-in">
-      {/* Navigation Top */}
       <div className="flex items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="icon" className="h-9 w-9 border-border hover:bg-accent">
@@ -210,7 +198,6 @@ const ExperienceFormPage = () => {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Form Left Side: Bilingual Tabs Content */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="bg-card border-border shadow-sm">
               <CardHeader className="border-b border-border py-4">
@@ -232,7 +219,6 @@ const ExperienceFormPage = () => {
                     </TabsTrigger>
                   </TabsList>
 
-                  {/* ID Tab Content */}
                   <TabsContent value="indonesia" className="space-y-5 focus-visible:outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -275,9 +261,7 @@ const ExperienceFormPage = () => {
                       </div>
                     </div>
 
-                    {/* Array Fields: ID */}
                     <div className="space-y-6">
-                      {/* Responsibilities ID */}
                       <div className="space-y-3">
                         <Label>Tugas & Tanggung Jawab </Label>
                         <div className="flex gap-2">
@@ -304,7 +288,6 @@ const ExperienceFormPage = () => {
                         </ul>
                       </div>
 
-                      {/* Insight ID */}
                       <div className="space-y-3">
                         <Label>Apa Yang Dipelajari </Label>
                         <div className="flex gap-2">
@@ -331,7 +314,6 @@ const ExperienceFormPage = () => {
                         </ul>
                       </div>
 
-                      {/* Impact ID */}
                       <div className="space-y-3">
                         <Label>Dampak </Label>
                         <div className="flex gap-2">
@@ -360,7 +342,6 @@ const ExperienceFormPage = () => {
                     </div>
                   </TabsContent>
 
-                  {/* EN Tab Content */}
                   <TabsContent value="english" className="space-y-5 focus-visible:outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -403,9 +384,7 @@ const ExperienceFormPage = () => {
                       </div>
                     </div>
 
-                    {/* Array Fields: EN */}
                     <div className="space-y-6">
-                      {/* Responsibilities EN */}
                       <div className="space-y-3">
                         <Label>Responsibilities & Tasks</Label>
                         <div className="flex gap-2">
@@ -432,7 +411,6 @@ const ExperienceFormPage = () => {
                         </ul>
                       </div>
 
-                      {/* Insight EN */}
                       <div className="space-y-3">
                         <Label>What I Learned</Label>
                         <div className="flex gap-2">
@@ -459,7 +437,6 @@ const ExperienceFormPage = () => {
                         </ul>
                       </div>
 
-                      {/* Impact EN */}
                       <div className="space-y-3">
                         <Label>Impact</Label>
                         <div className="flex gap-2">
@@ -492,7 +469,6 @@ const ExperienceFormPage = () => {
             </Card>
           </div>
 
-          {/* Form Right Side: Settings & Options */}
           <div className="space-y-6">
             <Card className="bg-card border-border shadow-sm">
               <CardHeader className="border-b border-border py-4">
@@ -503,7 +479,6 @@ const ExperienceFormPage = () => {
                 <CardDescription>Sesuaikan tampilan dan status publikasi di sini.</CardDescription>
               </CardHeader>
               <CardContent className="pt-6 space-y-6">
-                {/* Sort Order */}
                 <div className="space-y-2">
                   <Label htmlFor="sortOrder">Urutan Tampilan (Sort Order)</Label>
                   <Input id="sortOrder" type="number" min="0" value={sortOrder} onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)} className="focus-visible:ring-primary/40 border-border" />
@@ -512,7 +487,6 @@ const ExperienceFormPage = () => {
 
                 <hr className="border-border" />
 
-                {/* Published Toggle */}
                 <div className="flex items-center justify-between bg-muted/30 p-3 rounded-lg border border-border/60">
                   <div className="flex flex-col gap-0.5">
                     <Label htmlFor="isPublished">Publikasikan Data</Label>
@@ -523,7 +497,6 @@ const ExperienceFormPage = () => {
               </CardContent>
             </Card>
 
-            {/* Submit Action Card */}
             <div className="flex items-center gap-3 pt-2">
               <Button asChild variant="outline" type="button" className="w-full bg-card border-border text-foreground hover:bg-muted font-semibold" disabled={saving}>
                 <Link to="/fw-admin/experiences">Batal</Link>

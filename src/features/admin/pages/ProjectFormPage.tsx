@@ -21,7 +21,6 @@ const ProjectFormPage = () => {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // Non-translatable fields state
   const [category, setCategory] = useState<string>("Web");
   const [tech, setTech] = useState<string[]>([]);
   const [techInput, setTechInput] = useState<string>("");
@@ -30,12 +29,10 @@ const ProjectFormPage = () => {
   const [sortOrder, setSortOrder] = useState<number>(0);
   const [isPublished, setIsPublished] = useState<boolean>(true);
 
-  // Image Upload State
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Translatable fields state (Indonesia)
   const [titleId, setTitleId] = useState("");
   const [descriptionId, setDescriptionId] = useState("");
   const [roleId, setRoleId] = useState("");
@@ -44,7 +41,6 @@ const ProjectFormPage = () => {
   const [featuresId, setFeaturesId] = useState<string[]>([]);
   const [featureIdInput, setFeatureIdInput] = useState("");
 
-  // Translatable fields state (English)
   const [titleEn, setTitleEn] = useState("");
   const [descriptionEn, setDescriptionEn] = useState("");
   const [roleEn, setRoleEn] = useState("");
@@ -53,7 +49,6 @@ const ProjectFormPage = () => {
   const [featuresEn, setFeaturesEn] = useState<string[]>([]);
   const [featureEnInput, setFeatureEnInput] = useState("");
 
-  // Load existing project if in edit mode
   useEffect(() => {
     if (!isEditMode) return;
 
@@ -63,7 +58,6 @@ const ProjectFormPage = () => {
         const response = await getProjectById(id!);
         if (response.success && response.data) {
           const p = response.data;
-          // Set non-translatable fields
           setCategory(p.category);
           setTech(p.tech);
           setDemolink(p.demolink || "");
@@ -72,7 +66,6 @@ const ProjectFormPage = () => {
           setIsPublished(p.isPublished);
           setImagePreview(p.image);
 
-          // Set Indonesian fields
           setTitleId(p.titleId);
           setDescriptionId(p.descriptionId);
           setRoleId(p.roleId);
@@ -80,7 +73,6 @@ const ProjectFormPage = () => {
           setImpactId(p.impactId);
           setFeaturesId(p.featuresId || []);
 
-          // Set English fields
           setTitleEn(p.titleEn);
           setDescriptionEn(p.descriptionEn);
           setRoleEn(p.roleEn);
@@ -103,7 +95,6 @@ const ProjectFormPage = () => {
     fetchProject();
   }, [id, isEditMode, navigate]);
 
-  // Image Selection Handler
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -120,7 +111,6 @@ const ProjectFormPage = () => {
     }
   };
 
-  // Tech Stack Handlers
   const addTechTag = () => {
     const trimmed = techInput.trim();
     if (trimmed && !tech.includes(trimmed)) {
@@ -133,7 +123,6 @@ const ProjectFormPage = () => {
     setTech(tech.filter((t) => t !== tagToRemove));
   };
 
-  // Indonesian Features Handlers
   const addFeatureId = () => {
     const trimmed = featureIdInput.trim();
     if (trimmed && !featuresId.includes(trimmed)) {
@@ -146,7 +135,6 @@ const ProjectFormPage = () => {
     setFeaturesId(featuresId.filter((_, idx) => idx !== indexToRemove));
   };
 
-  // English Features Handlers
   const addFeatureEn = () => {
     const trimmed = featureEnInput.trim();
     if (trimmed && !featuresEn.includes(trimmed)) {
@@ -159,11 +147,9 @@ const ProjectFormPage = () => {
     setFeaturesEn(featuresEn.filter((_, idx) => idx !== indexToRemove));
   };
 
-  // Submit Handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validasi Form
     if (!titleId.trim() || !titleEn.trim()) {
       toast.error("Judul (Indonesia & Inggris) wajib diisi!");
       return;
@@ -180,7 +166,6 @@ const ProjectFormPage = () => {
     setSaving(true);
     try {
       const formData = new FormData();
-      // Append non-translatable fields
       formData.append("category", category);
       formData.append("tech", JSON.stringify(tech));
       formData.append("demolink", demolink);
@@ -192,7 +177,6 @@ const ProjectFormPage = () => {
         formData.append("image", imageFile);
       }
 
-      // Append Indonesian fields
       formData.append("titleId", titleId.trim());
       formData.append("descriptionId", descriptionId.trim());
       formData.append("roleId", roleId.trim());
@@ -200,7 +184,6 @@ const ProjectFormPage = () => {
       formData.append("impactId", impactId.trim());
       formData.append("featuresId", JSON.stringify(featuresId));
 
-      // Append English fields
       formData.append("titleEn", titleEn.trim());
       formData.append("descriptionEn", descriptionEn.trim());
       formData.append("roleEn", roleEn.trim());
@@ -241,7 +224,6 @@ const ProjectFormPage = () => {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto animate-fade-in pb-12">
-      {/* Top Breadcrumb Header */}
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-muted border border-border">
           <Link to="/fw-admin/projects">
@@ -255,7 +237,6 @@ const ProjectFormPage = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Side: Rich Text/Bilingual Forms (Span 2) */}
         <div className="lg:col-span-2 space-y-6">
           <Tabs defaultValue="id" className="w-full">
             <TabsList className="grid grid-cols-2 w-full bg-muted border border-border">
@@ -269,7 +250,6 @@ const ProjectFormPage = () => {
               </TabsTrigger>
             </TabsList>
 
-            {/* Indonesian Translation Fields */}
             <TabsContent value="id" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader className="border-b border-border pb-4">
@@ -340,7 +320,6 @@ const ProjectFormPage = () => {
                     />
                   </div>
 
-                  {/* Indonesian Features Tag List */}
                   <div className="space-y-3 pt-3 border-t border-border">
                     <Label className="text-sm font-semibold text-foreground">Daftar Fitur Unggulan</Label>
                     <div className="flex gap-2">
@@ -361,7 +340,6 @@ const ProjectFormPage = () => {
                       </Button>
                     </div>
 
-                    {/* List Items */}
                     <div className="space-y-1.5 mt-2 max-h-[200px] overflow-y-auto pr-1">
                       {featuresId.length === 0 ? (
                         <p className="text-xs text-muted-foreground italic">Belum ada fitur ditambahkan.</p>
@@ -384,7 +362,6 @@ const ProjectFormPage = () => {
               </Card>
             </TabsContent>
 
-            {/* English Translation Fields */}
             <TabsContent value="en" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader className="border-b border-border pb-4">
@@ -455,7 +432,6 @@ const ProjectFormPage = () => {
                     />
                   </div>
 
-                  {/* English Features Tag List */}
                   <div className="space-y-3 pt-3 border-t border-border">
                     <Label className="text-sm font-semibold text-foreground">Key Features List</Label>
                     <div className="flex gap-2">
@@ -476,7 +452,6 @@ const ProjectFormPage = () => {
                       </Button>
                     </div>
 
-                    {/* List Items */}
                     <div className="space-y-1.5 mt-2 max-h-[200px] overflow-y-auto pr-1">
                       {featuresEn.length === 0 ? (
                         <p className="text-xs text-muted-foreground italic">No features added yet.</p>
@@ -501,9 +476,7 @@ const ProjectFormPage = () => {
           </Tabs>
         </div>
 
-        {/* Right Side: Media, Categorization, Settings (Span 1) */}
         <div className="space-y-6">
-          {/* Card: Thumbnail Upload */}
           <Card className="bg-card border-border shadow-md">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -512,7 +485,6 @@ const ProjectFormPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Preview Box */}
               <div className="relative border-2 border-dashed border-border rounded-xl aspect-[16/10] overflow-hidden flex flex-col items-center justify-center bg-muted transition hover:border-primary/50 group">
                 {imagePreview ? (
                   <>
@@ -543,7 +515,6 @@ const ProjectFormPage = () => {
             </CardContent>
           </Card>
 
-          {/* Card: Categorization and Tech Stack */}
           <Card className="bg-card border-border shadow-md">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -552,7 +523,6 @@ const ProjectFormPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
-              {/* Category */}
               <div className="space-y-2">
                 <Label htmlFor="category" className="text-xs font-semibold text-foreground">
                   Kategori
@@ -568,7 +538,6 @@ const ProjectFormPage = () => {
                 </Select>
               </div>
 
-              {/* Tech Tag Input */}
               <div className="space-y-3 border-t border-border pt-3">
                 <Label className="text-xs font-semibold text-foreground">Tumpukan Teknologi (Tech Stack)</Label>
                 <div className="flex gap-2">
@@ -589,7 +558,6 @@ const ProjectFormPage = () => {
                   </Button>
                 </div>
 
-                {/* Tech Badges Container */}
                 <div className="flex flex-wrap gap-1.5 mt-2 bg-muted p-2 rounded-lg border border-border min-h-[60px]">
                   {tech.length === 0 ? (
                     <span className="text-[10px] text-muted-foreground italic my-auto">Belum ada tech tag ditambahkan.</span>
@@ -608,7 +576,6 @@ const ProjectFormPage = () => {
             </CardContent>
           </Card>
 
-          {/* Card: External Links & Ordering */}
           <Card className="bg-card border-border shadow-md">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -651,7 +618,6 @@ const ProjectFormPage = () => {
             </CardContent>
           </Card>
 
-          {/* Action buttons (Save/Cancel) */}
           <div className="flex flex-row items-center gap-3 pt-2">
             <Button variant="outline" type="button" asChild className="w-full border-border bg-card text-foreground hover:bg-muted h-10 font-semibold" disabled={saving}>
               <Link to="/fw-admin/projects">Batal</Link>

@@ -26,11 +26,10 @@ const ExperiencesPage = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isToggling, setIsToggling] = useState<string[]>([]);
 
-  // Search Debouncing
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1); // Reset to page 1 on search change
+      setPage(1);
     }, 400);
 
     return () => clearTimeout(handler);
@@ -112,7 +111,6 @@ const ExperiencesPage = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Experiences</h1>
@@ -126,7 +124,6 @@ const ExperiencesPage = () => {
         </Button>
       </div>
 
-      {/* Main Controls Card */}
       <Card className="bg-card border-border shadow-md">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
@@ -136,7 +133,6 @@ const ExperiencesPage = () => {
           <CardDescription>Cari dan kelola semua riwayat pekerjaan Anda di sini.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Controls: Search */}
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -144,7 +140,6 @@ const ExperiencesPage = () => {
             </div>
           </div>
 
-          {/* Table / Content Section */}
           <div className="border border-border rounded-md overflow-hidden bg-background">
             <Table>
               <TableHeader className="bg-muted/40">
@@ -230,7 +225,6 @@ const ExperiencesPage = () => {
             </Table>
           </div>
 
-          {/* Pagination */}
           {!loading && totalPages > 1 && (
             <div className="flex items-center justify-between pt-2">
               <div className="text-sm text-muted-foreground">
@@ -258,7 +252,6 @@ const ExperiencesPage = () => {
         </CardContent>
       </Card>
 
-      {/* Delete Dialog */}
       <AlertDialog open={!!experienceToDelete} onOpenChange={(open) => !open && setExperienceToDelete(null)}>
         <AlertDialogContent className="border-border">
           <AlertDialogHeader>

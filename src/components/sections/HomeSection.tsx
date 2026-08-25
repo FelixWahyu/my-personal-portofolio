@@ -12,7 +12,6 @@ const HomeSection = () => {
   return (
     <section className="animate-fade-in pb-12 mb-8 mt-4">
       <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between gap-12 md:gap-8">
-        {/* Left Column - Content */}
         <div className="flex-1 w-full flex flex-col justify-center items-center md:items-start text-center md:text-left mt-4 md:mt-0">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-3 animate-fade-in tracking-tight">
             {t.home.greeting}
@@ -72,10 +71,8 @@ const HomeSection = () => {
           </div>
         </div>
 
-        {/* Right Column - Image */}
         <div className="shrink-0 animate-fade-in w-full md:w-auto flex justify-center mt-4 md:mt-8" style={{ animationDelay: "150ms" }}>
           <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] mx-auto">
-            {/* Glowing background */}
             <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full mix-blend-multiply dark:mix-blend-lighten animate-pulse" style={{ animationDuration: "4s" }}></div>
 
             <CodeTyping />

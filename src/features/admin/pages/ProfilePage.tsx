@@ -43,7 +43,6 @@ const ProfilePage = () => {
     },
   });
 
-  // Update form values when user data is loaded
   useEffect(() => {
     if (user) {
       form.reset({

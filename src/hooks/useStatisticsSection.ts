@@ -31,7 +31,6 @@ export const useWakatimeStats = () => {
     setLoading(true);
     setError(false);
 
-    // Auto-retry up to 3 times for Koyeb cold starts
     const maxRetries = 3;
 
     const attemptFetch = (attempt: number) => {
@@ -49,7 +48,6 @@ export const useWakatimeStats = () => {
         .catch((err) => {
           console.error(`WakaTime fetch failed (Attempt ${attempt}):`, err);
           if (attempt < maxRetries) {
-            // Wait 5 seconds before retrying to give Koyeb time to wake up
             setTimeout(() => {
               setRetryCount(attempt);
               attemptFetch(attempt + 1);

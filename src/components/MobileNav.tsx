@@ -30,7 +30,6 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
 
   return (
     <>
-      {/* Mobile Header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-sidebar border-b border-sidebar-border px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -52,7 +51,6 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="lg:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
           <nav id="mobile-nav-menu" className="absolute top-16 left-0 right-0 bg-sidebar border-b border-sidebar-border p-4" onClick={(e) => e.stopPropagation()}>

@@ -13,7 +13,6 @@ import WhatsappButton from "@/components/WhatsappButton";
 import PageTransition from "@/components/PageTransition";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
-// Map URL path → section key
 const pathToSection: Record<string, string> = {
   "/": "beranda",
   "/about": "tentang",
@@ -23,7 +22,6 @@ const pathToSection: Record<string, string> = {
   "/contact": "kontak",
 };
 
-// Map section key → URL path
 const sectionToPath: Record<string, string> = {
   beranda: "/",
   tentang: "/about",
@@ -41,7 +39,6 @@ const Index = () => {
 
   usePageTitle(activeSection);
 
-  // Redirect unknown paths to home
   useEffect(() => {
     if (!pathToSection[location.pathname]) {
       navigate("/", { replace: true });

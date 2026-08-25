@@ -15,7 +15,6 @@ const ProjectsSection = () => {
         </div>
       </div>
 
-      {/* Category Filter */}
       <div className="flex gap-2 mb-10 p-1 rounded-lg w-full md:w-auto overflow-x-auto">
         {categories.map((category) => (
           <button
@@ -89,7 +88,6 @@ const ProjectsSection = () => {
             ))}
           </div>
 
-          {/* Pagination Controls */}
           {totalPages > 1 && (
             <div className="flex justify-left md:justify-center items-center gap-2 mt-8 mb-16 md:mb-0">
               <button

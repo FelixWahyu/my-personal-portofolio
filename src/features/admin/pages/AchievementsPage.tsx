@@ -29,11 +29,10 @@ const AchievementsPage = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isToggling, setIsToggling] = useState<string[]>([]);
 
-  // Search Debouncing
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1); // Reset to page 1 on search change
+      setPage(1);
     }, 400);
 
     return () => clearTimeout(handler);
@@ -91,9 +90,7 @@ const AchievementsPage = () => {
       const response = await deleteAchievement(achievementToDelete);
       if (response.success) {
         toast.success("Achievement berhasil dihapus");
-        // Update types dynamic filter list in case the deleted one had a unique type
         fetchTypes();
-        // Refetch and adjust page if necessary
         const nextTotal = total - 1;
         const nextTotalPages = Math.ceil(nextTotal / limit) || 1;
         if (page > nextTotalPages) {
@@ -134,7 +131,6 @@ const AchievementsPage = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Achievements</h1>
@@ -148,7 +144,6 @@ const AchievementsPage = () => {
         </Button>
       </div>
 
-      {/* Main Controls Card */}
       <Card className="bg-card border-border shadow-md">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
@@ -158,14 +153,12 @@ const AchievementsPage = () => {
           <CardDescription>Cari, filter, dan kelola semua pencapaian Anda di sini.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Controls: Search and Filters */}
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Cari berdasarkan judul, penerbit, deskripsi..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 focus-visible:ring-primary/40 border-border" />
             </div>
 
-            {/* Type Filter Dropdown */}
             <div className="w-full md:w-[180px] shrink-0">
               <Select
                 value={selectedType}
@@ -189,7 +182,6 @@ const AchievementsPage = () => {
             </div>
           </div>
 
-          {/* Table Container */}
           <div className="border border-border rounded-lg overflow-hidden bg-background">
             <Table>
               <TableHeader className="bg-muted/40">
@@ -296,7 +288,6 @@ const AchievementsPage = () => {
             </Table>
           </div>
 
-          {/* Pagination Controls */}
           {!loading && totalPages > 1 && (
             <div className="flex justify-between items-center pt-2">
               <span className="text-xs text-muted-foreground">
@@ -341,7 +332,6 @@ const AchievementsPage = () => {
         </CardContent>
       </Card>
 
-      {/* Delete Confirmation Alert Dialog */}
       <AlertDialog open={achievementToDelete !== null} onOpenChange={(open) => !open && setAchievementToDelete(null)}>
         <AlertDialogContent className="border-border">
           <AlertDialogHeader>

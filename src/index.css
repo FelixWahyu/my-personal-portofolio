@@ -45,7 +45,6 @@
     --sidebar-border: 0 0% 88%;
     --sidebar-ring: 45 93% 47%;
 
-    /* Custom tokens */
     --skill-bg: 0 0% 92%;
     --nav-hover: 0 0% 92%;
     --verified-badge: 45 93% 47%;
@@ -90,7 +89,6 @@
     --sidebar-border: 0 0% 16%;
     --sidebar-ring: 48 96% 53%;
 
-    /* Custom tokens */
     --skill-bg: 0 0% 12%;
     --nav-hover: 0 0% 14%;
     --verified-badge: 48 96% 53%;
@@ -108,7 +106,6 @@
     font-family: "Inter", sans-serif;
   }
 
-  /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;
   }

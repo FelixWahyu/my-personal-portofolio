@@ -44,7 +44,6 @@ export const useAboutSection = () => {
           }));
           setExperiences(mapped);
         } else {
-          // Fallback to translations if API fails
           setExperiences(t.about.experiences);
         }
       } catch (error) {

@@ -24,19 +24,16 @@ const AchievementFormPage = () => {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // Non-translatable fields state
   const [typeSelect, setTypeSelect] = useState<string>("Profesional");
   const [customType, setCustomType] = useState<string>("");
   const [credentialCode, setCredentialCode] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<number>(0);
   const [isPublished, setIsPublished] = useState<boolean>(true);
 
-  // Image Upload State
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Translatable fields state (Indonesia)
   const [titleId, setTitleId] = useState("");
   const [issuerTextId, setIssuerTextId] = useState("");
   const [descriptionId, setDescriptionId] = useState("");
@@ -44,7 +41,6 @@ const AchievementFormPage = () => {
   const [tagsId, setTagsId] = useState<string[]>([]);
   const [tagIdInput, setTagIdInput] = useState("");
 
-  // Translatable fields state (English)
   const [titleEn, setTitleEn] = useState("");
   const [issuerTextEn, setIssuerTextEn] = useState("");
   const [descriptionEn, setDescriptionEn] = useState("");
@@ -52,7 +48,6 @@ const AchievementFormPage = () => {
   const [tagsEn, setTagsEn] = useState<string[]>([]);
   const [tagEnInput, setTagEnInput] = useState("");
 
-  // Load existing achievement if in edit mode
   useEffect(() => {
     if (!isEditMode) return;
 
@@ -63,7 +58,6 @@ const AchievementFormPage = () => {
         if (response.success && response.data) {
           const a = response.data;
 
-          // Set non-translatable fields
           if (PRESET_TYPES.includes(a.type)) {
             setTypeSelect(a.type);
             setCustomType("");
@@ -77,14 +71,12 @@ const AchievementFormPage = () => {
           setIsPublished(a.isPublished);
           setImagePreview(a.image);
 
-          // Set Indonesian fields
           setTitleId(a.titleId);
           setIssuerTextId(a.issuerTextId);
           setDescriptionId(a.descriptionId || "");
           setDateId(a.dateId);
           setTagsId(a.tagsId || []);
 
-          // Set English fields
           setTitleEn(a.titleEn);
           setIssuerTextEn(a.issuerTextEn);
           setDescriptionEn(a.descriptionEn || "");
@@ -106,7 +98,6 @@ const AchievementFormPage = () => {
     fetchAchievement();
   }, [id, isEditMode, navigate]);
 
-  // Image Selection Handler
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -123,7 +114,6 @@ const AchievementFormPage = () => {
     }
   };
 
-  // Tag Handlers (Indonesia)
   const addTagId = () => {
     const trimmed = tagIdInput.trim();
     if (trimmed && !tagsId.includes(trimmed)) {
@@ -136,7 +126,6 @@ const AchievementFormPage = () => {
     setTagsId(tagsId.filter((t) => t !== tagToRemove));
   };
 
-  // Tag Handlers (English)
   const addTagEn = () => {
     const trimmed = tagEnInput.trim();
     if (trimmed && !tagsEn.includes(trimmed)) {
@@ -149,11 +138,9 @@ const AchievementFormPage = () => {
     setTagsEn(tagsEn.filter((t) => t !== tagToRemove));
   };
 
-  // Submit Handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validasi Form
     if (!titleId.trim() || !titleEn.trim()) {
       toast.error("Judul (Indonesia & Inggris) wajib diisi!");
       return;
@@ -232,7 +219,6 @@ const AchievementFormPage = () => {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto animate-fade-in pb-12">
-      {/* Navigation Header */}
       <div className="flex items-center gap-3">
         <Button asChild variant="outline" size="icon" className="h-9 w-9 border-border bg-card">
           <Link to="/fw-admin/achievements">
@@ -246,7 +232,6 @@ const AchievementFormPage = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Side: Bilingual Content Form Tabs */}
         <div className="lg:col-span-2 space-y-6">
           <Tabs defaultValue="indonesia" className="w-full">
             <TabsList className="grid w-full grid-cols-2 bg-muted border border-border">
@@ -260,7 +245,6 @@ const AchievementFormPage = () => {
               </TabsTrigger>
             </TabsList>
 
-            {/* INDONESIAN TAB */}
             <TabsContent value="indonesia" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader>
@@ -297,7 +281,6 @@ const AchievementFormPage = () => {
                     <Textarea id="descriptionId" placeholder="Jelaskan mengenai pencapaian Anda, apa yang dipelajari..." value={descriptionId} onChange={(e) => setDescriptionId(e.target.value)} rows={4} className="border-border resize-y" />
                   </div>
 
-                  {/* Indonesian Tags */}
                   <div className="space-y-2">
                     <Label>Tags / Kategori Lencana</Label>
                     <div className="flex gap-2">
@@ -329,7 +312,6 @@ const AchievementFormPage = () => {
               </Card>
             </TabsContent>
 
-            {/* ENGLISH TAB */}
             <TabsContent value="english" className="space-y-5 animate-fade-in focus-visible:outline-none">
               <Card className="bg-card border-border shadow-sm">
                 <CardHeader>
@@ -366,7 +348,6 @@ const AchievementFormPage = () => {
                     <Textarea id="descriptionEn" placeholder="Explain about your achievement, what was learned..." value={descriptionEn} onChange={(e) => setDescriptionEn(e.target.value)} rows={4} className="border-border resize-y" />
                   </div>
 
-                  {/* English Tags */}
                   <div className="space-y-2">
                     <Label>Tags / Badges Category</Label>
                     <div className="flex gap-2">
@@ -400,9 +381,7 @@ const AchievementFormPage = () => {
           </Tabs>
         </div>
 
-        {/* Right Side: Non-Translatable & Settings */}
         <div className="space-y-6">
-          {/* Certificate Image Upload Card */}
           <Card className="bg-card border-border shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -411,7 +390,6 @@ const AchievementFormPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Preview Box */}
               <div className="relative border-2 border-dashed border-border rounded-xl aspect-[16/10] overflow-hidden flex flex-col items-center justify-center bg-muted transition hover:border-primary/50 group">
                 {imagePreview ? (
                   <>
@@ -442,7 +420,6 @@ const AchievementFormPage = () => {
             </CardContent>
           </Card>
 
-          {/* Achievement Settings Card */}
           <Card className="bg-card border-border shadow-sm">
             <CardHeader>
               <CardTitle className="text-md font-semibold flex items-center gap-2">
@@ -452,7 +429,6 @@ const AchievementFormPage = () => {
               <CardDescription>Tipe pencapaian, sort order, publish.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Type Preset Selector */}
               <div className="space-y-2">
                 <Label htmlFor="typeSelect">Tipe Pencapaian</Label>
                 <Select value={typeSelect} onValueChange={setTypeSelect}>
@@ -469,7 +445,6 @@ const AchievementFormPage = () => {
                 </Select>
               </div>
 
-              {/* Custom Type Field (shows only when 'Lainnya' is selected) */}
               {typeSelect === "Lainnya" && (
                 <div className="space-y-2 animate-fade-in">
                   <Label htmlFor="customType">
@@ -479,20 +454,17 @@ const AchievementFormPage = () => {
                 </div>
               )}
 
-              {/* Credential Code */}
               <div className="space-y-2">
                 <Label htmlFor="credentialCode">ID Kredensial / No. Sertifikat (Optional)</Label>
                 <Input id="credentialCode" placeholder="Contoh: CMP/12-23/HCLGA/6256556" value={credentialCode} onChange={(e) => setCredentialCode(e.target.value)} className="border-border" />
               </div>
 
-              {/* Sort Order */}
               <div className="space-y-2">
                 <Label htmlFor="sortOrder">Urutan Tampilan</Label>
                 <Input id="sortOrder" type="number" placeholder="0" value={sortOrder} onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)} className="border-border" />
                 <span className="text-muted-foreground text-[10px] sm:text-xs">Semakin kecil angka, posisi pencapaian semakin awal.</span>
               </div>
 
-              {/* Publish Toggle */}
               <div className="flex items-center justify-between border-t border-border pt-4 mt-2">
                 <div className="space-y-0.5">
                   <Label htmlFor="isPublished">Tampilkan di Publik</Label>
@@ -503,7 +475,6 @@ const AchievementFormPage = () => {
             </CardContent>
           </Card>
 
-          {/* Form Actions */}
           <div className="flex flex-row items-center gap-3">
             <Button asChild type="button" variant="outline" className="flex-1 border-border bg-card" disabled={saving}>
               <Link to="/fw-admin/achievements">Batal</Link>

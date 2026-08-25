@@ -20,7 +20,6 @@ interface AuthContextType {
   logout: () => void;
 }
 
-// Helper: get token from either storage
 const getStoredToken = (): string | null => {
   return localStorage.getItem("token") || sessionStorage.getItem("token");
 };

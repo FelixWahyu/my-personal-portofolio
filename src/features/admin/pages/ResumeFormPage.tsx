@@ -157,7 +157,6 @@ const ResumeFormPage = () => {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-10 animate-fade-in">
-      {/* Navigation Top */}
       <div className="flex items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="icon" className="h-9 w-9 border-border hover:bg-accent">
@@ -183,7 +182,6 @@ const ResumeFormPage = () => {
           </CardHeader>
 
           <CardContent className="pt-6 space-y-5">
-            {/* File Label / Name */}
             <div className="space-y-2">
               <Label htmlFor="fileName">
                 Nama Resume / CV <span className="text-destructive">*</span>
@@ -192,7 +190,6 @@ const ResumeFormPage = () => {
               <p className="text-[11px] text-muted-foreground">Nama ini akan digunakan sebagai label pengelolaan di admin.</p>
             </div>
 
-            {/* PDF File Upload Zone */}
             <div className="space-y-2">
               <Label>
                 File PDF Resume <span className="text-destructive">{!isEditMode && "*"}</span>
@@ -245,9 +242,7 @@ const ResumeFormPage = () => {
           </CardContent>
         </Card>
 
-        {/* Info Box and Actions Container */}
         <div className="flex flex-row md:items-start justify-end gap-6 pt-2">
-          {/* Submit Action (Right) */}
           <div className="flex items-center gap-3 w-full md:w-auto md:min-w-[280px] shrink-0">
             <Button asChild variant="outline" type="button" className="w-full bg-card border-border text-foreground hover:bg-muted font-semibold text-sm h-10" disabled={saving}>
               <Link to="/fw-admin/resumes">Batal</Link>

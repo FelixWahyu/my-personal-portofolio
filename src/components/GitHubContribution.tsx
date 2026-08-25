@@ -12,7 +12,6 @@ export const GitHubContributions = () => {
 
   return (
     <div className="p-4 sm:p-6 rounded-md text-foreground">
-      {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         <Stat label={t.statistik.githubcard.total} value={total} />
         <Stat label={t.statistik.githubcard.minggu} value={weekTotal} />
@@ -20,7 +19,6 @@ export const GitHubContributions = () => {
         <Stat label={t.statistik.githubcard.average} value={`${avg} /${t.statistik.githubcard.hari}`} />
       </div>
 
-      {/* Header + Year Selector */}
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-sm font-semibold text-muted-foreground">{t.statistik.githubcont}</h3>
         <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="bg-card border border-border text-foreground text-sm rounded px-2 py-1" aria-label="Pilih tahun kontribusi">
@@ -32,11 +30,9 @@ export const GitHubContributions = () => {
         </select>
       </div>
 
-      {/* Contribution Grid — scrollable container */}
       <div className="p-3 border border-border shadow-sm rounded-md bg-card overflow-hidden">
         <div className="overflow-x-auto w-full">
           <div className="min-w-max">
-            {/* Month labels */}
             <div className="flex gap-[3px] text-[10px] text-muted-foreground mb-1 pl-[2px]">
               {weeks.map((week, i) => {
                 const firstDay = week[0];
@@ -51,7 +47,6 @@ export const GitHubContributions = () => {
               })}
             </div>
 
-            {/* Grid squares */}
             <div className="flex gap-[3px]">
               {weeks.map((week, i) => (
                 <div key={i} className="flex flex-col gap-[3px] shrink-0">
@@ -64,7 +59,6 @@ export const GitHubContributions = () => {
           </div>
         </div>
 
-        {/* Legend */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground mt-3 px-1">
           <span>{t.statistik.gitcontribution.sedikit}</span>
           {[0, 1, 2, 3, 4].map((lvl) => (

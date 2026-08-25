@@ -27,7 +27,6 @@ const ResumesPage = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isActivating, setIsActivating] = useState<string | null>(null);
 
-  // Search Debouncing
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
@@ -131,7 +130,6 @@ const ResumesPage = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Resumes</h1>
@@ -145,7 +143,6 @@ const ResumesPage = () => {
         </Button>
       </div>
 
-      {/* Main Controls Card */}
       <Card className="bg-card border-border shadow-md">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
@@ -155,7 +152,6 @@ const ResumesPage = () => {
           <CardDescription>Kelola file resume Anda dan pilih resume aktif untuk diunduh pengunjung.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Controls: Search */}
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -163,7 +159,6 @@ const ResumesPage = () => {
             </div>
           </div>
 
-          {/* Table / Content Section */}
           <div className="border border-border rounded-md overflow-hidden bg-background">
             <Table>
               <TableHeader className="bg-muted/40">
@@ -241,7 +236,6 @@ const ResumesPage = () => {
             </Table>
           </div>
 
-          {/* Pagination */}
           {!loading && totalPages > 1 && (
             <div className="flex items-center justify-between pt-2">
               <div className="text-sm text-muted-foreground">
@@ -269,7 +263,6 @@ const ResumesPage = () => {
         </CardContent>
       </Card>
 
-      {/* Delete Dialog */}
       <AlertDialog open={!!resumeToDelete} onOpenChange={(open) => !open && setResumeToDelete(null)}>
         <AlertDialogContent className="border-border">
           <AlertDialogHeader>
