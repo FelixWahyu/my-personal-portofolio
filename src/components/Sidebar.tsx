@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Copyright } from "lucide-react";
 import profilePhoto from "@/assets/foto-profile.webp";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
@@ -10,6 +10,7 @@ import type { SidebarProps } from "@/types";
 const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
   const { t } = useLanguage();
   const navItems = NavItems();
+  const year = new Date().getFullYear();
 
   return (
     <aside className="w-72 bg-sidebar border-r border-sidebar-border flex flex-col h-screen sticky top-0">
@@ -46,7 +47,10 @@ const Sidebar = ({ activeSection, onNavigate }: SidebarProps) => {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border">
-        <p className="text-xs text-muted-foreground text-center">{t.footer.copyright}</p>
+        <p className="text-xs text-muted-foreground text-center flex items-center">
+          <Copyright className="w-3 h-3" />
+          {year} {t.footer.copyright}
+        </p>
       </div>
     </aside>
   );

@@ -37,7 +37,7 @@ const HomeSection = () => {
 
           <div className="flex flex-row justify-center md:justify-start gap-5 sm:gap-10 mt-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
             <div className="flex items-center gap-4 group">
-              <span className="text-3xl lg:text-4xl font-black text-primary drop-shadow-md group-hover:scale-110 transition-transform">2+</span>
+              <span className="text-3xl lg:text-4xl font-black text-primary drop-shadow-md group-hover:scale-110 transition-transform">3+</span>
               <span className="text-sm font-medium text-muted-foreground leading-tight text-left uppercase tracking-wider">
                 Years
                 <br />

@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 
 const sectionTitles: Record<string, { id: string; en: string }> = {
-  beranda: { id: "Beranda | Felix Portofolio", en: "Home | Felix Portfolio" },
-  tentang: { id: "Tentang | Felix Portofolio", en: "About | Felix Portfolio" },
-  statistik: { id: "Statistik | Felix Portofolio", en: "Statistics | Felix Portfolio" },
-  pencapaian: { id: "Pencapaian | Felix Portofolio", en: "Achievements | Felix Portfolio" },
-  proyek: { id: "Proyek | Felix Portofolio", en: "Projects | Felix Portfolio" },
-  kontak: { id: "Kontak | Felix Portofolio", en: "Contact | Felix Portfolio" },
+  beranda: { id: "Beranda | Felix - Fullstack Developer", en: "Home | Felix - Fullstack Developer" },
+  tentang: { id: "Tentang | Felix - Fullstack Developer", en: "About | Felix - Fullstack Developer" },
+  statistik: { id: "Statistik | Felix - Fullstack Developer", en: "Statistics | Felix - Fullstack Developer" },
+  pencapaian: { id: "Pencapaian | Felix - Fullstack Developer", en: "Achievements | Felix - Fullstack Developer" },
+  proyek: { id: "Proyek | Felix - Fullstack Developer", en: "Projects | Felix - Fullstack Developer" },
+  kontak: { id: "Kontak | Felix - Fullstack Developer", en: "Contact | Felix - Fullstack Developer" },
 };
 
 export function usePageTitle(activeSection: string) {
@@ -18,7 +18,7 @@ export function usePageTitle(activeSection: string) {
     if (titles) {
       document.title = titles[language];
     } else {
-      document.title = language === "id" ? "Felix Portofolio" : "Felix Portfolio";
+      document.title = "Felix - Fullstack Developer";
     }
   }, [activeSection, language]);
 }

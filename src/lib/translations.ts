@@ -382,7 +382,7 @@ export const translations = {
       },
     },
     footer: {
-      copyright: "© 2026 Dibuat oleh Felix Wahyu Sejati",
+      copyright: "Dibuat oleh Felix Wahyu Sejati",
     },
   },
   en: {
@@ -767,7 +767,7 @@ export const translations = {
       },
     },
     footer: {
-      copyright: "© 2026 Created by Felix Wahyu Sejati",
+      copyright: "Created by Felix Wahyu Sejati",
     },
   },
 };
