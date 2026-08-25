@@ -7,6 +7,9 @@ import { getAchievementStats } from "../../../services/achievementService";
 import { getExperienceStats } from "../../../services/experienceService";
 import { getResumeStats } from "../../../services/resumeService";
 import { Briefcase } from "lucide-react";
+import AnalyticsPageviews from "../components/AnalyticsPageviews";
+import AnalyticsReferrers from "../components/AnalyticsReferrers";
+import AnalyticsDevices from "../components/AnalyticsDevices";
 
 const DashboardPage = () => {
   const { user } = useAuth();
@@ -93,6 +96,13 @@ const DashboardPage = () => {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      <AnalyticsPageviews />
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <AnalyticsReferrers />
+        <AnalyticsDevices />
       </div>
 
       <Card className="bg-card border-border shadow-sm">
