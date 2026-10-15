@@ -1,4 +1,4 @@
-import { MapPin, Briefcase, Download, User } from "lucide-react";
+import { MapPin, Briefcase, Download, User, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import config from "@/config/GitHubUsername";
@@ -7,7 +7,7 @@ import TypewriterText from "../ui/TypewriterText";
 import { useHomeSection } from "@/hooks/useHomeSection";
 
 const HomeSection = () => {
-  const { resumeUrl, t } = useHomeSection();
+  const { resumeUrl, t, loading } = useHomeSection();
 
   return (
     <section className="animate-fade-in pb-12 mb-8 mt-4">
@@ -56,12 +56,20 @@ const HomeSection = () => {
           </div>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-10 animate-fade-in w-full sm:w-auto" style={{ animationDelay: "300ms" }}>
-            <Button asChild size="lg" className="gap-2 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 rounded-full px-8 w-full sm:w-auto text-base">
-              <a href={resumeUrl || "/files/Resume-06072026.pdf"} download target="_blank" rel="noopener noreferrer">
-                <Download className="w-5 h-5" />
-                {t.about.downloadResume}
-              </a>
-            </Button>
+            {loading ? (
+              <Button size="lg" className="gap-2 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 rounded-full px-8 w-full sm:w-auto text-base">
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Loading...
+              </Button>
+            ) : resumeUrl ? (
+              <Button asChild size="lg" className="gap-2 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 rounded-full px-8 w-full sm:w-auto text-base">
+                <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                  <Download className="w-5 h-5" />
+                  {t.about.downloadResume}
+                </a>
+              </Button>
+            ) : null}
+
             <Button asChild size="lg" variant="outline" className="gap-2 transition-all duration-300 rounded-full px-8 w-full sm:w-auto border-2 hover:bg-secondary text-base">
               <Link to="/contact">
                 <User className="w-5 h-5" />

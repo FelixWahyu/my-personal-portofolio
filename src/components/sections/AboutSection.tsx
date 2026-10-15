@@ -130,12 +130,19 @@ const AboutSection = () => {
       </div>
 
       <div className="flex flex-wrap gap-3 mt-6">
-        <Button asChild variant="outline" className="gap-2">
-          <a href={resumeUrl || "/files/Resume-06072026.pdf"} download target="_blank" rel="noopener noreferrer">
-            <Download className="w-4 h-4" />
-            {t.about.downloadResume}
-          </a>
-        </Button>
+        {loading ? (
+          <Button variant="outline" className="gap-2" disabled>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Loading...
+          </Button>
+        ) : resumeUrl ? (
+          <Button asChild variant="outline" className="gap-2">
+            <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+              <Download className="w-4 h-4" />
+              {t.about.downloadResume}
+            </a>
+          </Button>
+        ) : null}
       </div>
 
       <div>
